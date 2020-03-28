@@ -1,0 +1,185 @@
+/*reset*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*reset*/
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Raleway:400,500,600,700,800,900&display=swap");
+
+//Theme colors//
+$primary-color: #44cdcd;
+$secondary-color: #ff567f;
+$titles-font: "Raleway", sans-serif;
+$content-font: "Montserrat", sans-serif;
+
+//App bar styles//
+
+.MuiToolbar-root {
+  background-color: $primary-color;
+  color: white;
+  box-shadow: none;
+
+  .MuiTypography-body1 {
+    color: white;
+    font-family: $titles-font;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .navLinks-div {
+    position: absolute;
+    right: 15px;
+    font-family: $content-font;
+    a {
+      color: white;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+//Button Styles//
+.MuiPaper-root {
+  box-shadow: none;
+
+  .MuiButton-contained {
+    font-family: $content-font;
+    border-radius: 6px;
+    box-shadow: none;
+    background-color: $secondary-color;
+    color: white;
+    text-transform: none;
+  }
+
+  .MuiMenu-list {
+    background: rgb(129, 129, 129);
+    color: white;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+    .MuiMenuItem-root {
+      font-family: $content-font;
+    }
+  }
+}
