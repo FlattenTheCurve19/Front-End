@@ -1,5 +1,5 @@
-import React from "react"
-import { useForm } from "react-hook-form"
+import React from "react";
+import { useForm } from "react-hook-form";
 import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
@@ -38,6 +38,6 @@ const Login = () => {
     </form>
     </div>
   )
-}
+};
 
 export default Login;
