@@ -10,6 +10,7 @@ import Login from "./Components/Users/Login";
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import TestFeed, {postFunc} from './TestFeed'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -34,11 +35,11 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-    {console.log(user)}
       <div className="App">
           <Route path ='/'>
             <NaviBar />
           </Route>
+        <TestFeed /> 
           <Route path ='/login'>
             <Login />
           </Route>
