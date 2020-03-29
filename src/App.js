@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
 import NaviBar from "./Components/NavigationBar/NaviBar";
 import { StylesProvider } from "@material-ui/styles";
@@ -6,35 +6,35 @@ import "./Styles/index.scss";
 import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 
-import * as firebase from "firebase/app";
 
 // Add the Firebase services that you want to use
+import * as firebase from "firebase/app";
 import "firebase/auth";
 
 function App() {
+  const [user, setUser] = useState(null)
 
-
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged(function(user) {
-  //     if (user) {
-  //       // User is signed in.
-  //       var displayName = user.displayName;
-  //       var email = user.email;
-  //       var emailVerified = user.emailVerified;
-  //       var photoURL = user.photoURL;
-  //       var isAnonymous = user.isAnonymous;
-  //       var uid = user.uid;
-  //       var providerData = user.providerData;
-  //       // ...
-  //     } else {
-  //       // User is signed out.
-  //       // ...
-  //     }
-  //   });
-  // }, [])
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        /* User constants per example //
+        const displayName = user.displayName;
+        const email = user.email;
+        const emailVerified = user.emailVerified;
+        const photoURL = user.photoURL;
+        const isAnonymous = user.isAnonymous;
+        const uid = user.uid;
+        const providerData = user.providerData; */
+        setUser({ user })
+      } else {
+        setUser({ user: null })
+      }
+    });
+  }, [])
 
   return (
     <StylesProvider injectFirst>
+    {console.log(user)}
       <div className="App">
           <Route path ='/'>
             <NaviBar />
