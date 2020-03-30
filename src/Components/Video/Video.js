@@ -6,7 +6,6 @@ import { IconButton, Typography, Button } from "@material-ui/core";
 import bannerImg from '../../images/covid-19-drugs.jpeg';
 
 const Video = props => {
-    const [light, setLight] = useState(true);
   return (
     <VideoWrapper>
       <VideoPlayer
@@ -28,15 +27,17 @@ const Video = props => {
 const VideoWrapper = styled.div`
   position: relative;
   padding-top: 56.25%;
-  max-width: 1800px;
   margin-bottom: 75px;
-  margin-left: auto;
-  margin-right: auto;
+  max-height: 1000px;
+
+  @media (min-width: 1340px){
+      padding-top: 998.25px;
+  }
 `;
 
 const VideoPlayer = styled(ReactPlayer)`
   position: absolute;
-  height: auto;
+  max-height: 1000px;
   top: 0;
   left: 0;
 `;
@@ -53,31 +54,6 @@ const PlayIconButton = styled(IconButton)`
   &:hover {
     background-color: #39b2b5;
   }
-`;
-
-const PlayButtonWrapper = styled.div`
-  margin: 105px 0;
-`;
-
-const VideoOverlay = styled.div`
-  position: absolute;
-  text-align: center;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const JoinVideoButton = styled(Button)`
-  border: 1px solid #5fd4d8;
-  border-radius: 3px;
-  background: #5fd4d8;
-  padding: 8px 20px;
-  color: white;
-  font-size: 14px;
 `;
 
 export default Video;

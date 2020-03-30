@@ -1,30 +1,62 @@
-import React, { useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
 import NaviBar from "./Components/NavigationBar/NaviBar";
 import { StylesProvider } from "@material-ui/styles";
 import MapChart from './Components/MapChart';
 import Video from './Components/Video';
-import {setInitialData} from './actions/covid19Actions';
+import {setInitialData} from './Store/Actions/covid19Actions';
 import "./Styles/index.scss";
+import Registration from "./Components/Users/Registration";
+import Login from "./Components/Users/Login";
+import TwoColSection from './Components/TwoColSection';
+
+
+// Add the Firebase services that you want to use
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 function App() {
   const dispatch = useDispatch();
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     dispatch(setInitialData());
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        /* User constants per example //
+        const displayName = user.displayName;
+        const email = user.email;
+        const emailVerified = user.emailVerified;
+        const photoURL = user.photoURL;
+        const isAnonymous = user.isAnonymous;
+        const uid = user.uid;
+        const providerData = user.providerData; */
+        setUser({ user })
+      } else {
+        setUser({ user: null })
+      }
+    });
   }, [])
 
   return (
     <StylesProvider injectFirst>
+    {console.log(user)}
       <div className="App">
-        <Route>
-          <NaviBar />
-          <Route>
-            <Video />
-            <MapChart />
+          <Route exact path ='/'>
+            <NaviBar />
+            <Route>
+              <Video />
+              <MapChart />
+              <TwoColSection />
+            </Route>
           </Route>
-        </Route>
+          <Route path ='/login'>
+            <Login />
+          </Route>
+          <Route path ='/register'>
+            <Registration />
+          </Route>
       </div>
     </StylesProvider>
   );

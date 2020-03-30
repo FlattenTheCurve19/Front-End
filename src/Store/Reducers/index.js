@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 import { covid19Reducer } from './covid19Reducer';
+import userAuthReducer from './userAuthReducer';
 
 export default combineReducers({
-    covid19Reducer
+    auth: userAuthReducer,
+    covid19Reducer,
+
 })

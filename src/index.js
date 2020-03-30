@@ -1,24 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createStore, applyMiddleware, compose } from "redux";
+import App from "./App";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
-import reducer from "./reducer";
+import rootReducer from "./Store/Reducers";
 
-const logger = createLogger();
-const enhancers = compose(applyMiddleware(thunk), applyMiddleware(logger));
-const store = createStore(reducer, enhancers);
+const enhancers = compose(applyMiddleware(thunk));
+
+// Redux Store Init //
+const store = createStore(rootReducer, enhancers);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <Provider store={store}>
         <App />
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
