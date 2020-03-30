@@ -17,6 +17,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import TestFeed, { postFunc } from "./TestFeed";
 import Proximity from "./Components/ProximityMap/Proximity";
+import TestFeed from "./TestFeed";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,16 @@ function App() {
           <Route>
             <Home />
           </Route>
+        </Route>
+        {/* <TestFeed />  */}
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Registration />
+        </Route>
+        <Route path="/message-board">
+          <MessageBoard />
         </Route>
         <TestFeed />
         <Route path="/login">

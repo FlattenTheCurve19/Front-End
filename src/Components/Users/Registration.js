@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 
 // Add the Firebase services that you want to use
 import fire from "../../_utils/firebase";
+import { gProvider } from '../../_utils/firebase'
 import "firebase/auth";
 
 const Registration = () => {
@@ -32,6 +33,28 @@ const Registration = () => {
     }
   };
 
+  const googleSignUp = () => {
+    fire.auth().signInWithPopup(gProvider).then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const token = result.credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+      console.log('google user logged in',result)
+      history.push('/')
+
+    }).catch(error => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      const credential = error.credential;
+      // ...
+    });
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="register-form">
@@ -49,7 +72,7 @@ const Registration = () => {
 
           <TextField
             label="Email"
-            variant="outlined"
+            constiant="outlined"
             name="email"
             inputRef={register({
               required: "Please enter an email.",
@@ -65,7 +88,7 @@ const Registration = () => {
 
           <TextField
             label="Password"
-            variant="outlined"
+            constiant="outlined"
             name="passwordOne"
             type="password"
             inputRef={register({
@@ -80,7 +103,7 @@ const Registration = () => {
 
           <TextField
             label="Confirm Password"
-            variant="outlined"
+            constiant="outlined"
             name="passwordTwo"
             type="password"
             inputRef={register({
@@ -110,8 +133,11 @@ const Registration = () => {
       {errors.location && errors.location.message}
       <br/> */}
 
-          <Button variant="contained" color="primary" type="submit">
+          <Button constiant="contained" color="primary" type="submit">
             Register
+          </Button>
+          <Button constiant="contained" color="primary" type="submit" onClick={() => googleSignUp()}>
+            Google Signin
           </Button>
         </div>
       </form>
