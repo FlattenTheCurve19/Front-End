@@ -2,14 +2,14 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 /* import Input from "@material-ui/core/Input";*/
-
 import TextField from "@material-ui/core/TextField";
-
 import Button from "@material-ui/core/Button";
 
 // Add the Firebase services that you want to use
+import { gProvider } from '../../_utils/firebase'
 import fire from "../../_utils/firebase";
 import "firebase/auth";
+
 
 const Login = () => {
   const history = useHistory();

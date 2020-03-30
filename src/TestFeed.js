@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 // Add the Firebase services that you want to use
 import { fireDB } from "./_utils/firebase";
 import "firebase/firestore";
+import axios from 'axios'
 
 const TestFeed = () => {
   const [post, setPost] = useState({});
 
-  const posts = fireDB.collection("users").doc("z6F3tq6LFV9BLEWuzxE8");
+  const posts = fireDB.collection("post").get().then(res => {
+    res.forEach(item => console.log('*&*&*',item.data()))
+  });
 
   // How to read data in Realtime. Doesnt contain a timeout, use with cation
   // const getDoc = posts.onSnapshot(item => {
@@ -15,19 +18,21 @@ const TestFeed = () => {
   // })
 
   useEffect(() => {
-    const getDoc = posts
-      .get()
-      .then(doc => {
-        if (!doc.exists) {
-          console.log("No such document!");
-        } else {
-          console.log("Document data:", doc.data());
-          return setPost(doc.data())
-        }
-      })
-      .catch(err => {
-        console.log("Error getting document", err);
-      });
+    // console.log('&&&&&',posts)
+
+    // const getDoc = posts
+    //   .get()
+    //   .then(doc => {
+    //     if (!doc.exists) {
+    //       console.log("No such document!");
+    //     } else {
+    //       console.log("Document data:", doc.data());
+    //       return setPost(doc.data())
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log("Error getting document", err);
+    //   });
   }, []);
   return (
     <>
