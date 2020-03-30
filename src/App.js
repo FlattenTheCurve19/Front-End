@@ -49,7 +49,7 @@ function App() {
               <Home />
             </Route>
           </Route>
-        {/* <TestFeed />  */}
+        <TestFeed /> 
           <Route path ='/login'>
             <Login />
           </Route>
