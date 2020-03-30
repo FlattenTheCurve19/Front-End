@@ -14,24 +14,22 @@ const Registration = () => {
 
   const onSubmit = values => {
     console.log(values);
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(values.email, values.password)
+    if(values.passwordOne === values.passwordTwo){
+      fire.auth().createUserWithEmailAndPassword(values.email, values.passwordTwo)
       .then(res => {
-        console.log(res);
-        history.push("/login");
+        console.log(res)
+        history.push('/login')
       })
       .catch(function(error) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(
-          `Firebase Auth encountered a error @ `,
-          errorCode,
-          errorMessage
-        );
+        console.log(`Firebase Auth encountered a error @ `,errorCode, errorMessage)
         // ...
       });
+    } else {
+      console.error("Passwords don't match");
+    }
   };
 
   return (
