@@ -18,7 +18,6 @@ export const messageBoard = ( state = initalState, { type, payload }) => {
             isFetching: true
         }
         case FETCHING_MESSAGES_SUCCESS : 
-        console.log('this is my payload',payload)
         return {
             ...state, 
             messagesBoard: payload,

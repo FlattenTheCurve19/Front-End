@@ -8,16 +8,18 @@ import Card from './Card';
 import AddMessage from './AddMessage';
 
 const MessageBoard = () => {
+
     // Will need userId to fetch avatar
     const { messagesBoard , isFetching, error } = useSelector(state => state.messageBoard)
     const dispatch = useDispatch();
-    console.log(isFetching , error, messagesBoard)
 
     useEffect(() => {
         dispatch(messageGetter())
     }, [])
 
-    
+    //this is for you Josiah so you know what is getting returned and can map through it 
+    console.log(isFetching , error, messagesBoard)
+
     return(
         <section>
             <h1>Reach out to your community</h1>
@@ -26,7 +28,7 @@ const MessageBoard = () => {
             { messagesBoard ? messagesBoard.map(message => {
                 return <Card message={message} key={message.timeOfPost.seconds}/>
             }) : null
-        }{/*you have access to this key value pairs inside this map 
+        }{/*you have access to this key value pairs inside this message state you want to map over
         displayName: "Kevin Mocha"
         geoLock: t {V: 34.0250981, U: -118.4290418}
         postField: "This store is really stocked!"

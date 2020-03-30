@@ -1,4 +1,3 @@
-// Declare and define actions for message board here
 import { fireDB } from "../../_utils/firebase";
 import "firebase/firestore";
 
@@ -13,7 +12,6 @@ export const messageGetter = () => dispatch => {
     const posts = fireDB.collection("post").get().then(res => {
         const array = []
         res.forEach(item => array.push(item.data()))
-        console.log('this is the array' ,array)
         dispatch({type: FETCHING_MESSAGES_SUCCESS, payload: array})
       }).catch(err => dispatch({type: FETCHING_MESSAGES_ERROR, payload:err }))
 }
