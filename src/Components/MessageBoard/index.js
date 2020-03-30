@@ -9,49 +9,57 @@ import AddMessage from './AddMessage';
 
 const MessageBoard = () => {
     // Will need userId to fetch avatar
-    const messages = useSelector(state => state.messages);
-    const error = useSelector(state => state.error);
+    const { messagesBoard , isFetching, error } = useSelector(state => state.messageBoard)
     const dispatch = useDispatch();
+    console.log(isFetching , error, messagesBoard)
 
     useEffect(() => {
         dispatch(messageGetter())
     }, [])
 
-    const dummyData = [
-        {
-            userId: null,
-            firstName: 'Josiah',
-            lastName: 'Roa',
-            location: {
-                lat: 0,
-                long: 0,
-            },
-            message: 'I need help with groceries',
-            timeStamp: moment().format("HH:mm")
-        },
-        {
-            userId: null,
-            firstName: 'Kamryn',
-            lastName: '',
-            location: {
-                lat: 0,
-                long: 0,
-            },
-            message: 'King Soopers just re-stocked on groceries!',
-            timeStamp: moment().format("HH:mm")
-        }
-    ]
-
+    
     return(
         <section>
             <h1>Reach out to your community</h1>
-            <p>Whether you are in need of assitance, or can offer a helping hand.</p>
-            {dummyData.map(message => {
-                return <Card message={message}/>
-            })}
+    <p>Whether you are in need of assitance, or can offer a helping hand</p>
+            
+            { messagesBoard ? messagesBoard.map(message => {
+                return <Card message={message} key={message.timeOfPost.seconds}/>
+            }) : null
+        }{/*you have access to this key value pairs inside this map 
+        displayName: "Kevin Mocha"
+        geoLock: t {V: 34.0250981, U: -118.4290418}
+        postField: "This store is really stocked!"
+        timeOfPost: t {seconds: 1585555500, nanoseconds: 0}
+        */}
             <AddMessage/>
         </section>
     );
 }
 
 export default MessageBoard;
+
+// / const dummyData = [
+    //     {
+    //         userId: null,
+    //         firstName: 'Josiah',
+    //         lastName: 'Roa',
+    //         location: {
+    //             lat: 0,
+    //             long: 0,
+    //         },
+    //         message: 'I need help with groceries',
+    //         timeStamp: moment().format("HH:mm")
+    //     },
+    //     {
+    //         userId: null,
+    //         firstName: 'Kamryn',
+    //         lastName: '',
+    //         location: {
+    //             lat: 0,
+    //             long: 0,
+    //         },
+    //         message: 'King Soopers just re-stocked on groceries!',
+    //         timeStamp: moment().format("HH:mm")
+    //     }
+    // ]
