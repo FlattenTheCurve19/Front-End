@@ -16,7 +16,7 @@ import MessageMap from './Components/MessageMap';
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import TestFeed, {postFunc} from './TestFeed'
+import TestFeed from './TestFeed'
 
 function App() {
   const dispatch = useDispatch();
