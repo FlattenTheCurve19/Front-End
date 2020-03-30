@@ -134,6 +134,9 @@ $titles-font: "Raleway", sans-serif;
 $content-font: "Montserrat", sans-serif;
 
 //App bar styles//
+.MuiPaper-elevation4 {
+  box-shadow: none;
+}
 
 .MuiToolbar-root {
   background-color: $primary-color;
@@ -160,26 +163,89 @@ $content-font: "Montserrat", sans-serif;
 }
 
 //Button Styles//
-.MuiPaper-root {
+
+.MuiButton-containedPrimary {
+  font-family: $content-font;
+  border-radius: 6px;
   box-shadow: none;
-
-  .MuiButton-contained {
-    font-family: $content-font;
-    border-radius: 6px;
-    box-shadow: none;
-    background-color: $secondary-color;
-    color: white;
-    text-transform: none;
+  background-color: $secondary-color;
+  color: white;
+  text-transform: none;
+  &:hover {
+    background-color: #ff8ba8;
   }
+}
 
-  .MuiMenu-list {
-    background: rgb(129, 129, 129);
-    color: white;
+.MuiMenu-list {
+  background: rgb(129, 129, 129);
+  color: white;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+  .MuiMenuItem-root {
+    font-family: $content-font;
+  }
+}
+//input styles
+.MuiFilledInput-underline:after {
+  border-bottom: 2px solid $secondary-color;
+}
+.MuiFormLabel-root.Mui-focused {
+  color: $secondary-color;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: $secondary-color;
+}
+
+//general css//
+.register-form {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background-image: url("https://images.unsplash.com/photo-1533777419517-3e4017e2e15a?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80");
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  .inner-form {
+    h1 {
+      margin: 1rem 0 1.5rem 0;
+      font-family: $titles-font;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    background: rgba(255, 255, 255, 0.959);
+    margin-top: 20vh;
+    margin-bottom: 8rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 2rem 2rem 2rem;
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
       0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+}
+.login-form {
+  h1 {
+    margin: 1rem 0 1.5rem 0;
+    font-family: $titles-font;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  text-align: center;
+  display: flex;
+  justify-content: center;
 
-    .MuiMenuItem-root {
-      font-family: $content-font;
-    }
+  .inner-form {
+    background: rgba(255, 255, 255, 0.918);
+    margin-top: 10vh;
+    margin-bottom: 4rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    /* box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12) */
   }
 }
