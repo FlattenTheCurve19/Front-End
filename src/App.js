@@ -50,7 +50,6 @@ function App() {
               <Home />
             </Route>
           </Route>
-        <TestFeed /> 
           <Route path ='/login'>
             <Login />
           </Route>
@@ -65,6 +64,7 @@ function App() {
           </Route>
       </div>
     </StylesProvider>
+
   );
 }
 
