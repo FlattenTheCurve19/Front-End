@@ -3,13 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
 import NaviBar from "./Components/NavigationBar/NaviBar";
 import { StylesProvider } from "@material-ui/styles";
-import MapChart from './Components/MapChart';
-import Video from './Components/Video';
 import {setInitialData} from './Store/Actions/covid19Actions';
 import "./Styles/index.scss";
 import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
-import TwoColSection from './Components/TwoColSection';
+import Home from './Pages/Home';
 
 
 // Add the Firebase services that you want to use
@@ -46,9 +44,7 @@ function App() {
           <Route exact path ='/'>
             <NaviBar />
             <Route>
-              <Video />
-              <MapChart />
-              <TwoColSection />
+              <Home />
             </Route>
           </Route>
           <Route path ='/login'>

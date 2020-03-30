@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
+import { useHistory } from "react-router-dom";
 
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -42,6 +43,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavigationBar = props => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const history = useHistory();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);

@@ -1,16 +1,15 @@
 import React from "react";
-import { useHistory } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 // Add the Firebase services that you want to use
 import fire from "../../_utils/firebase";
 import "firebase/auth";
 
-
 const Registration = () => {
-  const history = useHistory()
+  const history = useHistory();
   const { handleSubmit, register, errors, watch } = useForm();
 
   const onSubmit = values => {
@@ -35,8 +34,10 @@ const Registration = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <Input
+      <form onSubmit={handleSubmit(onSubmit)} className="register-form">
+        <div className="inner-form">
+          <h1>Join the Movement</h1>
+          {/* <Input
         name="username"
         inputRef={register({
           required: 'Please enter a username.'
@@ -46,48 +47,55 @@ const Registration = () => {
       {errors.username && errors.username.message}
       <br/> */}
 
-      <Input
-        name="email"
-        inputRef={register({
-          required: 'Please enter an email.',
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-            message: "Invalid email address."
-          }
-        })}
-        placeholder = "Email"
-      />
-      {errors.email && errors.email.message}
-      <br/>
+          <TextField
+            label="Email"
+            variant="outlined"
+            name="email"
+            inputRef={register({
+              required: "Please enter an email.",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email address."
+              }
+            })}
+            placeholder="Email"
+          />
+          {errors.email && errors.email.message}
+          <br />
 
-      <Input
-        name="passwordOne"
-        type = "password"
-        inputRef={register({
-          required: 'Please enter a password.',
-          validate: value => value.length >= 8 || "Password must be at least 8 characters."
-        })}
-        placeholder = "Password"
-      />
-      {errors.passwordOne && errors.passwordOne.message}
-      <br/>
+          <TextField
+            label="Password"
+            variant="outlined"
+            name="passwordOne"
+            type="password"
+            inputRef={register({
+              required: "Please enter a password.",
+              validate: value =>
+                value.length >= 8 || "Password must be at least 8 characters."
+            })}
+            placeholder="Password"
+          />
+          {errors.passwordOne && errors.passwordOne.message}
+          <br />
 
-      <Input
-        name="passwordTwo"
-        type = "password"
-        inputRef={register({
-          required: 'Please re-enter the password.',
-          validate: value => value === watch("passwordOne") || "Passwords do not match."
-        })}
-        placeholder = "Re-enter password"
-      />
-      {errors.passwordTwo && errors.passwordTwo.message}
-      <br/>
+          <TextField
+            label="Confirm Password"
+            variant="outlined"
+            name="passwordTwo"
+            type="password"
+            inputRef={register({
+              required: "Please re-enter the password.",
+              validate: value =>
+                value === watch("passwordOne") || "Passwords do not match."
+            })}
+            placeholder="Re-enter password"
+          />
+          {errors.passwordTwo && errors.passwordTwo.message}
+          <br />
 
-        {/* Location isnt something we should be asking for at signup, we ask for it aws they use the coreApp */}
+          {/* Location isnt something we should be asking for at signup, we ask for it aws they use the coreApp */}
 
-
-      {/* <Input
+          {/* <Input
         name="location"
         inputRef={register({
           required: 'Please enter a location.',
@@ -102,11 +110,13 @@ const Registration = () => {
       {errors.location && errors.location.message}
       <br/> */}
 
-      <Button variant="contained" color="primary" type="submit">Register</Button>
-    </form>
-      
+          <Button variant="contained" color="primary" type="submit">
+            Register
+          </Button>
+        </div>
+      </form>
     </div>
-  )
+  );
 };
 
 export default Registration;
