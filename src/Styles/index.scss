@@ -185,6 +185,10 @@ $content-font: "Montserrat", sans-serif;
   .MuiMenuItem-root {
     font-family: $content-font;
   }
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
 //input styles
 .MuiFilledInput-underline:after {
