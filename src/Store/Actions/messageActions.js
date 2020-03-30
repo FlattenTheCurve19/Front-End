@@ -1,5 +1,6 @@
 import { fireDB } from "../../_utils/firebase";
 import "firebase/firestore";
+// import { createPost } from './_utils/firedbHelper'
 
 //getting messages for to display
 export const FETCHING_MESSAGES_START = 'FETCHING_MESSAGES_START';
@@ -18,5 +19,7 @@ export const messageGetter = () => dispatch => {
 
 ///need another get request for the id aviator 
 
-//need to make a post request for adding comments 
+export const messageSetter = message => dispatch => {
+  
+}
 
