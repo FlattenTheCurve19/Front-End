@@ -4,6 +4,7 @@ import { Route } from "react-router";
 import NaviBar from "./Components/NavigationBar/NaviBar";
 import { StylesProvider } from "@material-ui/styles";
 import MapChart from './Components/MapChart';
+import Video from './Components/Video';
 import {setInitialData} from './actions/covid19Actions';
 import "./Styles/index.scss";
 
@@ -20,6 +21,7 @@ function App() {
         <Route>
           <NaviBar />
           <Route>
+            <Video />
             <MapChart />
           </Route>
         </Route>

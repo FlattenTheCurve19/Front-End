@@ -57,7 +57,3 @@ export const setInitialData = () => dispatch => {
       });
   };
 };
-
-export const setDeaths = obj => dispatch => {};
-
-export const setRecovered = obj => dispatch => {};

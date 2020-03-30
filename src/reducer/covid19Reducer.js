@@ -1,4 +1,4 @@
-import { SET_CONFIRMED, SET_DEATHS, SET_RECOVERED, SET_INITIAL_DATA } from '../actions/covid19Actions';
+import { SET_INITIAL_DATA } from '../actions/covid19Actions';
 
 export const covid19Reducer = (state = {
     countries: null,

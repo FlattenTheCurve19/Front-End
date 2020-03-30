@@ -4,6 +4,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
+import {Typography, Button} from '@material-ui/core';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -68,17 +69,17 @@ function MapChart({ setTooltipContent }) {
 
   return (
     <>
-    <h1 style={{textAlign: 'center'}}>View COVID-19 Cases in the US</h1>
+    <Typography variant="h3" style={{textAlign: 'center'}}>View COVID-19 Cases in the US</Typography>
     <ChartWrapper >
       <DataChart>
-        <h3>Total Confirmed Cases</h3>
-        <p>There are a total of {total.Confirmed} cases in the U.S.</p>
+        <Typography variant="h5">Total Confirmed Cases</Typography>
+        <Typography variant="body2">There are a total of {total.Confirmed} cases in the U.S.</Typography>
         <ChartButton>Learn More</ChartButton>
-        <h3>Total Recovered Cases</h3>
-        <p>There are a total of {total.Recovered} cases that are confirmed in the U.S.</p>
+        <Typography variant="h5">Total Recovered Cases</Typography>
+        <Typography variant="body2">There are a total of {total.Recovered} cases that are confirmed in the U.S.</Typography>
         <ChartButton>Learn More</ChartButton>
-        <h3>Total Deaths</h3>
-        <p>At this time, there are {total.Deaths} deaths in the U.S.</p>
+        <Typography variant="h5">Total Deaths</Typography>
+        <Typography variant="body2">At this time, there are {total.Deaths} deaths in the U.S.</Typography>
         <ChartButton>Learn More</ChartButton>
         
       </DataChart>
@@ -140,12 +141,12 @@ function MapChart({ setTooltipContent }) {
           </ComposableMap>
           <ScaleAndColorWrapper>
             <TitleWrapper>
-              <h3>Scale</h3>
+              <Typography variant='h5'>Scale</Typography>
             </TitleWrapper>
             <div>
               <ScaleWrapper>
-                <p>0</p>
-                <p>{max}+</p>
+                <Typography variant="body2">0</Typography>
+                <Typography variant="body2">{max}+</Typography>
               </ScaleWrapper>
               <FlexWrapper>
                 <ColorSquare color={colorScale(max * (1 / 5))} />
@@ -214,9 +215,9 @@ const ScaleAndColorWrapper = styled(FlexWrapper)`
   justify-content: center;
   align-items: center;
 
-  h3 {
+  h5 {
     font-size: 16px;
-    margin: 0;
+    margin-bottom: 5px;
   }
 
   p {
@@ -263,7 +264,7 @@ const USMapChart = styled.div`
   padding 0 25px;
 `;
 
-const ChartButton = styled.button`
+const ChartButton = styled(Button)`
   border: 1px solid #5fd4d8;
   border-radius: 3px;
   background: transparent;
