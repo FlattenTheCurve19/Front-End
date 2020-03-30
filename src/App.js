@@ -1,18 +1,21 @@
 import { useDispatch } from 'react-redux';
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
-import NaviBar from "./Components/NavigationBar/NaviBar";
 import { StylesProvider } from "@material-ui/styles";
 import {setInitialData} from './Store/Actions/covid19Actions';
 import "./Styles/index.scss";
+
+// Component Imports
+import NaviBar from "./Components/NavigationBar/NaviBar";
 import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import Home from './Pages/Home';
-
+import MessageBoard from './Components/MessageBoard';
 
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import TestFeed, {postFunc} from './TestFeed'
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +42,6 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-    {console.log(user)}
       <div className="App">
           <Route exact path ='/'>
             <NaviBar />
@@ -47,11 +49,15 @@ function App() {
               <Home />
             </Route>
           </Route>
+        <TestFeed /> 
           <Route path ='/login'>
             <Login />
           </Route>
           <Route path ='/register'>
             <Registration />
+          </Route>
+          <Route path='/message-board'>
+            <MessageBoard/>
           </Route>
       </div>
     </StylesProvider>
