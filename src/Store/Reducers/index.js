@@ -5,5 +5,4 @@ import userAuthReducer from './userAuthReducer';
 export default combineReducers({
     auth: userAuthReducer,
     covid19Reducer,
-
 })
