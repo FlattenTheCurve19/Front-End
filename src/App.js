@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router";
-import NaviBar from "./Components/NavigationBar/NaviBar";
 import { StylesProvider } from "@material-ui/styles";
 import "./Styles/index.scss";
+
+// Component Imports
+import NaviBar from "./Components/NavigationBar/NaviBar";
 import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
-
+import MessageBoard from './Components/MessageBoard';
 
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
@@ -45,7 +47,9 @@ function App() {
           <Route path ='/register'>
             <Registration />
           </Route>
-        
+          <Route path='/message-board'>
+            <MessageBoard/>
+          </Route>
       </div>
     </StylesProvider>
   );
