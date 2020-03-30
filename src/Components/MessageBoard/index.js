@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux'; 
+import { messageGetter } from '../../Store/Actions/messageActions';
 
 // Component imports
 import Card from './Card';
@@ -8,6 +9,14 @@ import AddMessage from './AddMessage';
 
 const MessageBoard = () => {
     // Will need userId to fetch avatar
+    const messages = useSelector(state => state.messages);
+    const error = useSelector(state => state.error);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(messageGetter())
+    }, [])
+
     const dummyData = [
         {
             userId: null,
