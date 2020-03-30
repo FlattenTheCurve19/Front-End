@@ -6,8 +6,8 @@ import Video from "../Components/Video";
 const Home = () => {
   return (
     <>
-      <MapChart />
       <Video />
+      <MapChart />
       <TwoColSection />
     </>
   );

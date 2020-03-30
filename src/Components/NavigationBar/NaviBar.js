@@ -81,7 +81,14 @@ const NavigationBar = props => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}><NavLink to='/register'>Register</NavLink></MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("register");
+              }}
+            >
+              Register
+            </MenuItem>
             {!userIsLogged && (
               <MenuItem onClick={handleClose}>About us</MenuItem>
             )}
