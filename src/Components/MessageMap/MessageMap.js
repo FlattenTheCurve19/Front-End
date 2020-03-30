@@ -6,7 +6,6 @@ import GoogleMapReact from 'google-map-react';
 import {fireDB} from '../../_utils/firebase';
 
 const AnyReactComponent = ({ text }) => <IconButton><Marker /></IconButton>;
-const collection = fireDB.collection("users").doc("z6F3tq6LFV9BLEWuzxE8");
 
 const MessageMap = () => {
     const [messages, setMessages] = useState();
@@ -15,12 +14,17 @@ const MessageMap = () => {
         // const item = collection.onSnapshot(item => {
         //     console.log('ITEM', item);
         // })
-        const item = collection
-        .get()
-        .then(res => {
-            console.log(res.data());
-            setMessages(res.data());
-        })
+        const posts = fireDB.collection("post").get().then(res => {
+            const data = [];
+            res.forEach(item => {
+                console.log('*&*&*',item.data())
+                data.push(item.data());
+            })
+            console.log(data);
+            setMessages(data);
+          });
+          
+        
     }, [])
 
     
@@ -35,10 +39,14 @@ const MessageMap = () => {
             }}
             defaultZoom={11}
         >
-            <AnyReactComponent
-                lat={messages ? messages.geoLock.latitude : null}
-                lng={messages ? messages.geoLock.longitude : null}
-            />
+            {messages && messages.map(message => {
+                return (
+                    <AnyReactComponent
+                        lat={message.geoLock.latitude}
+                        lng={message.geoLock.longitude}
+                    />
+                )
+            })}
         </GoogleMapReact>
         </div>
     )
