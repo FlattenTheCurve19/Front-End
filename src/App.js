@@ -11,6 +11,7 @@ import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import Home from './Pages/Home';
 import MessageBoard from './Components/MessageBoard';
+import MessageMap from './Components/MessageMap';
 
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path='/message-board'>
             <MessageBoard/>
+          </Route>
+          <Route path='/message-map'>
+            <MessageMap />
           </Route>
       </div>
     </StylesProvider>

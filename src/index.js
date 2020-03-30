@@ -13,12 +13,10 @@ const enhancers = compose(applyMiddleware(thunk));
 const store = createStore(rootReducer, enhancers);
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <Provider store={store}>
         <App />
       </Provider>
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById("root")
 );
