@@ -40,7 +40,9 @@ const Registration = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
-      console.log(result)
+      console.log('google user logged in',result)
+      history.push('/')
+
     }).catch(error => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -135,7 +137,7 @@ const Registration = () => {
             Register
           </Button>
           <Button constiant="contained" color="primary" type="submit" onClick={() => googleSignUp()}>
-            Google Sign
+            Google Signin
           </Button>
         </div>
       </form>
