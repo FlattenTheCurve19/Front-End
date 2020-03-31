@@ -7,7 +7,6 @@ export const Board = styled.section`
     min-width: 400px;
     max-width: 600px;
     height: 100vh;
-    box-shadow: inset -1px -1px 5px -2px rgba(0,0,0,0.75);
     h1{
         margin-bottom: 30px;
         text-align: center;
@@ -37,6 +36,10 @@ export const Board = styled.section`
     }
     .error{
         text-align: center;
+    }
+    .card-container{
+        height: 70%;
+        overflow: scroll;
     }
 `;
 

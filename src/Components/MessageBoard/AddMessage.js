@@ -8,7 +8,7 @@ import { messageSetter } from '../../Store/Actions/messageActions';
 // Component Imports
 import { Form } from './styles';
 
-export default () => {
+export default ({ forceRender }) => {
     const { handleSubmit, register, errors } = useForm();
     const [ user, setUser ] = useState(null);
     const history = useHistory();
@@ -36,6 +36,7 @@ export default () => {
                     latitude: 0
                 }
             })
+            forceRender();
         }else{
             history.push('/login');
         }
