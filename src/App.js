@@ -44,22 +44,6 @@ function App() {
     <StylesProvider injectFirst>
       {console.log(user)}
       <div className="App">
-        <Route exact path ='/'>
-          <NaviBar />
-          <Route>
-            <Home />
-          </Route>
-        </Route>
-        <Route path ='/login'>
-          <Login />
-        </Route>
-        <Route path ='/register'>
-          <Registration />
-        </Route>
-        <Route path='/message-board'>
-          <NaviBar />
-          <MessageBoard/>
-        </Route>
         <NaviBar user={user} />
         <Route exact path="/">
             <Home />
