@@ -4,10 +4,10 @@ import { IconButton } from "@material-ui/core";
 import styled from "styled-components";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
-import firebase from "../../_utils/firebase";
-import {GeoFire} from 'geofire';
-
-import distance from "../../_utils/distance";
+import { fireDB } from "../../_utils/firebase";
+import { GeoFirestore } from "geofirestore";
+import { createPost } from "../../_utils/firedbHelper";
+import * as firebase from "firebase";
 
 const AnyReactComponent = ({ text }) => (
   <IconButton>
@@ -18,24 +18,26 @@ const AnyReactComponent = ({ text }) => (
 const MessageMap = props => {
   const [messages, setMessages] = useState();
   const [currentLocation, setCurrentLocation] = useState();
-  const firebaseRef = firebase.database().ref();
-  const geoFire = new GeoFire(firebaseRef);
+  const geofirestore = new GeoFirestore(fireDB);
+  const geoCollection = geofirestore.collection("post");
 
   useEffect(() => {
     // const item = collection.onSnapshot(item => {
     //     console.log('ITEM', item);
     // })
     if (currentLocation) {
-        geoFire.get("geoLock").then(function(location) {
-            if (location === null) {
-              console.log("Provided key is not in GeoFire");
-            }
-            else {
-              console.log("Provided key has a location of " + location);
-            }
-          }, function(error) {
-            console.log("Error: " + error);
+      geoCollection.near({
+        center: new firebase.firestore.GeoPoint(20,20), 
+        radius: 1000
+      })
+      .get()
+        .then(res => {
+          const data = [];
+          res.forEach(item => {
+            data.push(item.data());
           });
+          setMessages(data);
+        });
     }
   }, [currentLocation]);
 
@@ -46,11 +48,11 @@ const MessageMap = props => {
   }, [props.coords]);
 
   const _onBoundsChange = (center, zoom, bounds, marginBounds) => {
-      setCurrentLocation({
-          latitude: center.lat,
-          longitude: center.lng
-      })
-  }
+    setCurrentLocation({
+      latitude: center.lat,
+      longitude: center.lng
+    });
+  };
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
@@ -67,8 +69,8 @@ const MessageMap = props => {
           messages.map(message => {
             return (
               <AnyReactComponent
-                lat={message.geoLock.latitude}
-                lng={message.geoLock.longitude}
+                lat={message && message.geoLock && message.geoLock.latitude}
+                lng={message && message.geoLock && message.geoLock.longitude}
               />
             );
           })}
