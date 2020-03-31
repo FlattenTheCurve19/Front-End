@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import ReactPlayer from "react-player";
-import styled from "styled-components";
-import { PlayArrow, Pause } from "@material-ui/icons";
-import { IconButton, Typography, Button } from "@material-ui/core";
-import bannerImg from "../../images/covid-19-drugs.jpeg";
+import React from "react";
+// import ReactPlayer from "react-player";
+// import styled from "styled-components";
+// import { PlayArrow, Pause } from "@material-ui/icons";
+// import { IconButton, Typography, Button } from "@material-ui/core";
+// import bannerImg from "../../images/covid-19-drugs.jpeg";
 import "../../Styles/index.scss";
 
 const Video = props => {
@@ -11,6 +11,7 @@ const Video = props => {
     <div class="video-background">
       <div class="video-foreground">
         <iframe
+          title="COVID-19 VIDEO"
           src="https://www.youtube.com/embed/_mlreMhQXBA?controls=0&showinfo=0&rel=0&autoplay=1&loop=true&mute=1&playing=true"
           frameborder="0"
           allowfullscreen

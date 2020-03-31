@@ -125,7 +125,7 @@ table {
 }
 /*reset*/
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat|Raleway:400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800|Raleway:400,500,600,700,800,900&display=swap");
 
 //Theme colors//
 $primary-color: #44cdcd;
@@ -136,6 +136,15 @@ $content-font: "Montserrat", sans-serif;
 //App bar styles//
 .MuiPaper-elevation4 {
   box-shadow: none;
+}
+
+.makeStyles-links-2 {
+  margin-left: 0.4%!important;
+
+}
+
+.MuiToolbar-root .MuiTypography-body1 {
+  font-size: 1.7rem!important;
 }
 
 .MuiToolbar-root {
@@ -158,8 +167,18 @@ $content-font: "Montserrat", sans-serif;
       &:hover {
         color: $secondary-color;
       }
+      img {
+        width: 48px;
+        border-radius: 50%;
+        position: fixed;
+        right: 1rem;
+        top: 0.3rem;
+      }
     }
   }
+}
+#text {
+  font-size: 1px;
 }
 
 //Button Styles//
@@ -174,6 +193,18 @@ $content-font: "Montserrat", sans-serif;
   &:hover {
     background-color: #ff8ba8;
   }
+}
+.MuiButton-textPrimary {
+  color: white;
+  background-color: $secondary-color;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: #ff8ba8;
+  }
+}
+.MuiInput-underline:after {
+  border-bottom: 2px solid $secondary-color;
 }
 
 .MuiMenu-list {
@@ -254,8 +285,7 @@ $content-font: "Montserrat", sans-serif;
   }
 }
 
-@import "~video-react/styles/scss/video-react";
-
+//VIDEO on landing Page
 * {
   box-sizing: border-box;
 }
@@ -305,4 +335,28 @@ $content-font: "Montserrat", sans-serif;
   .vid-info .acronym {
     display: none;
   }
+.googleLogin {
+  display: flex;
+  font-family: $content-font;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  img {
+    margin-right: 0.5rem;
+    width: 5%;
+  }
+  p {
+    padding-bottom: 0.1rem;
+    color: #236b6b;
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
 }
+.errText {
+  font-size: 0.7rem;
+  color: red;
+  margin-top: 0.2rem;
+  font-family: $content-font;
+}}

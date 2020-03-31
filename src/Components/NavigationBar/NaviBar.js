@@ -4,7 +4,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 // import Link from "@material-ui/core/Link";
 //import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
-import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import { deepOrange } from "@material-ui/core/colors";
 import Typography from "@material-ui/core/Typography";
@@ -58,10 +57,9 @@ const NavigationBar = props => {
   const [userIsLogged, setUserIsLogged] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("authkey")) {
-      setUserIsLogged(true);
-    }
-  }, [userIsLogged]);
+    props.user && props.user.user !== null && setUserIsLogged(true);
+    console.log(props.user);
+  }, [userIsLogged, props.user]);
 
   return (
     <div className={classes.root}>
@@ -82,17 +80,19 @@ const NavigationBar = props => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem
-              onClick={() => {
-                handleClose();
-                history.push("register");
-              }}
-            >
-              Register
-            </MenuItem>
             {!userIsLogged && (
-              <MenuItem onClick={handleClose}>About us</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  history.push("register");
+                }}
+              >
+                Register
+              </MenuItem>
             )}
+
+            <MenuItem onClick={handleClose}>About us</MenuItem>
+
             <MenuItem onClick={handleClose}>Contact us</MenuItem>
           </Menu>
           <Logo height={28} /> 
@@ -111,14 +111,12 @@ const NavigationBar = props => {
                   Register
                 </NavLink>
               </div>
-            ) : null}
+            ) : (
+              <NavLink className={classes.links} to="/dashboard">
+                <img src={props.user.user.photoURL} alt="dashboard link"/>
+              </NavLink>
+            )}
           </div>
-          {userIsLogged ? (
-            <NavLink className={classes.links} to="/dashboard">
-              Dashboard
-            </NavLink>
-          ) : null}
-          {userIsLogged ? <Avatar className={classes.orange} /> : null}
         </Toolbar>
       </AppBar>
     </div>
