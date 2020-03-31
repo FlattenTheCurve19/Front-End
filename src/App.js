@@ -14,13 +14,8 @@ import MessageBoard from "./Components/MessageBoard";
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
-<<<<<<< HEAD
-import Proximity from "./Components/ProximityMap/Proximity";
-import TestFeed from "./TestFeed";
-=======
 import TestFeed, { postFunc } from "./TestFeed";
 import Proximity from "./Components/ProximityMap/Proximity";
->>>>>>> 85abe3018e70a9376355a93e51b53c1f240d8c4d
 
 function App() {
   const dispatch = useDispatch();
