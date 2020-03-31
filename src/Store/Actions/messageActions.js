@@ -24,8 +24,10 @@ export const messageGetter = () => dispatch => {
 }
 
 
-export const messageSetter = message => dispatch => {
+export const messageSetter = object => {
   //action creator so a auth user can post a message
-  createPost('user.username', message, 'longitude', 'latitude')
+  createPost(object.displayName, object.userUUID, object.postField, object.geoLock.longitude,object.geoLock.latitude).then(() => messageGetter()).catch(err => console.log(err))
 }
+
+
 
