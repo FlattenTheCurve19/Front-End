@@ -56,6 +56,7 @@ function App() {
             <Registration />
           </Route>
           <Route path='/message-board'>
+            <NaviBar />
             <MessageBoard/>
           </Route>
       </div>
