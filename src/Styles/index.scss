@@ -168,6 +168,9 @@ $content-font: "Montserrat", sans-serif;
     }
   }
 }
+#text {
+  font-size: 1px;
+}
 
 //Button Styles//
 
@@ -290,4 +293,10 @@ $content-font: "Montserrat", sans-serif;
       cursor: pointer;
     }
   }
+}
+.errText {
+  font-size: 0.7rem;
+  color: red;
+  margin-top: 0.2rem;
+  font-family: $content-font;
 }

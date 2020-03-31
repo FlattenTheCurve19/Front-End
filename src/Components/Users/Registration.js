@@ -85,16 +85,15 @@ const Registration = () => {
             constiant="outlined"
             name="email"
             inputRef={register({
-              required: "Please enter an email.",
+              required: <p className="errText">Please enter an email</p>,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address."
+                message: <p className="errText">Invalid email address</p>
               }
             })}
             placeholder="Email"
           />
           {errors.email && errors.email.message}
-          <br />
 
           <TextField
             label="Password"
@@ -102,14 +101,13 @@ const Registration = () => {
             name="passwordOne"
             type="password"
             inputRef={register({
-              required: "Please enter a password.",
+              required: <p className="errText">Please enter a password</p>,
               validate: value =>
                 value.length >= 8 || "Password must be at least 8 characters."
             })}
             placeholder="Password"
           />
           {errors.passwordOne && errors.passwordOne.message}
-          <br />
 
           <TextField
             label="Confirm Password"
@@ -117,14 +115,13 @@ const Registration = () => {
             name="passwordTwo"
             type="password"
             inputRef={register({
-              required: "Please re-enter the password.",
+              required: <p className="errText">Please re-enter the password</p>,
               validate: value =>
                 value === watch("passwordOne") || "Passwords do not match."
             })}
             placeholder="Re-enter password"
           />
           {errors.passwordTwo && errors.passwordTwo.message}
-          <br />
 
           {/* Location isnt something we should be asking for at signup, we ask for it aws they use the coreApp */}
 

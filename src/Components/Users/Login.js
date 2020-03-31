@@ -71,7 +71,7 @@ const Login = () => {
             variant="outlined"
             name="email"
             inputRef={register({
-              required: "Please enter your Email."
+              required: <p className="errText">Please enter your Email</p>
             })}
             placeholder="email"
           />
@@ -84,7 +84,7 @@ const Login = () => {
             name="password"
             type="password"
             inputRef={register({
-              required: "Please enter your password."
+              required: <p className="errText">Please enter your password</p>
             })}
             placeholder="Password"
           />
