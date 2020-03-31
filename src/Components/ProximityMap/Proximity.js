@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
+
 import MapMarker from "./MapMarker";
 import { fireDB } from "../../_utils/firebase";
 
@@ -28,11 +29,24 @@ const Proximity = () => {
         }}
         defaultZoom={5}
         yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, googleMaps }) =>
+          // new googleMaps.Cicle({
+          //   strokeColor: "#FF0000",
+          //   strokeOpacity: 0.5,
+          //   strokeWeight: 1,
+          //   fillColor: "#FF0000",
+          //   fillOpacity: 0.3,
+          //   map,
+          //   center: { lat: 39.099529, lng: -76.848373 },
+          //   radius: 1000
+          console.log(map, googleMaps)
+        }
       >
         {msgs.map(elem => {
           return (
             <MapMarker
               avatarUrl={elem.avatarUrl}
+              firstNameInit={elem.displayName.split("").slice(0, 1)}
               msg={elem.displayName}
               testData
               key={Math.floor(Math.random() * 10000000)}
