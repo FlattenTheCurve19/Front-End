@@ -29,5 +29,5 @@ export const createPost = (user, uuid, postfield, long, lat) => {
     })
     .then(() => {
       console.log("Document successfully written!");
-    });
+    })
 };
