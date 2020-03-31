@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fireDB } from "./_utils/firebase";
 import "firebase/firestore";
 import axios from "axios";
+import { createPost } from './_utils/firedbHelper'
 
 const TestFeed = () => {
   const [post, setPost] = useState({});
@@ -38,14 +39,15 @@ const TestFeed = () => {
   }, []);
   return (
     <>
-      {post ? (
-        <div>
-          <p>{post.displayName}</p>
-          <p>{post.postField}</p>
-          {/* <p>{post.geoLock.latitude}, {post.geoLock.longitude}</p> */}
-          <p>{post.timeOfPost}</p>
-        </div>
-      ) : null}
+    <button onClick={() => createPost('Timmy', "I made a post LOL", 20, 20)}>makepost</button>
+      {post ? 
+      <div>
+        <p>{post.displayName}</p>
+        <p>{post.postField}</p>
+        {/* <p>{post.geoLock.latitude}, {post.geoLock.longitude}</p> */}
+        <p>{post.timeOfPost}</p>
+      </div>
+      : null}
     </>
   );
 };
