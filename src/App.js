@@ -63,15 +63,6 @@ function App() {
           <MessageBoard />
         </Route>
         <TestFeed />
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Registration />
-        </Route>
-        <Route path="/message-board">
-          <MessageBoard />
-        </Route>
         <Route path="/proximity-map">
           <Proximity />
         </Route>

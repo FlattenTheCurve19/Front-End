@@ -42,7 +42,7 @@ const MessageMap = props => {
   }, [currentLocation]);
 
   useEffect(() => {
-    if (props.coords && props.coords.latitude) {
+    if (props.coords) {
       setCurrentLocation(props.coords);
     }
   }, [props.coords]);
