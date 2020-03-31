@@ -67,7 +67,7 @@ const Proximity = props => {
           console.log(map, googleMaps)
         }
       >
-        {[...msgs.map(elem => {
+        {msgs.map(elem => {
           console.log(distance(elem.geoLock, currentLocation))
           if (distance(elem.geoLock, currentLocation) < 321869) {
             return (
@@ -82,7 +82,7 @@ const Proximity = props => {
               />
             );
           }
-        })]}
+        })}
       </GoogleMapReact>
     </div>
   );

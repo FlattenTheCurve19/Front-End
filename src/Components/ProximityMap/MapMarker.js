@@ -31,10 +31,7 @@ const MapMarker = props => {
       </p>
       {click && (
         <NewPaper>
-          <Avatar
-            variant="circle"
-            src={props.avatarUrl !== undefined && props.avatarUrl}
-          >
+          <Avatar variant="circle" src={props.avatarUrl && props.avatarUrl}>
             {props.firstNameInit}
           </Avatar>
           <div>{props.msg}</div>
