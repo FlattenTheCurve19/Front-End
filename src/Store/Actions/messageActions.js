@@ -6,7 +6,6 @@ export const FETCHING_MESSAGES_START = 'FETCHING_MESSAGES_START';
 export const FETCHING_MESSAGES_SUCCESS = 'FETCHING_MESSAGES_SUCCESS';
 export const FETCHING_MESSAGES_ERROR = 'FETCHING_MESSAGES_ERROR';
 
-//the action creator for geeting the messages of the message board
 export const messageGetter = () => dispatch => {
     dispatch({type: FETCHING_MESSAGES_START});
     fireDB.collection("post").get()
@@ -23,7 +22,6 @@ export const messageGetter = () => dispatch => {
         .catch(err => dispatch({ type: FETCHING_MESSAGES_ERROR, payload:err }))
 }
 
-
 export const messageSetter = object => {
   //action creator so a auth user can post a message
   if(createPost(object.displayName, object.UUID, object.postField, object.geoLock.longitude,object.geoLock.latitude)){
@@ -32,6 +30,8 @@ export const messageSetter = object => {
     console.log('error');
   }
 }
+
+
 
 
 
