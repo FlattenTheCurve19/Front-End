@@ -46,7 +46,7 @@ const Proximity = () => {
           return (
             <MapMarker
               avatarUrl={elem.avatarUrl}
-              firstNameInit={elem.displayName.split("").slice(0, 1)}
+              firstNameInit={elem.displayName.charCodeAt(0)}
               msg={elem.displayName}
               testData
               key={Math.floor(Math.random() * 10000000)}
