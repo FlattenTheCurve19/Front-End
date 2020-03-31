@@ -30,8 +30,8 @@ const MessageMap = props => {
           res.forEach(item => {
             console.log("*&*&*", item.data());
             let message = item.data();
-            if (distance(currentLocation, message.geoLock) < 80467.2){ 
-                console.log(distance(currentLocation, message.geoLock));
+            console.log(distance(currentLocation, message.geoLock), currentLocation);
+            if (distance(currentLocation, message.geoLock) < 321869){ 
                 data.push(item.data());
             }
           });
@@ -42,18 +42,15 @@ const MessageMap = props => {
   }, [currentLocation]);
 
   useEffect(() => {
-    if (props.coords) {
+    if (props.coords && props.coords.latitude) {
       setCurrentLocation(props.coords);
-      console.log(currentLocation);
     }
   }, [props.coords]);
 
   const _onBoundsChange = (center, zoom, bounds, marginBounds) => {
-      console.log('CENTER', center);
-      console.log('BOUNDS', bounds);
       setCurrentLocation({
-          latitude: center.Lat,
-          longitude: center.Lng
+          latitude: center.lat,
+          longitude: center.lng
       })
   }
 

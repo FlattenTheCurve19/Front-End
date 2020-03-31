@@ -16,7 +16,8 @@ import MessageMap from "./Components/MessageMap";
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import TestFeed from "./TestFeed";
+import TestFeed, { postFunc } from "./TestFeed";
+import Proximity from "./Components/ProximityMap/Proximity";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,19 @@ function App() {
         </Route>
         <Route path="/message-board">
           <MessageBoard />
+        </Route>
+        <TestFeed />
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Registration />
+        </Route>
+        <Route path="/message-board">
+          <MessageBoard />
+        </Route>
+        <Route path="/proximity-map">
+          <Proximity />
         </Route>
       </div>
     </StylesProvider>
