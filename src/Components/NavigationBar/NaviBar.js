@@ -12,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import { useHistory } from "react-router-dom";
-
 import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(theme => ({
@@ -57,10 +56,9 @@ const NavigationBar = props => {
   const [userIsLogged, setUserIsLogged] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("authkey")) {
-      setUserIsLogged(true);
-    }
-  }, [userIsLogged]);
+    props.user && props.user.user !== null && setUserIsLogged(true);
+    console.log(props.user);
+  }, [userIsLogged, props.user]);
 
   return (
     <div className={classes.root}>
@@ -81,17 +79,19 @@ const NavigationBar = props => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem
-              onClick={() => {
-                handleClose();
-                history.push("register");
-              }}
-            >
-              Register
-            </MenuItem>
             {!userIsLogged && (
-              <MenuItem onClick={handleClose}>About us</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  history.push("register");
+                }}
+              >
+                Register
+              </MenuItem>
             )}
+
+            <MenuItem onClick={handleClose}>About us</MenuItem>
+
             <MenuItem onClick={handleClose}>Contact us</MenuItem>
           </Menu>
 
@@ -108,14 +108,12 @@ const NavigationBar = props => {
                   Login
                 </NavLink>
               </div>
-            ) : null}
+            ) : (
+              <NavLink className={classes.links} to="/dashboard">
+                <img src={props.user.user.photoURL} />
+              </NavLink>
+            )}
           </div>
-          {userIsLogged ? (
-            <NavLink className={classes.links} to="/dashboard">
-              Dashboard
-            </NavLink>
-          ) : null}
-          {userIsLogged ? <Avatar className={classes.orange} /> : null}
         </Toolbar>
       </AppBar>
     </div>

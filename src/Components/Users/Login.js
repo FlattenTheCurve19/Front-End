@@ -6,10 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 // Add the Firebase services that you want to use
-import { gProvider } from '../../_utils/firebase'
+import { gProvider } from "../../_utils/firebase";
 import fire from "../../_utils/firebase";
 import "firebase/auth";
-
 
 const Login = () => {
   const history = useHistory();
@@ -38,26 +37,29 @@ const Login = () => {
   };
 
   const googleSignUp = () => {
-    fire.auth().signInWithPopup(gProvider).then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-      console.log('google user logged in',result)
-      history.push('/')
-
-    }).catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-      // ...
-    });
-  }
+    fire
+      .auth()
+      .signInWithPopup(gProvider)
+      .then(result => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const token = result.credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+        console.log("google user logged in", result);
+        history.push("/");
+      })
+      .catch(error => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        const credential = error.credential;
+        // ...
+      });
+  };
 
   return (
     <div>
@@ -69,7 +71,7 @@ const Login = () => {
             variant="outlined"
             name="email"
             inputRef={register({
-              required: "Please enter your Email."
+              required: <p className="errText">Please enter your Email</p>
             })}
             placeholder="email"
           />
@@ -82,7 +84,7 @@ const Login = () => {
             name="password"
             type="password"
             inputRef={register({
-              required: "Please enter your password."
+              required: <p className="errText">Please enter your password</p>
             })}
             placeholder="Password"
           />
@@ -93,9 +95,10 @@ const Login = () => {
             Login
           </Button>
           <br />
-          <Button variant="contained" color="primary" type="submit" onClick={() => googleSignUp()}>
-            Google Signin
-          </Button>
+          <div className="googleLogin" onClick={() => googleSignUp()}>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            <p>Sign in with Google</p>
+          </div>
         </div>
       </form>
     </div>
