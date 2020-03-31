@@ -11,6 +11,8 @@ import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import Home from "./Pages/Home";
 import MessageBoard from "./Components/MessageBoard";
+import MessageMap from "./Components/MessageMap";
+
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -46,7 +48,10 @@ function App() {
       <div className="App">
         <NaviBar user={user} />
         <Route exact path="/">
-            <Home />
+          <Home />
+        </Route>
+        <Route path="/message-map">
+          <MessageMap />
         </Route>
         <Route path="/login">
           <Login />
@@ -57,6 +62,7 @@ function App() {
         <Route path="/message-board">
           <MessageBoard />
         </Route>
+        <TestFeed />
         <Route path="/proximity-map">
           <Proximity />
         </Route>
