@@ -10,13 +10,28 @@ import { Board } from './styles';
 // Material UI Imports
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const MessageBoard = () => {
+export default () => {
     const { messages , isFetching, error } = useSelector(state => state.messageBoard);
+    const [ sortedMessages, setSortedMessages ] = useState([]);
     const dispatch = useDispatch();
+    const [ update, setUpdate ] = useState(true);
+
+    console.log(messages);
 
     useEffect(() => {
         dispatch(messageGetter());
-    }, [])
+    }, [ update ])
+
+    useEffect(() => {
+        if(messages){
+            messages.sort((a, b) => (a.timeOfPost.seconds > b.timeOfPost.seconds) ? 1 : -1);
+            setSortedMessages(messages);
+        }
+    }, [messages])
+
+    const forceRender = () =>{
+        setUpdate(!update);
+    }
 
     return(
         <Board>
@@ -28,12 +43,14 @@ const MessageBoard = () => {
                     <CircularProgress color="inherit" />
                 </div>
             )}
-            {messages.length > 1 && (
+            {sortedMessages.length > 1 && (
                 <>
-                    {messages.map(message => {
-                        return <Card message={message} key={message.postId}/>
-                    })}
-                    <AddMessage/>
+                    <div className='card-container'>
+                        {sortedMessages.map(message => {
+                            return <Card message={message} key={message.postId}/>
+                        })}
+                    </div>
+                    <AddMessage forceRender={forceRender}/>
                 </>
             )}
             {error && (
@@ -42,5 +59,3 @@ const MessageBoard = () => {
         </Board>
     );
 }
-
-export default MessageBoard;

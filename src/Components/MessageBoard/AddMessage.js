@@ -3,23 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { messageSetter } from '../../Store/Actions/messageActions';
 
 // Component Imports
 import { Form } from './styles';
 
-// User ID, message, display name, user location, post time
-// {
-//     userId: 0,
-//     displayName: '',
-//     message: '',
-//     location: {
-//         lat: 0,
-//         long: 0
-//     },
-//     postTime: ''
-// }
-
-export default () => {
+export default ({ forceRender }) => {
     const { handleSubmit, register, errors } = useForm();
     const [ user, setUser ] = useState(null);
     const history = useHistory();
@@ -34,15 +23,20 @@ export default () => {
         });
     }, [])
 
-    useEffect(() => {
-        console.log(errors);
-    }, [errors]);
-
     const submitForm = (data) => {
+        // Also check to see if a location has been added
         if(user){
-            console.log('success');
-            // Dispatch message here
-            console.log(user.uid);
+            console.log('success', data);
+            messageSetter({
+                displayName: user.displayName,
+                UUID: user.uid,
+                postField: data.message,
+                geoLock: {
+                    longitude: 0,
+                    latitude: 0
+                }
+            })
+            forceRender();
         }else{
             history.push('/login');
         }
