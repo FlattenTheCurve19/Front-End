@@ -65,7 +65,7 @@ function App() {
         <Route path="/message-board">
           <MessageBoard />
         </Route>
-        <TestFeed />
+        {/* <TestFeed /> */}
         <Route path="/proximity-map">
           <Proximity />
         </Route>
