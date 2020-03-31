@@ -23,9 +23,6 @@ export const messageGetter = () => dispatch => {
         .catch(err => dispatch({ type: FETCHING_MESSAGES_ERROR, payload:err }))
 }
 
-export const idGetter = () => dispatch => {
-  //action creator for the getting the id
-}
 
 export const messageSetter = message => dispatch => {
   //action creator so a auth user can post a message
