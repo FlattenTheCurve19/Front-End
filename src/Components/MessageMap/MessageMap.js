@@ -5,7 +5,7 @@ import styled from "styled-components";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
 import { fireDB } from "../../_utils/firebase";
-import { GeoFirestore } from "geofirestore";
+import { GeoFirestore} from "geofirestore";
 import { createPost } from "../../_utils/firedbHelper";
 import * as firebase from "firebase";
 

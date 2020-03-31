@@ -2,24 +2,39 @@ import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import distance from "../../_utils/distance";
 import { geolocated } from "react-geolocated";
+import { GeoFirestore } from 'geofirestore';
+import * as firebase from 'firebase';
+
 
 import MapMarker from "./MapMarker";
 import { fireDB } from "../../_utils/firebase";
 
 const Proximity = props => {
+  const geofirestore = new GeoFirestore(fireDB);
+  const geoCollection = geofirestore.collection('post');
   const arr = [];
 
   const [msgs, setMsgs] = useState([]);
   const [currentLocation, setCurrentLocation] = useState();
 
   useEffect(() => {
-    fireDB
-      .collection("post")
+    if(currentLocation){
+      geoCollection.near({
+        center: new firebase.firestore.GeoPoint(
+          currentLocation.latitude,
+          currentLocation.longitude
+        ),
+        radius: 300000
+      })
       .get()
       .then(res => {
-        res.forEach(item => arr.push(item.data()));
+        res.forEach(item => {
+          arr.push(item.data())
+        });
+        console.log(arr);
         setMsgs(arr);
       });
+    }
   }, []);
 
   useEffect(() => {
@@ -29,11 +44,6 @@ const Proximity = props => {
   }, [props.coords]);
 
   useEffect(() => {
-    console.log(msgs.filter(msg => {
-      if(distance(currentLocation, msg.geoLock) < 321869){
-        return msg;
-      }
-    }))
   }, [currentLocation])
 
   const _onBoundsChange = (center, zoom, bounds, marginBounds) => {
