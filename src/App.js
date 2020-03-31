@@ -51,23 +51,8 @@ function App() {
       <div className="App">
         <NaviBar user={user} />
         <Route exact path="/">
-<<<<<<< HEAD
-          <Home />
-        </Route>
-=======
             <Home />
         </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Registration />
-        </Route>
-        <Route path="/message-board">
-          <MessageBoard />
-        </Route>
-        <TestFeed />
->>>>>>> 85abe3018e70a9376355a93e51b53c1f240d8c4d
         <Route path="/login">
           <Login />
         </Route>
