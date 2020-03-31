@@ -4,7 +4,6 @@ import{ useDispatch, useSelector } from 'react-redux';
 
 export default () => {
     const { handleSubmit, register, errors } = useForm();
-    // const 
 
     const submitForm = (data) => {
         console.log('submitting', data);
