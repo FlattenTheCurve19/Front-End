@@ -10,7 +10,7 @@ import { Board } from './styles';
 // Material UI Imports
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const MessageBoard = () => {
+export default () => {
     const { messages , isFetching, error } = useSelector(state => state.messageBoard);
     const dispatch = useDispatch();
 
@@ -42,5 +42,3 @@ const MessageBoard = () => {
         </Board>
     );
 }
-
-export default MessageBoard;
