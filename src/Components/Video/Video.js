@@ -8,16 +8,14 @@ import "../../Styles/index.scss";
 
 const Video = props => {
   return (
-    <div class="video-background">
-      <div class="video-foreground">
-        <iframe
-          title="COVID-19 VIDEO"
-          src="https://www.youtube.com/embed/_mlreMhQXBA?controls=0&showinfo=0&rel=0&autoplay=1&loop=true&mute=1&playing=true"
-          frameborder="0"
-          allowfullscreen
-          poster="/Users/ajablanco/Desktop/LAMBDA/Front-End/src/images/covid-19-drugs.jpeg"
-        ></iframe>
-      </div>
+    <div class="video-background" id="wrapper">
+      <video loop autoPlay controls>
+        <source src="covidMovie.mp4" type="video/mp4"/>
+      </video>
+        <div className="videoTitle">
+          <h1>Do your Part, Help Flatten The Curve</h1>
+          <button>JOIN NOW</button>
+        </div>
     </div>
   );
 };
@@ -52,8 +50,8 @@ const Video = props => {
 // };
 
 // const VideoWrapper = styled.div`
-//   position: relative;
-//   padding-top: 56.25%;
+  // position: relative;
+  // padding-top: 56.25%;
 //   margin-bottom: 75px;
 //   max-height: 1000px;
 //   max-width: 100vw;

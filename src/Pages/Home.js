@@ -6,9 +6,8 @@ const Home = () => {
   return (
     <>
       <Video />
-      <div style={{height: "670px"}}></div>
-      <MapChart />
-      <MapChart />
+      <br/>
+      <br/>
       <MapChart />
     </>
   );
