@@ -125,7 +125,7 @@ table {
 }
 /*reset*/
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat|Raleway:400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800|Raleway:400,500,600,700,800,900&display=swap");
 
 //Theme colors//
 $primary-color: #44cdcd;
@@ -158,6 +158,13 @@ $content-font: "Montserrat", sans-serif;
       &:hover {
         color: $secondary-color;
       }
+      img {
+        width: 48px;
+        border-radius: 50%;
+        position: fixed;
+        right: 1rem;
+        top: 0.3rem;
+      }
     }
   }
 }
@@ -174,6 +181,18 @@ $content-font: "Montserrat", sans-serif;
   &:hover {
     background-color: #ff8ba8;
   }
+}
+.MuiButton-textPrimary {
+  color: white;
+  background-color: $secondary-color;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: #ff8ba8;
+  }
+}
+.MuiInput-underline:after {
+  border-bottom: 2px solid $secondary-color;
 }
 
 .MuiMenu-list {
@@ -251,5 +270,24 @@ $content-font: "Montserrat", sans-serif;
     padding: 2rem;
     /* box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
       0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12) */
+  }
+}
+.googleLogin {
+  display: flex;
+  font-family: $content-font;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  img {
+    margin-right: 0.5rem;
+    width: 5%;
+  }
+  p {
+    padding-bottom: 0.1rem;
+    color: #236b6b;
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
   }
 }
