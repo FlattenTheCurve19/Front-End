@@ -12,6 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import { useHistory } from "react-router-dom";
+import { ReactComponent as Logo } from "../../images/finallogo.svg";
 
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -94,18 +95,20 @@ const NavigationBar = props => {
             )}
             <MenuItem onClick={handleClose}>Contact us</MenuItem>
           </Menu>
-
+          <Logo height={28} /> 
           <NavLink className={classes.links} to="/">
-            <Typography className={classes.medTitle}>
-              Flatten The Curve
+            <Typography>
+               Flatten The Curve
             </Typography>
           </NavLink>
-
           <div className="navLinks-div">
             {!userIsLogged ? (
               <div>
                 <NavLink className={classes.links} to="/login">
                   Login
+                </NavLink>
+                <NavLink className={classes.links} to="/register">
+                  Register
                 </NavLink>
               </div>
             ) : null}
