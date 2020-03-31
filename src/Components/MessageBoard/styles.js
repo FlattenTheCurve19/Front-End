@@ -29,6 +29,15 @@ export const Board = styled.section`
     p{
         font-family: 'Raleway', sans-serif;
     }
+    .spinner{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .error{
+        text-align: center;
+    }
 `;
 
 export const Card = styled.div`
@@ -48,5 +57,16 @@ export const Card = styled.div`
     }
     .content-container{
         margin-left: 10px;
+    }
+`;
+
+export const Form = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    label {
+        font-family: 'Raleway', sans-serif;
     }
 `;
