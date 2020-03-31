@@ -1,33 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import MapMarker from "./MapMarker";
+import { fireDB } from "../../_utils/firebase";
 
 const Proximity = () => {
-  const testData = [
-    // test data, msgs will be in an array?
+  const arr = [];
 
-    { lat: 39.099529, lng: -76.848373, msg: "test" },
-    { lat: 30.217522, lng: -76.868729, msg: "123" },
-    { lat: 39.158829, lng: -75.521141, msg: "again" }
-  ];
+  const [msgs, setMsgs] = useState([]);
+
+  useEffect(() => {
+    fireDB
+      .collection("post")
+      .get()
+      .then(res => {
+        res.forEach(item => arr.push(item.data()));
+        setMsgs(arr);
+      });
+  }, []);
+
   return (
-    <div style={{ height: "50vh", width: "60%", margin: "auto" }}>
+    <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
         defaultCenter={{
           lat: 39.099529,
           lng: -76.848373
         }}
-        defaultZoom={10}
+        defaultZoom={5}
         yesIWantToUseGoogleMapApiInternals
       >
-        {testData.map(elem => {
+        {msgs.map(elem => {
           return (
             <MapMarker
-              msg={elem.msg}
+              avatarUrl={elem.avatarUrl}
+              msg={elem.displayName}
+              testData
               key={Math.floor(Math.random() * 10000000)}
-              lat={elem.lat}
-              lng={elem.lng}
+              lng={elem.geoLock.longitude}
+              lat={elem.geoLock.latitude}
             />
           );
         })}
