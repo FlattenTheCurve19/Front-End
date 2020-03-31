@@ -62,9 +62,7 @@ function App() {
         </Route>
         <NaviBar user={user} />
         <Route exact path="/">
-          <Route>
             <Home />
-          </Route>
         </Route>
         <Route path="/login">
           <Login />
