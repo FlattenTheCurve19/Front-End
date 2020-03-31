@@ -11,7 +11,6 @@ import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import Home from "./Pages/Home";
 import MessageBoard from "./Components/MessageBoard";
-
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -49,16 +48,6 @@ function App() {
         <Route exact path="/">
             <Home />
         </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Registration />
-        </Route>
-        <Route path="/message-board">
-          <MessageBoard />
-        </Route>
-        <TestFeed />
         <Route path="/login">
           <Login />
         </Route>
