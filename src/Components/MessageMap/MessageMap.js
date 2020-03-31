@@ -4,7 +4,9 @@ import { IconButton } from "@material-ui/core";
 import styled from "styled-components";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
-import { fireDB } from "../../_utils/firebase";
+import firebase from "../../_utils/firebase";
+import {GeoFire} from 'geofire';
+
 import distance from "../../_utils/distance";
 
 const AnyReactComponent = ({ text }) => (
@@ -16,28 +18,24 @@ const AnyReactComponent = ({ text }) => (
 const MessageMap = props => {
   const [messages, setMessages] = useState();
   const [currentLocation, setCurrentLocation] = useState();
+  const firebaseRef = firebase.database().ref();
+  const geoFire = new GeoFire(firebaseRef);
 
   useEffect(() => {
     // const item = collection.onSnapshot(item => {
     //     console.log('ITEM', item);
     // })
     if (currentLocation) {
-      const posts = fireDB
-        .collection("post")
-        .get()
-        .then(res => {
-          const data = [];
-          res.forEach(item => {
-            console.log("*&*&*", item.data());
-            let message = item.data();
-            console.log(distance(currentLocation, message.geoLock), currentLocation);
-            if (distance(currentLocation, message.geoLock) < 321869){ 
-                data.push(item.data());
+        geoFire.get("geoLock").then(function(location) {
+            if (location === null) {
+              console.log("Provided key is not in GeoFire");
             }
+            else {
+              console.log("Provided key has a location of " + location);
+            }
+          }, function(error) {
+            console.log("Error: " + error);
           });
-          console.log(data);
-          setMessages(data);
-        });
     }
   }, [currentLocation]);
 
