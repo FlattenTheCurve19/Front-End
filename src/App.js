@@ -46,7 +46,7 @@ function App() {
       <div className="App">
         <NaviBar user={user} />
         <Route exact path="/">
-            <Home />
+          <Home />
         </Route>
         <Route path="/login">
           <Login />
