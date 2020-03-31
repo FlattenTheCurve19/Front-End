@@ -7,7 +7,6 @@ export const Board = styled.section`
     min-width: 400px;
     max-width: 600px;
     height: 100vh;
-    box-shadow: inset -1px -1px 5px -2px rgba(0,0,0,0.75);
     h1{
         margin-bottom: 30px;
         text-align: center;
@@ -29,6 +28,19 @@ export const Board = styled.section`
     p{
         font-family: 'Raleway', sans-serif;
     }
+    .spinner{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .error{
+        text-align: center;
+    }
+    .card-container{
+        height: 70%;
+        overflow: scroll;
+    }
 `;
 
 export const Card = styled.div`
@@ -48,5 +60,16 @@ export const Card = styled.div`
     }
     .content-container{
         margin-left: 10px;
+    }
+`;
+
+export const Form = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    label {
+        font-family: 'Raleway', sans-serif;
     }
 `;

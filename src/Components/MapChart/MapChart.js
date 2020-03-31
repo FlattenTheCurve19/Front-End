@@ -75,9 +75,13 @@ function MapChart({ setTooltipContent }) {
         <Typography variant="h5">Total Confirmed Cases</Typography>
         <Typography variant="body2">There are a total of {total.Confirmed} cases in the U.S.</Typography>
         <ChartButton>Learn More</ChartButton>
+        <br/>
+        <br/>
         <Typography variant="h5">Total Recovered Cases</Typography>
         <Typography variant="body2">There are a total of {total.Recovered} cases that are confirmed in the U.S.</Typography>
         <ChartButton>Learn More</ChartButton>
+        <br/>
+        <br/>
         <Typography variant="h5">Total Deaths</Typography>
         <Typography variant="body2">At this time, there are {total.Deaths} deaths in the U.S.</Typography>
         <ChartButton>Learn More</ChartButton>
@@ -268,9 +272,9 @@ const ChartButton = styled(Button)`
   border: 1px solid #5fd4d8;
   border-radius: 3px;
   background: transparent;
-  padding: 8px 20px;
+  padding: 4px 10px;
   color: #5fd4d8;
-  font-size: 14px;
+  font-size: 10px;
 `;
 
 export default memo(MapChart);

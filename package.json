@@ -30,13 +30,16 @@
     "react-scripts": "3.4.0",
     "react-simple-maps": "^2.0.0",
     "react-sticky-mouse-tooltip": "0.0.1",
+    "react-tap-event-plugin": "^3.0.3",
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "screenfull": "^5.0.2",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.0.1",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",
