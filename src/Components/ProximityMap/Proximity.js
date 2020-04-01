@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
 import { GeoFirestore } from "geofirestore";
 import * as firebase from "firebase";
-import { getDistance, getBounds } from "geolib";
+import { getDistance } from "geolib";
 
 import MapMarker from "./MapMarker";
 import LocationOnIcon from "@material-ui/icons/LocationOn";

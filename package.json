@@ -13,7 +13,6 @@
     "d3-scale": "^3.2.1",
     "express": "^4.17.1",
     "firebase": "^7.13.1",
-    "geofence": "^1.0.9",
     "geofire": "^5.0.1",
     "geofirestore": "^3.4.1",
     "geolib": "^3.2.1",

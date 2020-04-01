@@ -40,8 +40,7 @@ export const messageGetter = (geoPoint, userInfo) => dispatch => {
     .catch(err => dispatch({ type: FETCHING_MESSAGES_ERROR, payload: err }));
 };
 
-// need another get request for the id aviator
-
+///need another get request for the id aviator
 export const messageSetter = object => {
   //action creator so a auth user can post a message
   if(createPost(object.displayName, object.UUID, object.postField, object.geoLock.longitude,object.geoLock.latitude)){
