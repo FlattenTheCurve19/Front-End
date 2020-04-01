@@ -9,13 +9,13 @@ import "../../Styles/index.scss";
 const Video = props => {
   return (
     <div className="video-background" id="wrapper">
-      <video loop autoPlay controls>
-        <source src="covidMovie.mp4" type="video/mp4"/>
+      <video loop autoPlay controls muted="muted">
+        <source src="covidMovie.mp4" type="video/mp4" />
       </video>
-        <div className="videoTitle">
-          <h1>Do your Part, Help Flatten The Curve</h1>
-          <button>JOIN NOW</button>
-        </div>
+      <div className="videoTitle">
+        <h1>Do your Part, Help Flatten The Curve</h1>
+        <button>JOIN NOW</button>
+      </div>
     </div>
   );
 };
@@ -50,8 +50,8 @@ const Video = props => {
 // };
 
 // const VideoWrapper = styled.div`
-  // position: relative;
-  // padding-top: 56.25%;
+// position: relative;
+// padding-top: 56.25%;
 //   margin-bottom: 75px;
 //   max-height: 1000px;
 //   max-width: 100vw;
