@@ -10,16 +10,15 @@ import NaviBar from "./Components/NavigationBar/NaviBar";
 import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import MessageBoard from "./Components/MessageBoard";
-import MessageMap from "./Components/MessageMap";
+import TwitterFeed from "./Components/TwitterFeed/TwitterFeed";
 
-// Page Imports 
+// Page Imports
 import Home from "./Pages/Home";
-import MessageMapPage from './Pages/MessageMapPage'
+import MessageMapPage from "./Pages/MessageMapPage";
 
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import TestFeed from "./TestFeed";
 import Proximity from "./Components/ProximityMap/Proximity";
 
 function App() {
@@ -30,32 +29,19 @@ function App() {
     dispatch(setInitialData());
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        /* User constants per example //
-        const displayName = user.displayName;
-        const email = user.email;
-        const emailVerified = user.emailVerified;
-        const photoURL = user.photoURL;
-        const isAnonymous = user.isAnonymous;
-        const uid = user.uid;
-        const providerData = user.providerData; */
         setUser({ user });
       } else {
         setUser({ user: null });
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <StylesProvider injectFirst>
       <div className="App">
-      {console.log(user)}
-        <TestFeed />
         <NaviBar user={user} />
         <Route exact path="/">
           <Home />
-        </Route>
-        <Route path="/message-map">
-          <MessageMap />
         </Route>
         <Route path="/login">
           <Login />
@@ -66,11 +52,15 @@ function App() {
         <Route path="/message-board">
           <MessageBoard />
         </Route>
+        {/* <TestFeed /> */}
         <Route path="/proximity-map">
           <Proximity />
         </Route>
-        <Route path='/message-map-page'>
-          <MessageMapPage/>
+        <Route path="/message-map-page">
+          <MessageMapPage />
+        </Route>
+        <Route path="/twitter-feed">
+          <TwitterFeed />
         </Route>
       </div>
     </StylesProvider>

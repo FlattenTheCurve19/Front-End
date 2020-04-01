@@ -1,9 +1,9 @@
-import firebase from "firebase";
-import { fireDB } from "./firebase";
-import "firebase/firestore";
-import { GeoFirestore } from "geofirestore";
+import firebase from 'firebase'
+import { fireDB } from './firebase'
+import 'firebase/firestore'
+import { GeoFirestore } from 'geofirestore';
 const geofirestore = new GeoFirestore(fireDB);
-const geocollection = geofirestore.collection("post");
+const geocollection = geofirestore.collection('post');
 
 const post = {
   displayName: "",
@@ -13,10 +13,11 @@ const post = {
   geoLock: {
     longitude: Number,
     latitude: Number
-  }
+  },
+  avatar: ""
 };
 
-export const createPost = (user, uuid = "1354", postfield, long, lat) => {
+export const createPost = (user, uuid='1354', postfield, long, lat, avatar) => {
   // fireDB
   //   .collection("post")
   //   .doc()
@@ -39,18 +40,7 @@ export const createPost = (user, uuid = "1354", postfield, long, lat) => {
       latitude: lat,
       longitude: long
     },
-    coordinates: new firebase.firestore.GeoPoint(lat, long)
-  });
-};
-
-export const deletePost = async (postID) => {
-  //https://firebase.google.com/docs/firestore/manage-data/delete-data
-
-  try {
-    await fireDB.collection("post").doc(postID).delete();
-    return console.log('Delete was successful');
-  }
-  catch (err) {
-    return console.log('Delete failed', err);
-  }
+    coordinates: new firebase.firestore.GeoPoint(lat, long),
+    avatar: avatar
+  })
 };

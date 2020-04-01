@@ -1,5 +1,5 @@
 {
-  "name": "movie-index",
+  "name": "flatten-the-curve",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +13,9 @@
     "d3-scale": "^3.2.1",
     "express": "^4.17.1",
     "firebase": "^7.13.1",
+    "geofire": "^5.0.1",
     "geofirestore": "^3.4.1",
+    "geolib": "^3.2.1",
     "google-map-react": "^1.1.7",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
