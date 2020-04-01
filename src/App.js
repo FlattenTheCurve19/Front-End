@@ -47,8 +47,9 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-      {console.log(user)}
       <div className="App">
+      {console.log(user)}
+        <TestFeed />
         <NaviBar user={user} />
         <Route exact path="/">
           <Home />
@@ -65,7 +66,6 @@ function App() {
         <Route path="/message-board">
           <MessageBoard />
         </Route>
-        {/* <TestFeed /> */}
         <Route path="/proximity-map">
           <Proximity />
         </Route>
