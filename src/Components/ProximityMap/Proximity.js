@@ -31,19 +31,20 @@ const Proximity = props => {
     geoCollection
       .near({
         center: new firebase.firestore.GeoPoint(
-          coords.latitude,
-          coords.longitude
+          coords.center.lat ? coords.center.lat : coords.latitude,
+          coords.center.lng ? coords.center.lng : coords.longitude
         ),
-        radius: 1000
+        radius: 10000
       })
       .get()
       .then(res => {
+        console.log(coords.center);
         const arr = [];
         res.forEach(item => arr.push(item.data()));
         setMsgs(arr);
         console.log(arr);
       });
-  }, []);
+  }, [coords.center]);
 
   return (
     <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
@@ -57,7 +58,6 @@ const Proximity = props => {
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchBounds(bounds));
           dispatch(fetchCenter(center));
-          console.log(coords);
         }}
         yesIWantToUseGoogleMapApiInternals
       >
