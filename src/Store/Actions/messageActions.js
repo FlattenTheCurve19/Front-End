@@ -28,10 +28,14 @@ export const messageGetter = () => dispatch => {
 };
 
 ///need another get request for the id aviator
-
-export const messageSetter = message => dispatch => {
-  createPost("user.username", message, "longitude", "latitude");
-};
+export const messageSetter = object => {
+  //action creator so a auth user can post a message
+  if(createPost(object.displayName, object.UUID, object.postField, object.geoLock.longitude,object.geoLock.latitude)){
+    messageGetter();
+  }else{
+    console.log('error');
+  }
+}
 
 export const fetchCoords = coords => {
   return {
@@ -53,3 +57,9 @@ export const fetchCenter = center => {
     payload: center
   };
 };
+
+
+
+
+
+

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import distance from "../../_utils/distance";
+
+import MapMarker from "./MapMarker";
 import { fireDB } from "../../_utils/firebase";
 import Tooltip from "@material-ui/core/Tooltip";
 import { geolocated } from "react-geolocated";
@@ -17,6 +20,7 @@ const Proximity = props => {
   const coords = useSelector(state => state.messageBoard.userInfo);
   const dispatch = useDispatch();
   const [msgs, setMsgs] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState();
 
   const geofirestore = new GeoFirestore(fireDB);
   const geoCollection = geofirestore.collection("post");
@@ -45,6 +49,27 @@ const Proximity = props => {
         console.log(arr);
       });
   }, [coords.center]);
+
+  useEffect(() => {
+    if (props.coords && props.coords.latitude) {
+      setCurrentLocation(props.coords);
+    }
+  }, [props.coords]);
+
+  useEffect(() => {
+    console.log(msgs.filter(msg => {
+      if(distance(currentLocation, msg.geoLock) < 321869){
+        return msg;
+      }
+    }))
+  }, [currentLocation])
+
+  const _onBoundsChange = (center, zoom, bounds, marginBounds) => {
+    setCurrentLocation({
+        latitude: center.lat,
+        longitude: center.lng
+    })
+}
 
   return (
     <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
