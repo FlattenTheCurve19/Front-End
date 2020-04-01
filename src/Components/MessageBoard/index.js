@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { messageGetter } from '../../Store/Actions/messageActions';
-import { getDistance } from 'geolib';
-import * as firebase from 'firebase';
 
 // Component Imports
 import Card from './Card';
@@ -13,7 +11,7 @@ import { Board } from './styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default () => {
-    const { messages , isFetching, error, userInfo } = useSelector(state => state.messageBoard);
+    const { messages , isFetching, error } = useSelector(state => state.messageBoard);
     const [ sortedMessages, setSortedMessages ] = useState([]);
     const dispatch = useDispatch();
     const [ update, setUpdate ] = useState(true);
@@ -21,12 +19,8 @@ export default () => {
     console.log(messages);
 
     useEffect(() => {
-        const geoPoint = new firebase.firestore.GeoPoint(
-            userInfo.center.lat,
-            userInfo.center.lng
-        )
-        dispatch(messageGetter(geoPoint, userInfo));
-    }, [ update, userInfo ])
+        dispatch(messageGetter());
+    }, [ update ])
 
     useEffect(() => {
         if(messages){

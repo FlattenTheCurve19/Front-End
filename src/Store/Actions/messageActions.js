@@ -1,8 +1,6 @@
 import { fireDB } from "../../_utils/firebase";
-import { GeoFirestore } from 'geofirestore';
 import "firebase/firestore";
 import { createPost } from "../../_utils/firedbHelper";
-import { getDistance } from 'geolib';
 
 export const FETCHING_MESSAGES_START = "FETCHING_MESSAGES_START";
 export const FETCHING_MESSAGES_SUCCESS = "FETCHING_MESSAGES_SUCCESS";
@@ -11,21 +9,10 @@ export const FETCHING_USER_COORDS = "FETCHING_USER_COORDS";
 export const FETCHING_USER_BOUNDS = "FETCHING_USER_BOUNDS";
 export const FETCH_CENTER = "FETCH_CENTER";
 
-const geofirestore = new GeoFirestore(fireDB);
-const geocollection = geofirestore.collection('post');
-
-export const messageGetter = (geoPoint, userInfo) => dispatch => {
+export const messageGetter = () => dispatch => {
   dispatch({ type: FETCHING_MESSAGES_START });
-    geocollection.near({center: geoPoint, radius:
-      ( getDistance(
-        {
-          latitude: userInfo.center.lat,
-          longitude: userInfo.center.lng
-        },
-        {
-          latitude: userInfo.bounds.nw.lat,
-          longitude: userInfo.bounds.nw.lng
-        }) / 1000)})
+  fireDB
+    .collection("post")
     .get()
     .then(res => {
       const array = [];
@@ -49,6 +36,7 @@ export const messageSetter = object => {
     console.log('error');
   }
 }
+
 export const fetchCoords = coords => {
   return {
     type: FETCHING_USER_COORDS,
@@ -69,3 +57,9 @@ export const fetchCenter = center => {
     payload: center
   };
 };
+
+
+
+
+
+

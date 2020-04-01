@@ -5,9 +5,7 @@ import styled from "styled-components";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
 import { fireDB } from "../../_utils/firebase";
-import { GeoFirestore} from "geofirestore";
-import { createPost } from "../../_utils/firedbHelper";
-import * as firebase from "firebase";
+import distance from "../../_utils/distance";
 
 const AnyReactComponent = ({ text }) => (
   <IconButton>
@@ -18,24 +16,26 @@ const AnyReactComponent = ({ text }) => (
 const MessageMap = props => {
   const [messages, setMessages] = useState();
   const [currentLocation, setCurrentLocation] = useState();
-  const geofirestore = new GeoFirestore(fireDB);
-  const geoCollection = geofirestore.collection("post");
 
   useEffect(() => {
     // const item = collection.onSnapshot(item => {
     //     console.log('ITEM', item);
     // })
     if (currentLocation) {
-      geoCollection.near({
-        center: new firebase.firestore.GeoPoint(20,20), 
-        radius: 1000
-      })
-      .get()
+      const posts = fireDB
+        .collection("post")
+        .get()
         .then(res => {
           const data = [];
           res.forEach(item => {
-            data.push(item.data());
+            console.log("*&*&*", item.data());
+            let message = item.data();
+            console.log(distance(currentLocation, message.geoLock), currentLocation);
+            if (distance(currentLocation, message.geoLock) < 321869){ 
+                data.push(item.data());
+            }
           });
+          console.log(data);
           setMessages(data);
         });
     }
@@ -48,11 +48,11 @@ const MessageMap = props => {
   }, [props.coords]);
 
   const _onBoundsChange = (center, zoom, bounds, marginBounds) => {
-    setCurrentLocation({
-      latitude: center.lat,
-      longitude: center.lng
-    });
-  };
+      setCurrentLocation({
+          latitude: center.lat,
+          longitude: center.lng
+      })
+  }
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
@@ -69,8 +69,8 @@ const MessageMap = props => {
           messages.map(message => {
             return (
               <AnyReactComponent
-                lat={message && message.geoLock && message.geoLock.latitude}
-                lng={message && message.geoLock && message.geoLock.longitude}
+                lat={message.geoLock.latitude}
+                lng={message.geoLock.longitude}
               />
             );
           })}
