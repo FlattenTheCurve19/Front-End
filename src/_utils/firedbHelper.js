@@ -43,10 +43,14 @@ export const createPost = (user, uuid = "1354", postfield, long, lat) => {
   });
 };
 
-export const deletePost = (postID) => {
+export const deletePost = async (postID) => {
   //https://firebase.google.com/docs/firestore/manage-data/delete-data
 
-  return fireDB.collection("post").doc(postID).delete()
-    .then(() => console.log('Delete was successful'))
-    .catch(err => console.log('Delete failed', err))
+  try {
+    await fireDB.collection("post").doc(postID).delete();
+    return console.log('Delete was successful');
+  }
+  catch (err) {
+    return console.log('Delete failed', err);
+  }
 };
