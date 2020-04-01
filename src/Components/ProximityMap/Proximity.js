@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import { geolocated } from "react-geolocated";
-import { GeoFirestore } from "geofirestore";
-import * as firebase from "firebase";
-import { getDistance } from "geolib";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import distance from "../../_utils/distance";
 
 import MapMarker from "./MapMarker";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { fireDB } from "../../_utils/firebase";
 import Tooltip from "@material-ui/core/Tooltip";
+import { geolocated } from "react-geolocated";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCoords,
   fetchBounds,
   fetchCenter
 } from "../../Store/Actions/messageActions";
+import { GeoFirestore } from "geofirestore";
+import * as firebase from "firebase";
 
 const Proximity = props => {
-  const geofirestore = new GeoFirestore(fireDB);
-  const geoCollection = geofirestore.collection("post");
-
   const coords = useSelector(state => state.messageBoard.userInfo);
   const dispatch = useDispatch();
   const [msgs, setMsgs] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState();
+
+  const geofirestore = new GeoFirestore(fireDB);
+  const geoCollection = geofirestore.collection("post");
 
   useEffect(() => {
     props.coords &&
@@ -31,34 +32,43 @@ const Proximity = props => {
   }, [props.coords]);
 
   useEffect(() => {
-    console.log(coords);
-    if (coords.center.lat) {
-      geoCollection
-        .near({
-          center: new firebase.firestore.GeoPoint(
-            coords.center.lat,
-            coords.center.lng
-          ),
-          radius:
-            ( getDistance(
-              {
-                latitude: coords.center.lat,
-                longitude: coords.center.lng
-              },
-              {
-                latitude: coords.bounds.nw.lat,
-                longitude: coords.bounds.nw.lng
-              }) / 1000)
-        })
-        .get()
-        .then(res => {
-          const arr = [];
-          res.forEach(item => arr.push(item.data()));
-          setMsgs(arr);
-          console.log(arr);
-        });
+    geoCollection
+      .near({
+        center: new firebase.firestore.GeoPoint(
+          coords.latitude,
+          coords.longitude
+        ),
+        radius: 1000
+      })
+      .get()
+      .then(res => {
+        const arr = [];
+        res.forEach(item => arr.push(item.data()));
+        setMsgs(arr);
+        console.log(arr);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (props.coords && props.coords.latitude) {
+      setCurrentLocation(props.coords);
     }
-  }, [coords]);
+  }, [props.coords]);
+
+  useEffect(() => {
+    console.log(msgs.filter(msg => {
+      if(distance(currentLocation, msg.geoLock) < 321869){
+        return msg;
+      }
+    }))
+  }, [currentLocation])
+
+  const _onBoundsChange = (center, zoom, bounds, marginBounds) => {
+    setCurrentLocation({
+        latitude: center.lat,
+        longitude: center.lng
+    })
+}
 
   return (
     <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
@@ -68,30 +78,8 @@ const Proximity = props => {
           lat: coords && coords.latitude,
           lng: coords && coords.longitude
         }}
-        center={{
-          lat: coords && coords.center.lat,
-          lng: coords && coords.center.lng
-        }}
         defaultZoom={5}
         onChange={({ center, zoom, bounds, marginBounds }) => {
-          console.log(
-          {
-            latitude: center.lat,
-            longitude: center.lng
-          },
-          {
-            latitude: bounds.nw.lat,
-            longitude: bounds.nw.lng
-          });
-          console.log(getDistance(
-            {
-              latitude: center.lat,
-              longitude: center.lng
-            },
-            {
-              latitude: bounds.nw.lat,
-              longitude: bounds.nw.lng
-            }) / 1000);
           dispatch(fetchBounds(bounds));
           dispatch(fetchCenter(center));
           console.log(coords);

@@ -2,11 +2,11 @@ import React from 'react';
 
 // Component Imports
 import MessageBoard from '../Components/MessageBoard';
-import MessageMap from '../Components/ProximityMap/Proximity';
+import MessageMap from '../Components/MessageMap';
 
 export default () => {
     return(
-        <div style={{display: 'flex'}}>
+        <div>
             <MessageBoard/>
             <MessageMap/>
         </div>

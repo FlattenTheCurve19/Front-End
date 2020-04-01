@@ -14,16 +14,8 @@ const initalState = {
   userInfo: {
     latitude: 39.164144105,
     longitude: -98.876935313,
-    bounds: {
-      nw: {
-        lat: 39.164144105,
-        lng: -98.876935313
-      }
-    },
-    center: {
-      lat: 39.164144105,
-      lng: -98.876935313
-    }
+    bounds: {},
+    center: {}
   }
 };
 
