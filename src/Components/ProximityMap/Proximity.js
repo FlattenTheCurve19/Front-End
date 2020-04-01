@@ -29,13 +29,23 @@ const Proximity = props => {
   }, [props.coords, dispatch]);
 
   useEffect(() => {
-    console.log(coords);
+    console.log(coords.center.lng % 180, 180 % coords.center.lng );
     if (coords.center.lat) {
+      let centerLat;
+      let centerLng;
+
+      if(coords.center.lat >= 0 && coords.center.lat <= 180){
+        centerLat = coords.center.lat;
+      }
+
+      if(coords.center.lng >= 0 && coords.center.lng <= 180){
+        centerLng = coords.center.lng;
+      }
       geoCollection
         .near({
           center: new firebase.firestore.GeoPoint(
-            coords.center.lat,
-            coords.center.lng
+            coords.center.lat > 0 ? coords.center.lat % 180 : coords.center.lat % -180,
+            coords.center.lng > 0 ? coords.center.lng % 180 : coords.center.lng % -180
           ),
           radius:
             ( getDistance(
@@ -53,13 +63,12 @@ const Proximity = props => {
           const arr = [];
           res.forEach(item => arr.push(item.data()));
           setMsgs(arr);
-          console.log(arr);
         });
     }
   }, [coords]);
 
   return (
-    <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
+    <div style={{ height: "100%", width: "100%", margin: "auto" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
         defaultCenter={{
@@ -72,27 +81,8 @@ const Proximity = props => {
         }}
         defaultZoom={5}
         onChange={({ center, zoom, bounds, marginBounds }) => {
-          console.log(
-          {
-            latitude: center.lat,
-            longitude: center.lng
-          },
-          {
-            latitude: bounds.nw.lat,
-            longitude: bounds.nw.lng
-          });
-          console.log(getDistance(
-            {
-              latitude: center.lat,
-              longitude: center.lng
-            },
-            {
-              latitude: bounds.nw.lat,
-              longitude: bounds.nw.lng
-            }) / 1000);
           dispatch(fetchBounds(bounds));
           dispatch(fetchCenter(center));
-          console.log(coords);
         }}
         yesIWantToUseGoogleMapApiInternals
       >

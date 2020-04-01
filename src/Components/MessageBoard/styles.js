@@ -6,7 +6,6 @@ export const Board = styled.section`
     width: 33%;
     min-width: 400px;
     max-width: 600px;
-    height: 100vh;
     h1{
         margin-bottom: 30px;
         text-align: center;

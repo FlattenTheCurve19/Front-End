@@ -19,8 +19,8 @@ export default () => {
 
     useEffect(() => {
         const geoPoint = new firebase.firestore.GeoPoint(
-            userInfo.center.lat,
-            userInfo.center.lng
+            userInfo.center.lat > 0 ? userInfo.center.lat % 180 : userInfo.center.lat % -180,
+            userInfo.center.lng > 0 ? userInfo.center.lng % 180 : userInfo.center.lng % -180
         )
         dispatch(messageGetter(geoPoint, userInfo));
     }, [ update, userInfo, dispatch ])

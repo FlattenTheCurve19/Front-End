@@ -6,7 +6,7 @@ import MessageMap from '../Components/ProximityMap/Proximity';
 
 export default () => {
     return(
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', height: 'calc(100vh - 81px)'}}>
             <MessageBoard/>
             <MessageMap/>
         </div>
