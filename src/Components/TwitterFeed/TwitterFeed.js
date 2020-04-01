@@ -60,7 +60,8 @@ class TweetFeed extends React.Component {
               this.state.renderedThings.slice(0, 15)
             ) */
             [],
-      itemsRendered: this.state.items.length < 16 ? itemsRendered + 1 : 0
+      itemsRendered:
+        this.state.itemsRendered.length < 16 ? itemsRendered + 1 : 0
     };
     this.setState(updatedState);
     updatedState.itemsRendered < this.state.items.length &&
@@ -113,7 +114,7 @@ class TweetFeed extends React.Component {
       </div>
     ); */
 
-    let filterControls = (
+    /*     let filterControls = (
       <div>
         <a
           className="btn-floating btn-small waves-effect waves-light pink accent-2"
@@ -136,7 +137,7 @@ class TweetFeed extends React.Component {
     );
 
     let controls = <div>{items.length > 0 ? filterControls : null}</div>;
-
+ */
     let loading = (
       <div>
         <p className="flow-text loader-text">Listening to Streams</p>
@@ -185,9 +186,5 @@ class TweetFeed extends React.Component {
     );
   }
 }
-
-const controlStyle = {
-  marginRight: "5px"
-};
 
 export default TweetFeed;

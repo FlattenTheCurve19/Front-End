@@ -67,7 +67,6 @@ const Registration = () => {
 
           <TextField
             label="Email"
-            constiant="outlined"
             name="email"
             inputRef={register({
               required: <p className="errText">Please enter an email</p>,
@@ -124,12 +123,16 @@ const Registration = () => {
       />
       {errors.location && errors.location.message}
       <br/> */}
-
-          <Button constiant="contained" color="primary" type="submit">
-            Register
-          </Button>
+          <div className="reg-btn">
+            <Button constiant="contained" color="primary" type="submit">
+              Register
+            </Button>
+          </div>
           <div className="googleLogin" onClick={() => googleSignUp()}>
-            <img alt='Profile' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            <img
+              alt="Profile"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+            />
             <p>Sign Up with Google</p>
           </div>
         </div>
