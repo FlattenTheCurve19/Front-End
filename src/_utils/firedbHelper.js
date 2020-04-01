@@ -44,3 +44,8 @@ export const createPost = (user, uuid='1354', postfield, long, lat, avatar) => {
     avatar: avatar
   })
 };
+
+
+export const deletePost = (postID) => {
+  fireDB.collection('post').doc(`${postID}`).delete()
+}
