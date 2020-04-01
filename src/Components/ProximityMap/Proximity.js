@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
-import distance from "../../_utils/distance";
 import { geolocated } from "react-geolocated";
-import { GeoFirestore } from 'geofirestore';
-import * as firebase from 'firebase';
-
+import { GeoFirestore } from "geofirestore";
+import * as firebase from "firebase";
+import { getDistance, getBounds } from "geolib";
 
 import MapMarker from "./MapMarker";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -19,7 +18,7 @@ import {
 
 const Proximity = props => {
   const geofirestore = new GeoFirestore(fireDB);
-  const geoCollection = geofirestore.collection('post');
+  const geoCollection = geofirestore.collection("post");
 
   const coords = useSelector(state => state.messageBoard.userInfo);
   const dispatch = useDispatch();
@@ -32,22 +31,34 @@ const Proximity = props => {
   }, [props.coords]);
 
   useEffect(() => {
-    geoCollection
-      .near({
-        center: new firebase.firestore.GeoPoint(
-          coords.latitude,
-          coords.longitude
-        ),
-        radius: 1000
-      })
-      .get()
-      .then(res => {
-        const arr = [];
-        res.forEach(item => arr.push(item.data()));
-        setMsgs(arr);
-        console.log(arr);
-      });
-  }, []);
+    console.log(coords);
+    if (coords.center.lat) {
+      geoCollection
+        .near({
+          center: new firebase.firestore.GeoPoint(
+            coords.center.lat,
+            coords.center.lng
+          ),
+          radius:
+            ( getDistance(
+              {
+                latitude: coords.center.lat,
+                longitude: coords.center.lng
+              },
+              {
+                latitude: coords.bounds.nw.lat,
+                longitude: coords.bounds.nw.lng
+              }) / 1000)
+        })
+        .get()
+        .then(res => {
+          const arr = [];
+          res.forEach(item => arr.push(item.data()));
+          setMsgs(arr);
+          console.log(arr);
+        });
+    }
+  }, [coords]);
 
   return (
     <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
@@ -57,8 +68,30 @@ const Proximity = props => {
           lat: coords && coords.latitude,
           lng: coords && coords.longitude
         }}
+        center={{
+          lat: coords && coords.center.lat,
+          lng: coords && coords.center.lng
+        }}
         defaultZoom={5}
         onChange={({ center, zoom, bounds, marginBounds }) => {
+          console.log(
+          {
+            latitude: center.lat,
+            longitude: center.lng
+          },
+          {
+            latitude: bounds.nw.lat,
+            longitude: bounds.nw.lng
+          });
+          console.log(getDistance(
+            {
+              latitude: center.lat,
+              longitude: center.lng
+            },
+            {
+              latitude: bounds.nw.lat,
+              longitude: bounds.nw.lng
+            }) / 1000);
           dispatch(fetchBounds(bounds));
           dispatch(fetchCenter(center));
           console.log(coords);
