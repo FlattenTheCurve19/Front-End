@@ -6,7 +6,7 @@ import * as firebase from "firebase";
 import { getDistance } from "geolib";
 
 import MapMarker from "./MapMarker";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+
 import { fireDB } from "../../_utils/firebase";
 import Tooltip from "@material-ui/core/Tooltip";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +23,7 @@ const Proximity = props => {
   const coords = useSelector(state => state.messageBoard.userInfo);
   const dispatch = useDispatch();
   const [msgs, setMsgs] = useState([]);
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     props.coords &&
@@ -40,7 +41,7 @@ const Proximity = props => {
             coords.center.lng
           ),
           radius:
-            ( getDistance(
+            getDistance(
               {
                 latitude: coords.center.lat,
                 longitude: coords.center.lng
@@ -48,7 +49,8 @@ const Proximity = props => {
               {
                 latitude: coords.bounds.nw.lat,
                 longitude: coords.bounds.nw.lng
-              }) / 1000)
+              }
+            ) / 1000
         })
         .get()
         .then(res => {
@@ -61,7 +63,13 @@ const Proximity = props => {
   }, [coords]);
 
   return (
-    <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        margin: "auto"
+      }}
+    >
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
         defaultCenter={{
@@ -74,42 +82,34 @@ const Proximity = props => {
         }}
         defaultZoom={5}
         onChange={({ center, zoom, bounds, marginBounds }) => {
-          console.log(
-          {
-            latitude: center.lat,
-            longitude: center.lng
-          },
-          {
-            latitude: bounds.nw.lat,
-            longitude: bounds.nw.lng
-          });
-          console.log(getDistance(
-            {
-              latitude: center.lat,
-              longitude: center.lng
-            },
-            {
-              latitude: bounds.nw.lat,
-              longitude: bounds.nw.lng
-            }) / 1000);
           dispatch(fetchBounds(bounds));
           dispatch(fetchCenter(center));
-          console.log(coords);
         }}
         yesIWantToUseGoogleMapApiInternals
+        options={{ draggableCursor: "default" }}
       >
         {msgs.length &&
           msgs.map(elem => {
-            console.log(elem.hasOwnProperty("geoLock"));
             return elem.hasOwnProperty("geoLock") ? (
-              <LocationOnIcon
+              <MapMarker
+                className="location-icon"
                 lat={elem.geoLock.latitude}
                 lng={elem.geoLock.longitude}
+                msg={elem.postField}
+                firstNameInit={elem.displayName && elem.displayName.charAt(0)}
               />
             ) : (
-              <LocationOnIcon
+              <MapMarker
+                className="location-icon"
                 lat={elem.d.geoLock.latitude}
                 lng={elem.d.geoLock.longitude}
+                msg={elem.d.postField}
+                avatarUrl={elem.d.avatar}
+                firstNameInit={elem.d.displayName.charAt(0)}
+
+                // firstNameInit={
+                //   elem.d.displayName && elem.d.displayName.charCodeAt(0)
+                // }
               />
             );
           })}

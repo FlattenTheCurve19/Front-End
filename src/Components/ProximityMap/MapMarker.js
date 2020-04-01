@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Avatar } from "@material-ui/core";
 import styled from "styled-components";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
-const NewPaper = styled.div`
+export const NewPaper = styled.div`
    {
     display: flex;
     flex-direction: column;
@@ -22,16 +23,17 @@ const MapMarker = props => {
   const [click, setClick] = useState(false);
   return (
     <>
-      <p
+      <LocationOnIcon
+        className="location-icon"
         onClick={() => setClick(!click)}
         id={Math.floor(Math.random() * 100000)}
-        style={{ color: "red", fontSize: "2.5rem" }}
-      >
-        &#8226;
-      </p>
+        // style={{ color: "red", fontSize: "2.5rem" }}
+        lat={props.lat}
+        lng={props.lng}
+      />
       {click && (
         <NewPaper>
-          <Avatar variant="circle" src={props.avatarUrl && props.avatarUrl}>
+          <Avatar variant="circle" src={props.avatarUrl}>
             {props.firstNameInit}
           </Avatar>
           <div>{props.msg}</div>

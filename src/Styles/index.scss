@@ -391,3 +391,13 @@ $content-font: "Montserrat", sans-serif;
     font-family: $content-font;
   }
 }
+.location-icon {
+  color: $primary-color;
+  &:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
+}
+// .gm-style:first-of-type > div:nth-child(1) {
+//   cursor: default !important;
+// }
