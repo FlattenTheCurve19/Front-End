@@ -112,9 +112,11 @@ const NavigationBar = props => {
                 </NavLink>
               </div>
             ) : (
-              <NavLink className={classes.links} to="/dashboard">
-                <img src={props.user.user.photoURL} alt="dashboard link"/>
+              <div style={{width: "100%", display: "flex", justifyContent: "center", wrap: "nowrap"}}>
+              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map">
+                Chat Near You
               </NavLink>
+              </div>         
             )}
           </div>
         </Toolbar>
