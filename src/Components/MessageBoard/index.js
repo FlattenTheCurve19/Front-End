@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'; 
 import { messageGetter } from '../../Store/Actions/messageActions';
-import { getDistance } from 'geolib';
 import * as firebase from 'firebase';
 
 // Component Imports
@@ -18,15 +17,13 @@ export default () => {
     const dispatch = useDispatch();
     const [ update, setUpdate ] = useState(true);
 
-    console.log(messages);
-
     useEffect(() => {
         const geoPoint = new firebase.firestore.GeoPoint(
             userInfo.center.lat,
             userInfo.center.lng
         )
         dispatch(messageGetter(geoPoint, userInfo));
-    }, [ update, userInfo ])
+    }, [ update, userInfo, dispatch ])
 
     useEffect(() => {
         if(messages){

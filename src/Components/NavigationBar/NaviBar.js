@@ -58,7 +58,6 @@ const NavigationBar = props => {
 
   useEffect(() => {
     props.user && props.user.user !== null && setUserIsLogged(true);
-    console.log(props.user);
   }, [userIsLogged, props.user]);
 
   return (
