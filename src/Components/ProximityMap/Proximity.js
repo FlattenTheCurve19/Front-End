@@ -5,10 +5,8 @@ import { GeoFirestore } from "geofirestore";
 import * as firebase from "firebase";
 import { getDistance } from "geolib";
 
-import MapMarker from "./MapMarker";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { fireDB } from "../../_utils/firebase";
-import Tooltip from "@material-ui/core/Tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCoords,
@@ -28,7 +26,7 @@ const Proximity = props => {
     props.coords &&
       props.coords.latitude &&
       dispatch(fetchCoords(props.coords));
-  }, [props.coords]);
+  }, [props.coords, dispatch]);
 
   useEffect(() => {
     console.log(coords);
@@ -100,7 +98,6 @@ const Proximity = props => {
       >
         {msgs.length &&
           msgs.map(elem => {
-            console.log(elem.hasOwnProperty("geoLock"));
             return elem.hasOwnProperty("geoLock") ? (
               <LocationOnIcon
                 lat={elem.geoLock.latitude}

@@ -1,4 +1,4 @@
-import React, { useEffect, isValidElement, memo, useState } from "react";
+import React, { useEffect, memo, useState } from "react";
 import { useSelector } from "react-redux";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
@@ -103,7 +103,6 @@ function MapChart({ setTooltipContent }) {
                     }
                   }
                   return (
-                    <>
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
@@ -137,7 +136,6 @@ function MapChart({ setTooltipContent }) {
                           }
                         }}
                       />
-                    </>
                   );
                 })
               }

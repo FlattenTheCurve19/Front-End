@@ -42,7 +42,6 @@ export const setInitialData = () => dispatch => {
               }
             };
           });
-        console.log(obj);
         dispatch({
           type: SET_INITIAL_DATA,
           payload: obj

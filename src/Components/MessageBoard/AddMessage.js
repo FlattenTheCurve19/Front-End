@@ -26,7 +26,6 @@ export default ({ forceRender }) => {
     const submitForm = (data) => {
         // Also check to see if a location has been added
         if(user){
-            console.log('success', data);
             messageSetter({
                 displayName: user.displayName,
                 UUID: user.uid,
