@@ -12,9 +12,8 @@ import { Form } from './styles';
 // Material UI Imports
 import TextField from '@material-ui/core/TextField';
 
-
 export default ({ forceRender }) => {
-    const { handleSubmit, errors, control } = useForm({ message: '' });
+    const { handleSubmit, errors, control, register } = useForm({ message: '' });
     const [ user, setUser ] = useState(null);
     const history = useHistory();
     const { userInfo } = useSelector(state => state.messageBoard);
@@ -67,7 +66,7 @@ export default ({ forceRender }) => {
             <form onSubmit={handleSubmit(submitForm)}>
                 <Controller
                     id="standard-basic" 
-                    label="Standard" 
+                    label="Need help or want to offer help?" 
                     as={<TextField/>}
                     name='message'
                     rules={{
@@ -75,7 +74,7 @@ export default ({ forceRender }) => {
                         minLength: 3,
                         maxLength: 100
                     }}
-                    // register={register}
+                    register={register}
                     control={control}
                 />
                 <div className='btn-container'>

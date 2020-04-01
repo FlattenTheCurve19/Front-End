@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { messageGetter } from '../../Store/Actions/messageActions';
 import * as firebase from 'firebase';
 
+
 // Component Imports
 import Card from './Card';
 import AddMessage from './AddMessage';
@@ -10,6 +11,7 @@ import { Board } from './styles';
 
 // Material UI Imports
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 export default () => {
     const { messages , isFetching, error, userInfo } = useSelector(state => state.messageBoard);
