@@ -12,6 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Menu from "@material-ui/core/Menu";
 import { useHistory } from "react-router-dom";
 import { ReactComponent as Logo } from "../../images/finallogo.svg";
+import fire from "../../_utils/firebase";
 
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -58,7 +59,8 @@ const NavigationBar = props => {
 
   useEffect(() => {
     props.user && props.user.user !== null && setUserIsLogged(true);
-  }, [userIsLogged, props.user]);
+  }, [props.user]);
+  console.log(userIsLogged);
 
   return (
     <div className={classes.root}>
@@ -79,7 +81,7 @@ const NavigationBar = props => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            {!userIsLogged && (
+            {!userIsLogged ? (
               <MenuItem
                 onClick={() => {
                   handleClose();
@@ -87,6 +89,17 @@ const NavigationBar = props => {
                 }}
               >
                 Register
+              </MenuItem>
+            ) : (
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setUserIsLogged(false);
+                  fire.auth().signOut();
+                  history.push("/");
+                }}
+              >
+                Log Out
               </MenuItem>
             )}
 
@@ -101,10 +114,12 @@ const NavigationBar = props => {
               Live Tweets
             </MenuItem>
           </Menu>
-          <Logo height={28} />
-          <NavLink className={classes.links} to="/">
-            <Typography>Flatten The Curve</Typography>
-          </NavLink>
+          <div className="logo-div">
+            <Logo height={28} />
+            <NavLink className={classes.links} to="/">
+              <Typography>Flatten The Curve</Typography>
+            </NavLink>
+          </div>
           <div className="navLinks-div">
             {!userIsLogged ? (
               <div>
