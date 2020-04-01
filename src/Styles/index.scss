@@ -391,6 +391,7 @@ $content-font: "Montserrat", sans-serif;
     font-family: $content-font;
   }
 }
+<<<<<<< HEAD
 .location-icon {
   color: $primary-color;
   &:hover {
@@ -401,3 +402,53 @@ $content-font: "Montserrat", sans-serif;
 // .gm-style:first-of-type > div:nth-child(1) {
 //   cursor: default !important;
 // }
+=======
+//twitter feed styles//
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.example-exit {
+  opacity: 1;
+}
+.example-exit.example-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+.flex {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.feedDiv {
+  display: flex;
+  justify-content: center;
+  height: 250vh;
+  overflow: hidden;
+  width: 50%;
+}
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;
+  .loader-text {
+    font-family: $titles-font;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+  }
+  .feed-title {
+    margin: 6rem 0 4rem 0;
+    font-family: $content-font;
+    font-weight: bold;
+  }
+  .twtr-logo {
+    width: 40px;
+  }
+}
+>>>>>>> 09a8c675ca97fca4ed4921ce4e688dc759895ab1

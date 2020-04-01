@@ -5,10 +5,13 @@ import { GeoFirestore } from "geofirestore";
 import * as firebase from "firebase";
 import { getDistance } from "geolib";
 
+<<<<<<< HEAD
 import MapMarker from "./MapMarker";
 
+=======
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+>>>>>>> 09a8c675ca97fca4ed4921ce4e688dc759895ab1
 import { fireDB } from "../../_utils/firebase";
-import Tooltip from "@material-ui/core/Tooltip";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCoords,
@@ -29,7 +32,7 @@ const Proximity = props => {
     props.coords &&
       props.coords.latitude &&
       dispatch(fetchCoords(props.coords));
-  }, [props.coords]);
+  }, [props.coords, dispatch]);
 
   useEffect(() => {
     console.log(coords);
