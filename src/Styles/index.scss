@@ -391,3 +391,51 @@ $content-font: "Montserrat", sans-serif;
     font-family: $content-font;
   }
 }
+//twitter feed styles//
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.example-exit {
+  opacity: 1;
+}
+.example-exit.example-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+.flex {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.feedDiv {
+  display: flex;
+  justify-content: center;
+  height: 250vh;
+  overflow: hidden;
+  width: 50%;
+}
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;
+  .loader-text {
+    font-family: $titles-font;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+  }
+  .feed-title {
+    margin: 6rem 0 4rem 0;
+    font-family: $content-font;
+    font-weight: bold;
+  }
+  .twtr-logo {
+    width: 40px;
+  }
+}
