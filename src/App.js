@@ -10,10 +10,11 @@ import NaviBar from "./Components/NavigationBar/NaviBar";
 import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import MessageBoard from "./Components/MessageBoard";
+import TwitterFeed from "./Components/TwitterFeed/TwitterFeed";
 
-// Page Imports 
+// Page Imports
 import Home from "./Pages/Home";
-import MessageMapPage from './Pages/MessageMapPage'
+import MessageMapPage from "./Pages/MessageMapPage";
 
 // Add the Firebase services that you want to use
 import * as firebase from "firebase/app";
@@ -55,8 +56,11 @@ function App() {
         <Route path="/proximity-map">
           <Proximity />
         </Route>
-        <Route path='/message-map-page'>
-          <MessageMapPage/>
+        <Route path="/message-map-page">
+          <MessageMapPage />
+        </Route>
+        <Route path="/twitter-feed">
+          <TwitterFeed />
         </Route>
       </div>
     </StylesProvider>
