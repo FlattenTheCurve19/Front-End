@@ -116,17 +116,10 @@ const NavigationBar = props => {
                 </NavLink>
               </div>
             ) : (
-<<<<<<< HEAD
-              <div style={{width: "100%", display: "flex", justifyContent: "center", wrap: "nowrap"}}>
+              <div>
               <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map-page">
                 Chat Near You
               </NavLink>
-=======
-              <div>
-                <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map">
-                 Chat Near You
-                </NavLink>
->>>>>>> 4f3d645a1fd7870ddac637e5c95e712e9f84e15c
               </div>         
             )}
           </div>
