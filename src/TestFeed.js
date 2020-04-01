@@ -39,7 +39,7 @@ const TestFeed = () => {
   }, []);
   return (
     <>
-      <button onClick={() => createPost("Timmy", "I made a post LOL", 20, 20)}>
+      <button onClick={() => createPost("Timmy", null, "I made a post LOL", 20, 20)}>
         makepost
       </button>
       {post ? (

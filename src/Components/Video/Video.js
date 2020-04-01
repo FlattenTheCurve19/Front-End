@@ -8,7 +8,7 @@ import "../../Styles/index.scss";
 
 const Video = props => {
   return (
-    <div class="video-background" id="wrapper">
+    <div className="video-background" id="wrapper">
       <video loop autoPlay controls>
         <source src="covidMovie.mp4" type="video/mp4"/>
       </video>

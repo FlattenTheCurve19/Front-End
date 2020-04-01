@@ -58,7 +58,6 @@ const NavigationBar = props => {
 
   useEffect(() => {
     props.user && props.user.user !== null && setUserIsLogged(true);
-    console.log(props.user);
   }, [userIsLogged, props.user]);
 
   return (
@@ -93,13 +92,18 @@ const NavigationBar = props => {
 
             <MenuItem onClick={handleClose}>About us</MenuItem>
 
-            <MenuItem onClick={handleClose}>Contact us</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("twitter-feed");
+              }}
+            >
+              Live Tweets
+            </MenuItem>
           </Menu>
-          <Logo height={28} /> 
+          <Logo height={28} />
           <NavLink className={classes.links} to="/">
-            <Typography>
-               Flatten The Curve
-            </Typography>
+            <Typography>Flatten The Curve</Typography>
           </NavLink>
           <div className="navLinks-div">
             {!userIsLogged ? (
@@ -112,10 +116,10 @@ const NavigationBar = props => {
                 </NavLink>
               </div>
             ) : (
-              <div style={{width: "100%", display: "flex", justifyContent: "center", wrap: "nowrap"}}>
-              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map">
-                Chat Near You
-              </NavLink>
+              <div>
+                <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map">
+                 Chat Near You
+                </NavLink>
               </div>         
             )}
           </div>

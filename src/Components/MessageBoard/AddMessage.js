@@ -1,29 +1,86 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import{ useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import { messageSetter } from '../../Store/Actions/messageActions';
+import { useSelector } from 'react-redux';
 
-export default () => {
-    const { handleSubmit, register, errors } = useForm();
+// Component Imports
+import { Form } from './styles';
+
+// Material UI Imports
+import TextField from '@material-ui/core/TextField';
+
+export default ({ forceRender }) => {
+    const { handleSubmit, errors, control, register } = useForm({ message: '' });
+    const [ user, setUser ] = useState(null);
+    const history = useHistory();
+    const { userInfo } = useSelector(state => state.messageBoard);
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                setUser(user);
+            }else{
+                setUser(null);
+            }
+        });
+    }, [])
 
     const submitForm = (data) => {
-        console.log('submitting', data);
+        // Also check to see if a location has been added
+        // const lat = userInfo.latitude;
+        // const long = userInfo.longitude;
+        // if(!lat || !long){
+        //     console.log('Please allow location');
+        // }
+        if(user){
+            messageSetter({
+                displayName: user.displayName,
+                UUID: user.uid,
+                postField: data.message,
+                geoLock: {
+                    longitude: userInfo.longitude,
+                    latitude: userInfo.latitude
+                },
+                avatar: user.photoURL
+            })
+            forceRender();
+        }else{
+            history.push('/login');
+        }
     };
 
     return (
-        <div>
+        <Form>
+            {errors.message && errors.message.type === 'required' && (
+                <p>Please enter a message</p>
+            )}
+            {errors.message && errors.message.type === 'minLength' && (
+                <p>Message must be at least 3 characters long</p>
+            )}
+            {errors.message && errors.message.type === 'maxLength' && (
+                <p>Message cannot exceed 100 characters</p>
+            )}
             <form onSubmit={handleSubmit(submitForm)}>
-                <label>Add Message</label>
-                <input
+                <Controller
+                    id="standard-basic" 
+                    label="Need help or want to offer help?" 
+                    as={<TextField/>}
                     name='message'
-                    ref={register({
+                    rules={{
                         required: true,
                         minLength: 3,
                         maxLength: 100
-                    })}
+                    }}
+                    register={register}
+                    control={control}
                 />
-                <input type='submit' value='Submit'/>
+                <div className='btn-container'>
+                    <button type='submit'>Add Message</button>
+                </div>
             </form>
-            {/* Errors go here */}
-        </div>
+        </Form>
     )
 }
