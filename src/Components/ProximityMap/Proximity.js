@@ -23,29 +23,19 @@ const Proximity = props => {
   const [msgs, setMsgs] = useState([]);
 
   useEffect(() => {
+    console.log(props.coords);
     props.coords &&
       props.coords.latitude &&
       dispatch(fetchCoords(props.coords));
   }, [props.coords, dispatch]);
 
   useEffect(() => {
-    console.log(coords.center.lng % 180, 180 % coords.center.lng );
     if (coords.center.lat) {
-      let centerLat;
-      let centerLng;
-
-      if(coords.center.lat >= 0 && coords.center.lat <= 180){
-        centerLat = coords.center.lat;
-      }
-
-      if(coords.center.lng >= 0 && coords.center.lng <= 180){
-        centerLng = coords.center.lng;
-      }
       geoCollection
         .near({
           center: new firebase.firestore.GeoPoint(
-            coords.center.lat > 0 ? coords.center.lat % 180 : coords.center.lat % -180,
-            coords.center.lng > 0 ? coords.center.lng % 180 : coords.center.lng % -180
+            coords.center.lat,
+            coords.center.lng
           ),
           radius:
             ( getDistance(
@@ -65,7 +55,7 @@ const Proximity = props => {
           setMsgs(arr);
         });
     }
-  }, [coords]);
+  }, [coords, geoCollection]);
 
   return (
     <div style={{ height: "100%", width: "100%", margin: "auto" }}>
@@ -81,8 +71,21 @@ const Proximity = props => {
         }}
         defaultZoom={5}
         onChange={({ center, zoom, bounds, marginBounds }) => {
+          if(center.lng > 180){
+            dispatch(fetchCenter({
+              lat: center.lat,
+              lng: 180
+            }))
+          } else if(center.lng < -180){
+            dispatch(fetchCenter({
+              lat: center.lat,
+              lng: -180
+            }))
+          } else{
+            dispatch(fetchCenter(center));
+          }
           dispatch(fetchBounds(bounds));
-          dispatch(fetchCenter(center));
+          
         }}
         yesIWantToUseGoogleMapApiInternals
       >

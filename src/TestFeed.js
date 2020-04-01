@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fireDB } from "./_utils/firebase";
 import "firebase/firestore";
 import axios from "axios";
-import { createPost } from "./_utils/firedbHelper";
+import { createPost, deletePost } from "./_utils/firedbHelper";
 
 const TestFeed = () => {
   const [post, setPost] = useState({});
@@ -40,6 +40,7 @@ const TestFeed = () => {
   return (
     <>
       <button onClick={() => createPost("Timmy", null, "I made a post LOL", 20, 20)}>
+      <button onClick={() => deletePost('Yl4pggpxrMjd51cPo7T1')}>delete Yl4pggpxrMjd51cPo7T1</button>
         makepost
       </button>
       {post ? (

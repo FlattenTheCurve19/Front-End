@@ -13,10 +13,11 @@ const post = {
   geoLock: {
     longitude: Number,
     latitude: Number
-  }
+  },
+  avatar: ""
 };
 
-export const createPost = (user, uuid='1354', postfield, long, lat) => {
+export const createPost = (user, uuid='1354', postfield, long, lat, avatar) => {
   // fireDB
   //   .collection("post")
   //   .doc()
@@ -39,6 +40,12 @@ export const createPost = (user, uuid='1354', postfield, long, lat) => {
       latitude: lat,
       longitude: long
     },
-    coordinates: new firebase.firestore.GeoPoint(lat, long)
+    coordinates: new firebase.firestore.GeoPoint(lat, long),
+    avatar: avatar
   })
 };
+
+
+export const deletePost = (postID) => {
+  fireDB.collection('post').doc(`${postID}`).delete()
+}

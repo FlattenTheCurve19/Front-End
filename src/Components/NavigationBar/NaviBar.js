@@ -92,13 +92,18 @@ const NavigationBar = props => {
 
             <MenuItem onClick={handleClose}>About us</MenuItem>
 
-            <MenuItem onClick={handleClose}>Contact us</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("twitter-feed");
+              }}
+            >
+              Live Tweets
+            </MenuItem>
           </Menu>
-          <Logo height={28} /> 
+          <Logo height={28} />
           <NavLink className={classes.links} to="/">
-            <Typography>
-               Flatten The Curve
-            </Typography>
+            <Typography>Flatten The Curve</Typography>
           </NavLink>
           <div className="navLinks-div">
             {!userIsLogged ? (
@@ -111,9 +116,11 @@ const NavigationBar = props => {
                 </NavLink>
               </div>
             ) : (
-              <NavLink className={classes.links} to="/dashboard">
-                <img src={props.user.user.photoURL} alt="dashboard link"/>
+              <div>
+              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map-page">
+                Chat Near You
               </NavLink>
+              </div>         
             )}
           </div>
         </Toolbar>
