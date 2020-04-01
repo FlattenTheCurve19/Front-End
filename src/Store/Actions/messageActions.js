@@ -43,7 +43,7 @@ export const messageGetter = (geoPoint, userInfo) => dispatch => {
 ///need another get request for the id aviator
 export const messageSetter = object => {
   //action creator so a auth user can post a message
-  if(createPost(object.displayName, object.UUID, object.postField, object.geoLock.longitude,object.geoLock.latitude)){
+  if(createPost(object.displayName, object.UUID, object.postField, object.geoLock.longitude,object.geoLock.latitude, object.avatar)){
     messageGetter();
   }else{
     console.log('error');

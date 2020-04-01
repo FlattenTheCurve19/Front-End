@@ -53,9 +53,10 @@ export default () => {
                             return <Card message={message} key={message.postId}/>
                         })}
                     </div>
-                    <AddMessage forceRender={forceRender}/>
+                    
                 </>
             )}
+            <AddMessage forceRender={forceRender}/>
             {error && (
                 <p className='error'>There was an error fetching the data: {error}</p>
             )}

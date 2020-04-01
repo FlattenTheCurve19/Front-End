@@ -10,24 +10,14 @@ import { useSelector } from 'react-redux';
 import { Form } from './styles';
 
 // Material UI Imports
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-}));
 
 export default ({ forceRender }) => {
-    const { handleSubmit, register, errors, control } = useForm({ message: '' });
+    const { handleSubmit, errors, control } = useForm({ message: '' });
     const [ user, setUser ] = useState(null);
     const history = useHistory();
     const { userInfo } = useSelector(state => state.messageBoard);
-    const classes = useStyles();
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
@@ -39,32 +29,28 @@ export default ({ forceRender }) => {
         });
     }, [])
 
-    useEffect(() => {
-        console.log(errors);
-    }, [errors])
-
     const submitForm = (data) => {
         // Also check to see if a location has been added
-        console.log(data);
         // const lat = userInfo.latitude;
         // const long = userInfo.longitude;
         // if(!lat || !long){
         //     console.log('Please allow location');
         // }
-        // if(user){
-        //     messageSetter({
-        //         displayName: user.displayName,
-        //         UUID: user.uid,
-        //         postField: data.message,
-        //         geoLock: {
-        //             longitude: 0,
-        //             latitude: 0
-        //         }
-        //     })
-        //     forceRender();
-        // }else{
-        //     history.push('/login');
-        // }
+        if(user){
+            messageSetter({
+                displayName: user.displayName,
+                UUID: user.uid,
+                postField: data.message,
+                geoLock: {
+                    longitude: userInfo.longitude,
+                    latitude: userInfo.latitude
+                },
+                avatar: user.photoURL
+            })
+            forceRender();
+        }else{
+            history.push('/login');
+        }
     };
 
     return (
@@ -89,7 +75,7 @@ export default ({ forceRender }) => {
                         minLength: 3,
                         maxLength: 100
                     }}
-                    ref={register}
+                    // register={register}
                     control={control}
                 />
                 <div className='btn-container'>
