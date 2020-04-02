@@ -91,7 +91,14 @@ const NavigationBar = props => {
             )}
 
             <MenuItem onClick={handleClose}>About us</MenuItem>
-
+            <MenuItem 
+              onClick={() => {
+                handleClose(); 
+                history.push("message-map-page");
+              }}
+              >
+                Chat Near You
+              </MenuItem>
             <MenuItem
               onClick={() => {
                 handleClose();
@@ -100,6 +107,8 @@ const NavigationBar = props => {
             >
               Live Tweets
             </MenuItem>
+
+
           </Menu>
           <Logo height={28} />
           <NavLink className={classes.links} to="/">
@@ -117,8 +126,8 @@ const NavigationBar = props => {
               </div>
             ) : (
               <div>
-              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/message-map-page">
-                Chat Near You
+              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
+                Home
               </NavLink>
               </div>         
             )}
