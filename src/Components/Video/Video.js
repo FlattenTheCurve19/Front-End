@@ -8,8 +8,6 @@ import "../../Styles/index.scss";
 
 const Video = props => {
 
-  const $href= "https://flatten-the-curve-ldz4lft4s.now.sh/register"
-
   return (
     <div className="video-background" id="wrapper">
       <video loop autoPlay controls muted="muted">
@@ -17,7 +15,7 @@ const Video = props => {
       </video>
       <div className="videoTitle">
         <h1>Do your Part, Help Flatten The Curve</h1>
-        <button type='button' onclick='window.location.href=".$href"'> JOIN NOW </button>
+        <button type='button' onClick={() => history.push('/register')}> JOIN NOW </button>
       </div>
     </div>
   );
