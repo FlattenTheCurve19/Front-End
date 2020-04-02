@@ -174,7 +174,7 @@ const Proximity = props => {
             );
           })}
       </GoogleMapReact>
-      <InputWrapper>
+      <SearchBarWrapper>
         <Paper component="form" onSubmit={handleSubmit}>
           <PlacesAutocomplete
             value={search}
@@ -188,7 +188,7 @@ const Proximity = props => {
               loading
             }) => (
               <div>
-                <InputBase
+                <InputWrapper
                   {...getInputProps({
                     placeholder: "Search Places ...",
                     className: "location-search-input"
@@ -226,7 +226,7 @@ const Proximity = props => {
             )}
           </PlacesAutocomplete>
         </Paper>
-      </InputWrapper>
+      </SearchBarWrapper>
       <MyLocationWrapper>
         <Paper>
           <IconButton onClick={goToMyLocation}>
@@ -238,10 +238,21 @@ const Proximity = props => {
   );
 };
 
-const InputWrapper = styled.div`
+const SearchBarWrapper = styled.div`
   position: absolute;
   top: 74px;
   left: 410px;
+
+  @media all and (max-width: 500px){
+    top: 64px;
+    left: 10px;
+    z-index: 1;
+    width: calc(100% - 71px);
+  }
+`;
+
+const InputWrapper = styled(InputBase)`
+  width: calc(100% - 48px);
 `;
 
 const MyLocationWrapper = styled.div`
@@ -254,6 +265,8 @@ const MyLocationWrapper = styled.div`
   button {
     padding: 7px;
   }
+
+  
 `;
 
 export default geolocated({
