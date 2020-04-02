@@ -13,6 +13,7 @@ import Menu from "@material-ui/core/Menu";
 import { useHistory } from "react-router-dom";
 import { ReactComponent as Logo } from "../../images/finallogo.svg";
 import fire from "../../_utils/firebase";
+import Avatar from "@material-ui/core/Avatar";
 
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   links: {
     textDecoration: "none",
     width: "",
-    margin: "0 0.7rem"
+    margin: "0 0.5rem"
   },
   medTitle: {
     marginLeft: 10,
@@ -61,6 +62,7 @@ const NavigationBar = props => {
     props.user && props.user.user !== null && setUserIsLogged(true);
   }, [props.user]);
   console.log(userIsLogged);
+  console.log(props.user);
 
   return (
     <div className={classes.root}>
@@ -102,14 +104,7 @@ const NavigationBar = props => {
                 Log Out
               </MenuItem>
             )}
-            <MenuItem
-              onClick={() => {
-                handleClose();
-                history.push("/about");
-              }}
-            >
-              About Us
-            </MenuItem>
+
             <MenuItem
               onClick={() => {
                 handleClose();
@@ -126,9 +121,20 @@ const NavigationBar = props => {
             >
               Live Tweets
             </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("/about");
+              }}
+            >
+              About Us
+            </MenuItem>
           </Menu>
           <div className="logo-div">
-            <Logo height={28} />
+            <NavLink className={classes.links} to="/">
+              <Logo height={28} />
+            </NavLink>
+
             <NavLink className={classes.links} to="/">
               <Typography>Flatten The Curve</Typography>
             </NavLink>
@@ -140,16 +146,24 @@ const NavigationBar = props => {
                   Login
                 </NavLink>
               </div>
-            ) : (
-              <div>
-                <NavLink
-                  style={{ marginLeft: "0" }}
-                  className={classes.links}
-                  to="/"
-                >
-                  Home
-                </NavLink>
+            ) : props.user.user ? (
+              <div className="profile-sec">
+                <p>
+                  {props.user.user.displayName
+                    .split(" ")
+                    .splice(0, 1)
+                    .join()}
+                </p>
+                <img
+                  className="google-pic"
+                  src={props.user.user.photoURL}
+                  alt="dashboard link"
+                />
               </div>
+            ) : (
+              <NavLink className={classes.links} to="/dashboard">
+                <Avatar />
+              </NavLink>
             )}
           </div>
         </Toolbar>
