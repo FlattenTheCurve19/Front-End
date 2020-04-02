@@ -46,30 +46,34 @@ export default () => {
 
   return (
     <Board>
-      <h1>Reach out to your community</h1>
-      {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
-      <h2>Chat Near You</h2>
+      <div className='mobile-container'>
+        <h1>Reach out to your community</h1>
+        <h2>Chat Near You</h2>
+      </div>
       {isFetching && (
         <div className="spinner">
           <CircularProgress color="inherit" />
         </div>
       )}
-      {sortedMessages.length && (
-        <>
-          <div className="card-container">
-            {sortedMessages.map(message => {
-              return (
-                <Card
-                  message={message}
-                  key={message.postId}
-                  forceRender={forceRender}
-                />
-              );
-            })}
-          </div>
-        </>
-      )}
-      <AddMessage forceRender={forceRender} />
+      <div>
+        {sortedMessages.length && (
+          <>
+            <div className="card-container">
+              {sortedMessages.map(message => {
+                return (
+                  <Card
+                    message={message}
+                    key={message.postId}
+                    forceRender={forceRender}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
+        <AddMessage forceRender={forceRender} />
+      </div>
+      
       {error && (
         <p className="error">There was an error fetching the data: {error}</p>
       )}

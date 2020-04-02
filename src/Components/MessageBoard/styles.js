@@ -1,5 +1,6 @@
 // Styled components for message board component and children
 import styled from 'styled-components';
+import theme from '../../Styles/theme';
 
 export const Board = styled.section`
     position: relative;
@@ -7,26 +8,28 @@ export const Board = styled.section`
     width: 400px;
     min-width: 400px;
     max-width: 600px;
-    h1{
-        margin-bottom: 30px;
-        text-align: center;
-        font-family: 'Raleway', sans-serif;
-        font-size: 20px;
-    }
-    h2{
-        font-family: 'Raleway', sans-serif;
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 20px;
-        text-align: center;
+    .mobile-container{
+        h1{
+            margin-bottom: 30px;
+            text-align: center;
+            font-family: ${theme.font};
+            font-size: 20px;
+        }
+        h2{
+            font-family: ${theme.font};
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
     }
     h4{
-        font-family: 'Raleway', sans-serif;
+        font-family: ${theme.font};
         font-weight: bold;
         margin-bottom: 10px;
     }
     p{
-        font-family: 'Raleway', sans-serif;
+        font-family: ${theme.font};
     }
     .spinner{
         position: absolute;
@@ -44,6 +47,14 @@ export const Board = styled.section`
     .card-container{
         height: calc(100vh - 380px);
         overflow: scroll;
+    }
+    ${theme.breakpoints.tablet}{
+        max-width: none;
+        min-width: none;
+        width: 100%;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
     }
 `;
 
@@ -67,12 +78,15 @@ export const Card = styled.div`
         img{
             width: 80px;
             height: 80px;
+            min-width: 80px;
+            min-height: 80px;
             border-radius: 50%;
         }
         .content-container{
             margin-left: 10px;
         }
     }
+    
 `;
 
 export const Form = styled.div`
@@ -107,6 +121,9 @@ export const Form = styled.div`
                 }
             }
         }
+    }
+    ${theme.breakpoints.tablet}{
+
     }
     
 `;
