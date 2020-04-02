@@ -5,12 +5,8 @@ import { GeoFirestore } from "geofirestore";
 import * as firebase from "firebase";
 import { getDistance } from "geolib";
 
-<<<<<<< HEAD
 import MapMarker from "./MapMarker";
 
-=======
-import LocationOnIcon from "@material-ui/icons/LocationOn";
->>>>>>> 09a8c675ca97fca4ed4921ce4e688dc759895ab1
 import { fireDB } from "../../_utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,6 +14,7 @@ import {
   fetchBounds,
   fetchCenter
 } from "../../Store/Actions/messageActions";
+import { ComposableMap } from "react-simple-maps";
 
 const Proximity = props => {
   const geofirestore = new GeoFirestore(fireDB);
@@ -83,23 +80,41 @@ const Proximity = props => {
           lat: coords && coords.center.lat,
           lng: coords && coords.center.lng
         }}
-        defaultZoom={5}
+        defaultZoom={4}
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchBounds(bounds));
           dispatch(fetchCenter(center));
         }}
         yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => {
+          new maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.7,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.3,
+            map,
+            center: {
+              lat: coords.latitude,
+              lng: coords.longitude
+            },
+            radius: 100000
+          });
+        }}
         options={{ draggableCursor: "default" }}
       >
         {msgs.length &&
           msgs.map(elem => {
+            console.log(elem);
             return elem.hasOwnProperty("geoLock") ? (
               <MapMarker
                 className="location-icon"
                 lat={elem.geoLock.latitude}
                 lng={elem.geoLock.longitude}
                 msg={elem.postField}
+                avatarUrl={elem.avatar}
                 firstNameInit={elem.displayName && elem.displayName.charAt(0)}
+                time={elem.timeOfPost.seconds}
               />
             ) : (
               <MapMarker

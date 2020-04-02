@@ -391,18 +391,15 @@ $content-font: "Montserrat", sans-serif;
     font-family: $content-font;
   }
 }
-<<<<<<< HEAD
 .location-icon {
-  color: $primary-color;
+  font-size: 2rem;
+  color: red;
   &:hover {
     color: $primary-color;
     cursor: pointer;
   }
 }
-// .gm-style:first-of-type > div:nth-child(1) {
-//   cursor: default !important;
-// }
-=======
+
 //twitter feed styles//
 .example-enter {
   opacity: 0.01;
@@ -451,4 +448,8 @@ $content-font: "Montserrat", sans-serif;
     width: 40px;
   }
 }
->>>>>>> 09a8c675ca97fca4ed4921ce4e688dc759895ab1
+.map-text {
+  padding: 2% 0;
+  color: $primary-color;
+  font-weight: bold;
+}
