@@ -1,8 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../../Styles/index.scss";
 
 const Video = props => {
+
+  const history = useHistory();
 
   return (
     <div className="video-background" id="wrapper">
@@ -11,7 +13,7 @@ const Video = props => {
       </video>
       <div className="videoTitle">
         <h1>Do your Part, Help Flatten The Curve</h1>
-        <button component={Link} to="/register"> JOIN NOW </button>
+        <button onClick={history.push('/register')}> JOIN NOW </button>
       </div>
     </div>
   );
