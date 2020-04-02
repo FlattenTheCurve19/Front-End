@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   links: {
     textDecoration: "none",
     width: "",
-    margin: "0 0.7rem"
+    margin: "0 0.5rem"
   },
   medTitle: {
     marginLeft: 10,
@@ -131,7 +131,10 @@ const NavigationBar = props => {
             </MenuItem>
           </Menu>
           <div className="logo-div">
-            <Logo height={28} />
+            <NavLink className={classes.links} to="/">
+              <Logo height={28} />
+            </NavLink>
+
             <NavLink className={classes.links} to="/">
               <Typography>Flatten The Curve</Typography>
             </NavLink>
