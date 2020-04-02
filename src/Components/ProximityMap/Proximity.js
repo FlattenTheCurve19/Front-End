@@ -34,6 +34,7 @@ const Proximity = props => {
   const msgs = useSelector(state => state.messageBoard.messages);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const [rZoom, setRZoom] = useState();
 
   useEffect(() => {
     if (props.coords && props.coords.latitude && props.coords.longitude) {
@@ -114,6 +115,7 @@ const Proximity = props => {
         defaultZoom={5}
         zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
+          dispatch(fetchZoom(zoom));
           if (center.lng > 180) {
             dispatch(
               fetchCenter({
@@ -135,26 +137,32 @@ const Proximity = props => {
         }}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => {
-          new maps.Circle({
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.7,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.3,
+          new maps.Marker({
+            icon: {
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.7,
+              strokeWeight: 2,
+              fillColor: "#FF0000",
+              fillOpacity: 0.3,
+              path: maps.SymbolPath.CIRCLE,
+              scale: 40,
+              anchor: new maps.Point(0, 0)
+            },
             map,
-            center: {
+            position: {
               lat: coords.latitude,
               lng: coords.longitude
             },
-            radius: 1000
+            zIndex: -1
           });
         }}
-        options={{ draggableCursor: "default" }}
+        options={{ draggableCursor: "default", zIndex: 0 }}
       >
         {msgs.length &&
           msgs.map(elem => {
             return (
               <MapMarker
+                key={Math.floor(Math.random() * 1000000)}
                 className="location-icon"
                 lat={elem.geoLock.latitude}
                 lng={elem.geoLock.longitude}

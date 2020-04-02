@@ -61,7 +61,7 @@ export default () => {
           <CircularProgress color="inherit" />
         </div>
       )}
-      {sortedMessages.length && (
+      {sortedMessages.length > 0 && (
         <>
           <div className="card-container">
             {sortedMessages.map(message => {
