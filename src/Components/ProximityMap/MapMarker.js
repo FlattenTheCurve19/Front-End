@@ -9,7 +9,6 @@ export const NewPaper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-
     height: auto;
     box-shadow: 5px 5px 5px 5px grey;
     width: 300px;

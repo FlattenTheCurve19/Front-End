@@ -23,7 +23,6 @@ const Proximity = props => {
   const coords = useSelector(state => state.messageBoard.userInfo);
   const dispatch = useDispatch();
   const [msgs, setMsgs] = useState([]);
-  const [click, setClick] = useState(false);
 
   useEffect(() => {
     props.coords &&
@@ -98,15 +97,14 @@ const Proximity = props => {
               lat: coords.latitude,
               lng: coords.longitude
             },
-            radius: 100000
+            radius: 1000
           });
         }}
         options={{ draggableCursor: "default" }}
       >
         {msgs.length &&
           msgs.map(elem => {
-            console.log(elem);
-            return elem.hasOwnProperty("geoLock") ? (
+            return (
               <MapMarker
                 className="location-icon"
                 lat={elem.geoLock.latitude}
@@ -115,19 +113,6 @@ const Proximity = props => {
                 avatarUrl={elem.avatar}
                 firstNameInit={elem.displayName && elem.displayName.charAt(0)}
                 time={elem.timeOfPost.seconds}
-              />
-            ) : (
-              <MapMarker
-                className="location-icon"
-                lat={elem.d.geoLock.latitude}
-                lng={elem.d.geoLock.longitude}
-                msg={elem.d.postField}
-                avatarUrl={elem.d.avatar}
-                firstNameInit={elem.d.displayName.charAt(0)}
-
-                // firstNameInit={
-                //   elem.d.displayName && elem.d.displayName.charCodeAt(0)
-                // }
               />
             );
           })}
