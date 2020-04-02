@@ -1,61 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
-import { GeoFirestore } from "geofirestore";
-import * as firebase from "firebase";
-import { getDistance } from "geolib";
 
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { fireDB } from "../../_utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCoords,
   fetchBounds,
-  fetchCenter
+  fetchCenter,
+  fetchZoom
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
-  const geofirestore = new GeoFirestore(fireDB);
-  const geoCollection = geofirestore.collection("post");
-
   const coords = useSelector(state => state.messageBoard.userInfo);
+  const msgs = useSelector(state => state.messageBoard.messages);
   const dispatch = useDispatch();
-  const [msgs, setMsgs] = useState([]);
 
   useEffect(() => {
     console.log(props.coords);
-    props.coords &&
-      props.coords.latitude &&
-      dispatch(fetchCoords(props.coords));
+    if(props.coords && props.coords.latitude && props.coords.longitude){
+      dispatch(fetchCoords(props.coords))
+      console.log('current center', coords.center);
+      console.log('DISPATCHING', props.coords);
+      setTimeout(() => {
+        dispatch(
+          fetchCenter({
+            lat: props.coords.latitude,
+            lng: props.coords.longitude
+          })
+        );
+        dispatch(fetchZoom(11));
+      }, 1000)
+    }
+      
   }, [props.coords, dispatch]);
 
-  useEffect(() => {
-    if (coords.center.lat) {
-      geoCollection
-        .near({
-          center: new firebase.firestore.GeoPoint(
-            coords.center.lat,
-            coords.center.lng
-          ),
-          radius:
-            ( getDistance(
-              {
-                latitude: coords.center.lat,
-                longitude: coords.center.lng
-              },
-              {
-                latitude: coords.bounds.nw.lat,
-                longitude: coords.bounds.nw.lng
-              }) / 1000)
-        })
-        .get()
-        .then(res => {
-          const arr = [];
-          res.forEach(item => arr.push(item.data()));
-          setMsgs(arr);
-        });
-    }
-  }, [coords, geoCollection]);
+  const Marker = props => (
+    <div lat={props.lat} lng={props.lng}>
+      <LocationOnIcon />
+    </div>
+  );
 
   return (
     <div style={{ height: "100%", width: "100%", margin: "auto" }}>
@@ -70,36 +54,36 @@ const Proximity = props => {
           lng: coords && coords.center.lng
         }}
         defaultZoom={5}
+        zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
-          if(center.lng > 180){
-            dispatch(fetchCenter({
-              lat: center.lat,
-              lng: 180
-            }))
-          } else if(center.lng < -180){
-            dispatch(fetchCenter({
-              lat: center.lat,
-              lng: -180
-            }))
-          } else{
+          if (center.lng > 180) {
+            dispatch(
+              fetchCenter({
+                lat: center.lat,
+                lng: 180
+              })
+            );
+          } else if (center.lng < -180) {
+            dispatch(
+              fetchCenter({
+                lat: center.lat,
+                lng: -180
+              })
+            );
+          } else {
             dispatch(fetchCenter(center));
           }
           dispatch(fetchBounds(bounds));
-          
         }}
         yesIWantToUseGoogleMapApiInternals
       >
         {msgs.length &&
           msgs.map(elem => {
-            return elem.hasOwnProperty("geoLock") ? (
-              <LocationOnIcon
+            return (
+              <Marker
+                key={elem.postId}
                 lat={elem.geoLock.latitude}
                 lng={elem.geoLock.longitude}
-              />
-            ) : (
-              <LocationOnIcon
-                lat={elem.d.geoLock.latitude}
-                lng={elem.d.geoLock.longitude}
               />
             );
           })}

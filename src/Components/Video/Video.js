@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import "../../Styles/index.scss";
 
 const Video = props => {
-
   const history = useHistory();
 
   return (
