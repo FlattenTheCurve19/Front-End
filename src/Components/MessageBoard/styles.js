@@ -51,9 +51,9 @@ export const Board = styled(Paper)`
 
     @media all and (max-width: 500px){
         position: fixed;
-        top: ${props => props.toggled ? '0' : '100vh'};
+        top: ${props => props.toggled ? '43px' : '100vh'};
         background: white;
-        z-index: 1;
+        z-index: 2;
         width: 100%;
         height: 100vh;
     }
@@ -91,11 +91,15 @@ export const Card = styled.div`
 `;
 
 export const ToggleButton = styled(Paper)`
-    z-index: 2;
+    display: flex;
+    z-index: 3;
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
+    padding: 2px 0;
+    justify-content: center;
+    align-items: center;
 
     @media all and (min-width: 500px){
         display: none;

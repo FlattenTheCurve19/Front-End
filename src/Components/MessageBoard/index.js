@@ -11,6 +11,7 @@ import { Board, ToggleButton } from "./styles";
 // Material UI Imports
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Menu } from '@material-ui/icons';
+import { Typography } from "@material-ui/core";
 
 export default () => {
   const { messages, isFetching, error, userInfo } = useSelector(
@@ -49,7 +50,7 @@ export default () => {
   return (
       <>
       <ToggleButton onClick={() => setToggled(!toggled)}>
-          <Menu />
+          <Menu /><Typography variant="button">{toggled ? 'Show Map' : 'Show Messages'}</Typography>
       </ToggleButton>
     <Board toggled={toggled}>
       <h1>Reach out to your community</h1>
