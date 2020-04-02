@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
-import { Paper, InputBase, IconButton } from "@material-ui/core";
-import { Search } from "@material-ui/icons";
+import {
+  Paper,
+  InputBase,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
+import { Search, MyLocation } from "@material-ui/icons";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
 import styled from "styled-components";
-
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,8 +27,10 @@ import {
 const Proximity = props => {
   const coords = useSelector(state => state.messageBoard.userInfo);
   const msgs = useSelector(state => state.messageBoard.messages);
-  const [locations, setLocations] = useState([]);
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     console.log(props.coords);
@@ -38,11 +50,60 @@ const Proximity = props => {
     }
   }, [props.coords, dispatch]);
 
+  useEffect(() => {
+    if (search) {
+    }
+  }, [search]);
+
   const Marker = props => (
     <div lat={props.lat} lng={props.lng}>
       <LocationOnIcon />
     </div>
   );
+
+  const searchHandler = e => {
+    setSearch(e);
+  };
+
+  const handleSelect = e => {
+    setSearch(e);
+    geocodeByAddress(e)
+      .then(results => {
+        console.log(results[0]);
+        return getLatLng(results[0]);
+      })
+      .then(latLng => {
+        console.log("Success", latLng);
+        latLng && dispatch(fetchCenter(latLng));
+        latLng && dispatch(fetchZoom(14));
+      })
+      .catch(error => console.error("Error", error));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    geocodeByAddress(search)
+      .then(results => {
+        console.log(results[0]);
+        return getLatLng(results[0]);
+      })
+      .then(latLng => {
+        console.log("Success", latLng);
+        latLng && dispatch(fetchCenter(latLng));
+        latLng && dispatch(fetchZoom(14));
+      })
+      .catch(error => console.error("Error", error));
+  };
+
+  const goToMyLocation = () => {
+    dispatch(
+      fetchCenter({
+        lat: props.coords.latitude,
+        lng: props.coords.longitude
+      })
+    );
+    dispatch(fetchZoom(12));
+  };
 
   return (
     <div style={{ height: "100%", width: "100%", margin: "auto" }}>
@@ -91,24 +152,86 @@ const Proximity = props => {
             );
           })}
       </GoogleMapReact>
-      <InputWrapper component="form">
-        <InputBase />
-        <IconButton
-          type="submit"
-          className=""
-          aria-label="search"
-        >
-          <Search />
-        </IconButton>
+      <InputWrapper>
+        <Paper component="form" onSubmit={handleSubmit}>
+          <PlacesAutocomplete
+            value={search}
+            onChange={searchHandler}
+            onSelect={handleSelect}
+          >
+            {({
+              getInputProps,
+              suggestions,
+              getSuggestionItemProps,
+              loading
+            }) => (
+              <div>
+                <InputBase
+                  {...getInputProps({
+                    placeholder: "Search Places ...",
+                    className: "location-search-input"
+                  })}
+                />
+                <IconButton type="submit" aria-label="search">
+                  <Search />
+                </IconButton>
+                <div className="autocomplete-dropdown-container">
+                  {suggestions.length > 0 && (
+                    <List>
+                      {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                          ? "suggestion-item--active"
+                          : "suggestion-item";
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                          : { backgroundColor: "#ffffff", cursor: "pointer" };
+                        return (
+                          <ListItem
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style
+                            })}
+                          >
+                            <ListItemText primary={suggestion.description} />
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  )}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
+        </Paper>
       </InputWrapper>
+      <MyLocationWrapper>
+        <Paper>
+          <IconButton onClick={goToMyLocation}>
+            <MyLocation />
+          </IconButton>
+        </Paper>
+      </MyLocationWrapper>
     </div>
   );
 };
 
-const InputWrapper = styled(Paper)`
+const InputWrapper = styled.div`
   position: absolute;
-  top: 90px;
-  left: 450px;
+  top: 74px;
+  left: 410px;
+`;
+
+const MyLocationWrapper = styled.div`
+  position: fixed;
+  right: 11px;
+  bottom: 121px;
+  width: 38px;
+  height: 38px;
+
+  button {
+    padding: 7px;
+  }
 `;
 
 export default geolocated({
