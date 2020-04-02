@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
+import { Paper, InputBase, IconButton } from "@material-ui/core";
+import { Search } from "@material-ui/icons";
+import styled from "styled-components";
 
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,14 +17,15 @@ import {
 const Proximity = props => {
   const coords = useSelector(state => state.messageBoard.userInfo);
   const msgs = useSelector(state => state.messageBoard.messages);
+  const [locations, setLocations] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(props.coords);
-    if(props.coords && props.coords.latitude && props.coords.longitude){
-      dispatch(fetchCoords(props.coords))
-      console.log('current center', coords.center);
-      console.log('DISPATCHING', props.coords);
+    if (props.coords && props.coords.latitude && props.coords.longitude) {
+      dispatch(fetchCoords(props.coords));
+      console.log("current center", coords.center);
+      console.log("DISPATCHING", props.coords);
       setTimeout(() => {
         dispatch(
           fetchCenter({
@@ -30,9 +34,8 @@ const Proximity = props => {
           })
         );
         dispatch(fetchZoom(11));
-      }, 1000)
+      }, 1000);
     }
-      
   }, [props.coords, dispatch]);
 
   const Marker = props => (
@@ -88,9 +91,25 @@ const Proximity = props => {
             );
           })}
       </GoogleMapReact>
+      <InputWrapper component="form">
+        <InputBase />
+        <IconButton
+          type="submit"
+          className=""
+          aria-label="search"
+        >
+          <Search />
+        </IconButton>
+      </InputWrapper>
     </div>
   );
 };
+
+const InputWrapper = styled(Paper)`
+  position: absolute;
+  top: 90px;
+  left: 450px;
+`;
 
 export default geolocated({
   positionOptions: { enableHighAccuracy: true },
