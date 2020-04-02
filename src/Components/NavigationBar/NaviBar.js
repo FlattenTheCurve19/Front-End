@@ -91,6 +91,7 @@ const NavigationBar = props => {
             )}
 
             <MenuItem onClick={handleClose}>About us</MenuItem>
+
             <MenuItem 
               onClick={() => {
                 handleClose(); 
@@ -98,7 +99,7 @@ const NavigationBar = props => {
               }}
               >
                 Chat Near You
-              </MenuItem>
+            </MenuItem>
             <MenuItem
               onClick={() => {
                 handleClose();
@@ -128,6 +129,9 @@ const NavigationBar = props => {
               <div>
               <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
                 Home
+              </NavLink>
+              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
+                Log Out
               </NavLink>
               </div>         
             )}
