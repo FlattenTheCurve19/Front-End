@@ -48,13 +48,18 @@ export default () => {
   };
 
   return (
+<<<<<<< HEAD
     <>
+=======
+      <>
+>>>>>>> 9487742cc70926cbf817a756bc9af9c5fa520437
       <ToggleButton onClick={() => setToggled(!toggled)}>
         <Menu />
         <Typography variant="button">
           {toggled ? "Show Map" : "Show Messages"}
         </Typography>
       </ToggleButton>
+<<<<<<< HEAD
       <Board toggled={toggled}>
         <h1>Reach out to your community</h1>
         {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
@@ -62,6 +67,30 @@ export default () => {
         {isFetching && (
           <div className="spinner">
             <CircularProgress color="inherit" />
+=======
+    <Board toggled={toggled}>
+      <h1>Reach out to your community</h1>
+      {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
+      <h2>Chat Near You</h2>
+      {isFetching && (
+        <div className="spinner">
+          <CircularProgress color="inherit" />
+        </div>
+      )}
+      {sortedMessages.length > 0 && (
+        <>
+          <div className="card-container">
+            {sortedMessages.map(message => {
+              return (
+                <Card
+                    setToggled={setToggled}
+                  message={message}
+                  key={message.postId}
+                  forceRender={forceRender}
+                />
+              );
+            })}
+>>>>>>> 9487742cc70926cbf817a756bc9af9c5fa520437
           </div>
         )}
         {sortedMessages.length > 0 && (

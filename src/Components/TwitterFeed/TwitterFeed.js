@@ -76,8 +76,8 @@ class TweetFeed extends React.Component {
     socket.on("connect", () => {
       console.log("Socket Connected");
       socket.on("tweets", data => {
-        console.info(data);
-
+        /*         console.info(data);
+         */
         let newList = [data].concat(this.state.items.slice(0, 15));
         this.setState({ items: newList });
       });
@@ -93,9 +93,9 @@ class TweetFeed extends React.Component {
   }
 
   render() {
-    let items = this.state.items;
-    console.log(items);
-    console.log(this.state.renderedThings);
+    /*let items = this.state.items;
+     console.log(items);
+    console.log(this.state.renderedThings); */
 
     /*   
   //controls for socket io//

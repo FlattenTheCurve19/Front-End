@@ -132,6 +132,17 @@ $primary-color: #44cdcd;
 $secondary-color: #ff567f;
 $titles-font: "Raleway", sans-serif;
 $content-font: "Montserrat", sans-serif;
+//viewport sizes//
+$iphoneX: 375px;
+$phone: 400px;
+$bigPhone: 475px;
+$smallTablet: 520px;
+$mediumTablet: 650px;
+$tablet: 720px;
+$largeTablet: 820px;
+$smallScreen: 1040px;
+$bigScreen: 1150px;
+$hugeScreen: 1270px;
 
 //App bar styles//
 .MuiPaper-elevation4 {
@@ -156,6 +167,9 @@ $content-font: "Montserrat", sans-serif;
     font-family: $titles-font;
     font-size: 1.5rem;
     font-weight: 600;
+    @media screen and (max-width: $smallTablet) {
+      display: none;
+    }
   }
   .navLinks-div {
     position: absolute;
@@ -166,18 +180,15 @@ $content-font: "Montserrat", sans-serif;
       &:hover {
         color: $secondary-color;
       }
-      img {
-        width: 48px;
-        border-radius: 50%;
-        position: fixed;
-        right: 1rem;
-        top: 0.3rem;
-      }
     }
   }
 }
 #text {
   font-size: 1px;
+}
+//Typography
+.MuiTypography-h3 {
+  font-family: $content-font;
 }
 
 //Button Styles//
@@ -228,6 +239,11 @@ $content-font: "Montserrat", sans-serif;
   }
 }
 //input styles
+#standard-basic {
+  border-bottom: none;
+  box-shadow: none;
+  width: 100%;
+}
 .MuiFilledInput-underline:after {
   border-bottom: 2px solid $secondary-color;
 }
@@ -268,6 +284,12 @@ textarea.materialize-textarea {
   transition: inherit;
 }
 
+//MUI Avatar
+.MuiAvatar-root {
+  width: 80px;
+  height: 80px;
+}
+
 //general css//
 
 //Nav//
@@ -276,6 +298,19 @@ textarea.materialize-textarea {
   width: 100%;
   margin-left: 1.5rem;
   align-items: center;
+  @media screen and (max-width: $smallTablet) {
+    margin-left: 0.3rem;
+  }
+}
+.profile-sec {
+  display: flex;
+  align-items: center;
+
+  .google-pic {
+    width: 47px;
+    border-radius: 50%;
+    margin-left: 8px;
+  }
 }
 
 //forms//
@@ -367,6 +402,17 @@ textarea.materialize-textarea {
 .video-background {
   position: relative;
   padding-top: 52.75%;
+  h1 {
+    @media screen and (max-width: $tablet) {
+      font-size: 2rem;
+    }
+    @media screen and (max-width: $smallTablet) {
+      font-size: 1.4rem;
+    }
+    @media screen and (max-width: $phone) {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 .video-background video {
@@ -380,6 +426,7 @@ textarea.materialize-textarea {
 
 .videoTitle {
   position: absolute;
+  justify-content: space-around;
   width: 100%;
   height: 100%;
   top: 0;
@@ -387,7 +434,6 @@ textarea.materialize-textarea {
   color: white;
   display: flex;
   flex-direction: column;
-  padding-top: 90px;
   font-size: 2.5rem;
   align-items: center;
   font-family: "Montserrat";
@@ -396,11 +442,14 @@ textarea.materialize-textarea {
   line-height: 75px;
   letter-spacing: -0.015em;
 
+  h1 {
+    text-align: center;
+  }
+
   button {
     color: white;
     background: #ff567f;
     border-radius: 6px;
-    margin-top: 25%;
     font-family: "Montserrat";
     font-style: normal;
     font-weight: 500;
@@ -409,10 +458,10 @@ textarea.materialize-textarea {
     display: flex;
     align-items: center;
     text-align: center;
-    left: 16.78%;
+    /*   left: 16.78%;
     right: 17.6%;
     top: 21.73%;
-    bottom: 22.5%;
+    bottom: 22.5%; */
   }
 }
 
@@ -461,7 +510,26 @@ textarea.materialize-textarea {
     }
   }
 }
+<<<<<<< HEAD
 //message map icon styling
+=======
+//landing page map section//
+.chart-title {
+  padding: 0 1rem;
+  .MuiTypography-h3 {
+    font-size: 2.5rem;
+    @media screen and (max-width: $mediumTablet) {
+      font-size: 1.8rem;
+    }
+    @media screen and (max-width: $bigPhone) {
+      font-size: 1.4rem;
+    }
+    @media screen and (max-width: $iphoneX) {
+      font-size: 1.2rem;
+    }
+  }
+}
+>>>>>>> 9487742cc70926cbf817a756bc9af9c5fa520437
 .location-icon {
   font-size: 2.5rem;
   color: red;

@@ -34,7 +34,6 @@ const Proximity = props => {
   const msgs = useSelector(state => state.messageBoard.messages);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const [rZoom, setRZoom] = useState();
 
   useEffect(() => {
     if (props.coords && props.coords.latitude && props.coords.longitude) {
