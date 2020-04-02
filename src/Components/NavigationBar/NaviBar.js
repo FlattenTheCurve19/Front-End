@@ -102,9 +102,14 @@ const NavigationBar = props => {
                 Log Out
               </MenuItem>
             )}
-
-            <MenuItem onClick={handleClose}>About us</MenuItem>
-
+            <MenuItem 
+              onClick={() => {
+                handleClose(); 
+                history.push("/about");
+              }}
+              >
+                About Us
+            </MenuItem>
             <MenuItem 
               onClick={() => {
                 handleClose(); 
@@ -119,7 +124,7 @@ const NavigationBar = props => {
                 history.push("twitter-feed");
               }}
             >
-              Live Tweets
+                Live Tweets
             </MenuItem>
 
 
@@ -136,15 +141,12 @@ const NavigationBar = props => {
                 <NavLink className={classes.links} to="/login">
                   Login
                 </NavLink>
-                <NavLink className={classes.links} to="/register">
-                  Register
-                </NavLink>
               </div>
             ) : (
               <div>
-              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
-                Home
-              </NavLink>
+                <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
+                   Home
+                </NavLink>
               </div>         
             )}
           </div>

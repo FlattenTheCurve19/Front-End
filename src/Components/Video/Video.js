@@ -7,6 +7,7 @@ import React from "react";
 import "../../Styles/index.scss";
 
 const Video = props => {
+
   return (
     <div className="video-background" id="wrapper">
       <video loop autoPlay controls muted="muted">
@@ -14,7 +15,7 @@ const Video = props => {
       </video>
       <div className="videoTitle">
         <h1>Do your Part, Help Flatten The Curve</h1>
-        <button>JOIN NOW</button>
+        <button type='button' onClick={() => history.push('/register')}> JOIN NOW </button>
       </div>
     </div>
   );
