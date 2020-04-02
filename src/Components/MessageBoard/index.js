@@ -48,11 +48,11 @@ export default () => {
                     <CircularProgress color="inherit" />
                 </div>
             )}
-            {sortedMessages.length > 1 && (
+            {sortedMessages.length && (
                 <>
                     <div className='card-container'>
                         {sortedMessages.map(message => {
-                            return <Card message={message} key={message.postId}/>
+                            return <Card message={message} key={message.postId} forceRender={forceRender}/>
                         })}
                     </div>
                     
