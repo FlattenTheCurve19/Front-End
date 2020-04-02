@@ -1,15 +1,8 @@
 import { fireDB } from "../../_utils/firebase";
-<<<<<<< HEAD
 import { GeoFirestore } from "geofirestore";
 import "firebase/firestore";
 import { createPost } from "../../_utils/firedbHelper";
 import { getDistance } from "geolib";
-=======
-import { GeoFirestore } from 'geofirestore';
-import "firebase/firestore";
-import { createPost } from "../../_utils/firedbHelper";
-import { getDistance } from 'geolib';
->>>>>>> master
 
 export const FETCHING_MESSAGES_START = "FETCHING_MESSAGES_START";
 export const FETCHING_MESSAGES_SUCCESS = "FETCHING_MESSAGES_SUCCESS";
@@ -20,7 +13,6 @@ export const FETCH_CENTER = "FETCH_CENTER";
 export const FETCH_ZOOM = "FETCH_ZOOM";
 
 const geofirestore = new GeoFirestore(fireDB);
-<<<<<<< HEAD
 const geocollection = geofirestore.collection("post");
 
 export const messageGetter = (geoPoint, userInfo) => dispatch => {
@@ -40,22 +32,6 @@ export const messageGetter = (geoPoint, userInfo) => dispatch => {
           }
         ) / 1000
     })
-=======
-const geocollection = geofirestore.collection('post');
-
-export const messageGetter = (geoPoint, userInfo) => dispatch => {
-  dispatch({ type: FETCHING_MESSAGES_START });
-    geocollection.near({center: geoPoint, radius:
-      ( getDistance(
-        {
-          latitude: userInfo.center.lat,
-          longitude: userInfo.center.lng
-        },
-        {
-          latitude: userInfo.bounds.nw.lat,
-          longitude: userInfo.bounds.nw.lng
-        }) / 1000)})
->>>>>>> master
     .get()
     .then(res => {
       const array = [];
@@ -87,11 +63,7 @@ export const messageSetter = object => {
   } else {
     console.log("error");
   }
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> master
 export const fetchCoords = coords => {
   return {
     type: FETCHING_USER_COORDS,
@@ -117,10 +89,5 @@ export const fetchZoom = zoom => {
   return {
     type: FETCH_ZOOM,
     payload: zoom
-<<<<<<< HEAD
   };
 };
-=======
-  }
-}
->>>>>>> master
