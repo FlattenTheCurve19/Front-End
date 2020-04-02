@@ -28,7 +28,8 @@ export default ({ forceRender }) => {
         });
     }, [])
 
-    const submitForm = (data) => {
+    const submitForm = (data, e) => {
+        e.target.reset();
         // Also check to see if a location has been added
         // const lat = userInfo.latitude;
         // const long = userInfo.longitude;
@@ -72,7 +73,7 @@ export default ({ forceRender }) => {
                     rules={{
                         required: true,
                         minLength: 3,
-                        maxLength: 100
+                        maxLength: 50
                     }}
                     register={register}
                     control={control}

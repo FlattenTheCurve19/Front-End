@@ -52,7 +52,7 @@ export default () => {
                 <>
                     <div className='card-container'>
                         {sortedMessages.map(message => {
-                            return <Card message={message} key={message.postId}/>
+                            return <Card message={message} key={message.postId} forceRender={forceRender}/>
                         })}
                     </div>
                     
