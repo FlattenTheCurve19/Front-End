@@ -156,7 +156,7 @@ const Proximity = props => {
             zIndex: -1
           });
         }}
-        options={{ draggableCursor: "default", zIndex: 0 }}
+        options={{ draggableCursor: "default" }}
       >
         {msgs.length &&
           msgs.map(elem => {
@@ -243,7 +243,7 @@ const SearchBarWrapper = styled.div`
   top: 74px;
   left: 410px;
 
-  @media all and (max-width: 500px){
+  @media all and (max-width: 500px) {
     top: 64px;
     left: 10px;
     z-index: 1;
@@ -265,8 +265,6 @@ const MyLocationWrapper = styled.div`
   button {
     padding: 7px;
   }
-
-  
 `;
 
 export default geolocated({
