@@ -231,6 +231,9 @@ $content-font: "Montserrat", sans-serif;
 .MuiFilledInput-underline:after {
   border-bottom: 2px solid $secondary-color;
 }
+label + .MuiInput-formControl {
+  margin-top: 5px;
+}
 .MuiFormLabel-root.Mui-focused {
   color: $secondary-color;
 }
@@ -458,6 +461,15 @@ textarea.materialize-textarea {
     }
   }
 }
+.location-icon {
+  font-size: 2rem;
+  color: red;
+  &:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
+}
+
 //twitter feed styles//
 .example-enter {
   opacity: 0.01;
@@ -506,7 +518,11 @@ textarea.materialize-textarea {
     width: 40px;
   }
 }
-
+.map-text {
+  padding: 2% 0;
+  color: $primary-color;
+  font-weight: bold;
+}
 // message-board styles
 .card-container {
   height: calc(100vh - 312px);

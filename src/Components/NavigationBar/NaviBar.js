@@ -102,21 +102,21 @@ const NavigationBar = props => {
                 Log Out
               </MenuItem>
             )}
-            <MenuItem 
+            <MenuItem
               onClick={() => {
-                handleClose(); 
+                handleClose();
                 history.push("/about");
               }}
-              >
-                About Us
+            >
+              About Us
             </MenuItem>
-            <MenuItem 
+            <MenuItem
               onClick={() => {
-                handleClose(); 
+                handleClose();
                 history.push("message-map-page");
               }}
-              >
-                Chat Near You
+            >
+              Chat Near You
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -124,10 +124,8 @@ const NavigationBar = props => {
                 history.push("twitter-feed");
               }}
             >
-                Live Tweets
+              Live Tweets
             </MenuItem>
-
-
           </Menu>
           <div className="logo-div">
             <Logo height={28} />
@@ -144,10 +142,14 @@ const NavigationBar = props => {
               </div>
             ) : (
               <div>
-                <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
-                   Home
+                <NavLink
+                  style={{ marginLeft: "0" }}
+                  className={classes.links}
+                  to="/"
+                >
+                  Home
                 </NavLink>
-              </div>         
+              </div>
             )}
           </div>
         </Toolbar>

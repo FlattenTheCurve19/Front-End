@@ -1,12 +1,15 @@
 // Styled components for message board component and children
 import styled from 'styled-components';
+import {Paper} from '@material-ui/core';
+import theme from '../../Styles/theme';
 
-export const Board = styled.section`
+export const Board = styled(Paper)`
     position: relative;
     padding-top: 30px;
     width: 400px;
     min-width: 400px;
     max-width: 600px;
+    transition: .5s top;
     h1{
         margin-bottom: 30px;
         text-align: center;
@@ -21,12 +24,12 @@ export const Board = styled.section`
         text-align: center;
     }
     h4{
-        font-family: 'Raleway', sans-serif;
+        font-family: ${theme.font};
         font-weight: bold;
         margin-bottom: 10px;
     }
     p{
-        font-family: 'Raleway', sans-serif;
+        font-family: ${theme.font};
     }
     .spinner{
         position: absolute;
@@ -44,6 +47,15 @@ export const Board = styled.section`
     .card-container{
         height: calc(100vh - 380px);
         overflow: scroll;
+    }
+
+    @media all and (max-width: 500px){
+        position: fixed;
+        top: ${props => props.toggled ? '43px' : '100vh'};
+        background: white;
+        z-index: 2;
+        width: 100%;
+        height: 100vh;
     }
 `;
 
@@ -67,11 +79,30 @@ export const Card = styled.div`
         img{
             width: 80px;
             height: 80px;
+            min-width: 80px;
+            min-height: 80px;
             border-radius: 50%;
         }
         .content-container{
             margin-left: 10px;
         }
+    }
+    
+`;
+
+export const ToggleButton = styled(Paper)`
+    display: flex;
+    z-index: 3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 2px 0;
+    justify-content: center;
+    align-items: center;
+
+    @media all and (min-width: 500px){
+        display: none;
     }
 `;
 
@@ -107,6 +138,9 @@ export const Form = styled.div`
                 }
             }
         }
+    }
+    ${theme.breakpoints.tablet}{
+
     }
     
 `;
