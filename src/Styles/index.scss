@@ -139,7 +139,7 @@ $content-font: "Montserrat", sans-serif;
 }
 
 .makeStyles-links-2 {
-  margin-left: 0.4% !important;
+  margin-left: 0.4%;
 }
 
 .MuiToolbar-root .MuiTypography-body1 {
@@ -205,6 +205,12 @@ $content-font: "Montserrat", sans-serif;
 }
 .MuiInput-underline:after {
   border-bottom: 2px solid $secondary-color;
+}
+
+.MuiButton-root {
+  &:focus {
+    background-color: none;
+  }
 }
 
 .MuiMenu-list {
@@ -502,4 +508,9 @@ textarea.materialize-textarea {
   .twtr-logo {
     width: 40px;
   }
+}
+
+// message-board styles
+.card-container {
+  height: calc(100vh - 312px);
 }

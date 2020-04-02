@@ -102,9 +102,22 @@ const NavigationBar = props => {
                 Log Out
               </MenuItem>
             )}
-
-            <MenuItem onClick={handleClose}>About us</MenuItem>
-
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("/about");
+              }}
+            >
+              About Us
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("message-map-page");
+              }}
+            >
+              Chat Near You
+            </MenuItem>
             <MenuItem
               onClick={() => {
                 handleClose();
@@ -126,14 +139,17 @@ const NavigationBar = props => {
                 <NavLink className={classes.links} to="/login">
                   Login
                 </NavLink>
-                {/*   <NavLink className={classes.links} to="/register">
-                  Register
-                </NavLink>  this one is uneeded because we have a CTA button/menu button for it*/}
               </div>
             ) : (
-              <NavLink className={classes.links} to="/dashboard">
-                <img src={props.user.user.photoURL} alt="dashboard link" />
-              </NavLink>
+              <div>
+                <NavLink
+                  style={{ marginLeft: "0" }}
+                  className={classes.links}
+                  to="/"
+                >
+                  Home
+                </NavLink>
+              </div>
             )}
           </div>
         </Toolbar>

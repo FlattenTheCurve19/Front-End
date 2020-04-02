@@ -2,11 +2,11 @@
 import styled from 'styled-components';
 
 export const Board = styled.section`
+    position: relative;
     padding-top: 30px;
-    width: 33%;
+    width: 400px;
     min-width: 400px;
     max-width: 600px;
-    height: 100vh;
     h1{
         margin-bottom: 30px;
         text-align: center;
@@ -29,6 +29,10 @@ export const Board = styled.section`
         font-family: 'Raleway', sans-serif;
     }
     .spinner{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
         display: flex;
         justify-content: center;
@@ -38,7 +42,7 @@ export const Board = styled.section`
         text-align: center;
     }
     .card-container{
-        height: 70%;
+        height: calc(100vh - 380px);
         overflow: scroll;
     }
 `;
@@ -46,30 +50,63 @@ export const Board = styled.section`
 export const Card = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100px;
-    width: 90%;
-    margin: 20px auto;
+    margin: 20px 0;
+    margin-left: 20px;
+    margin-right: 10px;
     cursor: pointer;
     &:hover{
-        transform: scale(1.05);
+        transform: scale(1.01);
     }
-    img{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
-    .content-container{
-        margin-left: 10px;
+    .container{
+        display: flex;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .content-container{
+            margin-left: 10px;
+        }
     }
 `;
 
 export const Form = styled.div`
-    width: 100%;
+    width: calc(100% - 40px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    label {
-        font-family: 'Raleway', sans-serif;
+    margin: 0 20px;
+    margin-top: 70px;
+    height: 76px; 
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .btn-container{
+            display: flex;
+            justify-content: flex-end;
+            button{
+                font-family: 'Raleway', sans-serif;
+                font-size: 18px;
+                width: 50%;
+                height: 30px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                background-color: #44cdcd;
+                color: white;
+                cursor: pointer;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
+        }
     }
+    
 `;

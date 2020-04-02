@@ -18,6 +18,23 @@ function MapChart({ setTooltipContent }) {
   const [max, setMax] = useState(6000);
 
   useEffect(() => {
+
+    const totalCount = () => {
+      const obj = {
+        Deaths: 0,
+        Confirmed: 0,
+        Recovered: 0
+      };
+  
+      for (const state in data) {
+        obj.Deaths += data[state].deaths;
+        obj.Confirmed += data[state].confirmed;
+        obj.Recovered += data[state].recovered;
+      }
+  
+      setTotal(obj);
+    };
+
     if (data) {
       let largestValue;
       for (const state in data) {
@@ -29,22 +46,6 @@ function MapChart({ setTooltipContent }) {
       totalCount();
     }
   }, [data]);
-
-  const totalCount = () => {
-    const obj = {
-      Deaths: 0,
-      Confirmed: 0,
-      Recovered: 0
-    };
-
-    for (const state in data) {
-      obj.Deaths += data[state].deaths;
-      obj.Confirmed += data[state].confirmed;
-      obj.Recovered += data[state].recovered;
-    }
-
-    setTotal(obj);
-  };
 
   const colorScale = value => {
     const color = scaleLinear()
