@@ -23,13 +23,13 @@ const Proximity = props => {
   const [msgs, setMsgs] = useState([]);
 
   useEffect(() => {
+    console.log(props.coords);
     props.coords &&
       props.coords.latitude &&
       dispatch(fetchCoords(props.coords));
   }, [props.coords, dispatch]);
 
   useEffect(() => {
-    console.log(coords);
     if (coords.center.lat) {
       geoCollection
         .near({
@@ -53,13 +53,12 @@ const Proximity = props => {
           const arr = [];
           res.forEach(item => arr.push(item.data()));
           setMsgs(arr);
-          console.log(arr);
         });
     }
-  }, [coords]);
+  }, [coords, geoCollection]);
 
   return (
-    <div style={{ height: "100vh", width: "100%", margin: "auto" }}>
+    <div style={{ height: "100%", width: "100%", margin: "auto" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
         defaultCenter={{
@@ -72,27 +71,21 @@ const Proximity = props => {
         }}
         defaultZoom={5}
         onChange={({ center, zoom, bounds, marginBounds }) => {
-          console.log(
-          {
-            latitude: center.lat,
-            longitude: center.lng
-          },
-          {
-            latitude: bounds.nw.lat,
-            longitude: bounds.nw.lng
-          });
-          console.log(getDistance(
-            {
-              latitude: center.lat,
-              longitude: center.lng
-            },
-            {
-              latitude: bounds.nw.lat,
-              longitude: bounds.nw.lng
-            }) / 1000);
+          if(center.lng > 180){
+            dispatch(fetchCenter({
+              lat: center.lat,
+              lng: 180
+            }))
+          } else if(center.lng < -180){
+            dispatch(fetchCenter({
+              lat: center.lat,
+              lng: -180
+            }))
+          } else{
+            dispatch(fetchCenter(center));
+          }
           dispatch(fetchBounds(bounds));
-          dispatch(fetchCenter(center));
-          console.log(coords);
+          
         }}
         yesIWantToUseGoogleMapApiInternals
       >

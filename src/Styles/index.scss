@@ -500,3 +500,8 @@ textarea.materialize-textarea {
     width: 40px;
   }
 }
+
+// message-board styles
+.card-container {
+  height: calc(100vh - 312px);
+}

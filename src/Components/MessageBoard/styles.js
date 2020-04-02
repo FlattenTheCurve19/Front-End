@@ -6,7 +6,6 @@ export const Board = styled.section`
     width: 400px;
     min-width: 400px;
     max-width: 600px;
-    height: 100%;
     h1{
         margin-bottom: 30px;
         text-align: center;
@@ -38,7 +37,7 @@ export const Board = styled.section`
         text-align: center;
     }
     .card-container{
-        height: 70%;
+        height: calc(100vh - 312px);
         overflow: scroll;
     }
 `;
@@ -71,6 +70,7 @@ export const Form = styled.div`
     flex-direction: column;
     margin: 0 20px;
     margin-top: 20px;
+    height: 76px; 
     form{
         width: 100%;
         display: flex;
