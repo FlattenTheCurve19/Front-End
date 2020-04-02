@@ -11,7 +11,7 @@ const Video = props => {
       </video>
       <div className="videoTitle">
         <h1>Do your Part, Help Flatten The Curve</h1>
-        <button component={Link} to="/register" type='submit'> JOIN NOW </button>
+        <button component={Link} to="/register"> JOIN NOW </button>
       </div>
     </div>
   );
