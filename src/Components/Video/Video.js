@@ -4,9 +4,11 @@ import React from "react";
 // import { PlayArrow, Pause } from "@material-ui/icons";
 // import { IconButton, Typography, Button } from "@material-ui/core";
 // import bannerImg from "../../images/covid-19-drugs.jpeg";
+import { useHistory } from 'react-router-dom';
 import "../../Styles/index.scss";
 
 const Video = props => {
+  const history = useHistory();
 
   return (
     <div className="video-background" id="wrapper">
