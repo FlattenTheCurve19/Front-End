@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "./styles";
 import { useDispatch } from "react-redux";
-import { fetchCenter } from "../../Store/Actions/messageActions";
+import { fetchCenter, fetchZoom } from "../../Store/Actions/messageActions";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { deletePost } from "../../_utils/firedbHelper";
@@ -57,6 +57,7 @@ export default ({ message, forceRender, setToggled }) => {
       lng: message.geoLock.longitude
     };
     dispatch(fetchCenter(center));
+    dispatch(fetchZoom(13))
   };
 
   const handleClick = event => {
