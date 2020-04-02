@@ -1,12 +1,14 @@
 // Styled components for message board component and children
 import styled from 'styled-components';
+import {Paper} from '@material-ui/core';
 
-export const Board = styled.section`
+export const Board = styled(Paper)`
     position: relative;
     padding-top: 30px;
     width: 400px;
     min-width: 400px;
     max-width: 600px;
+    transition: .5s top;
     h1{
         margin-bottom: 30px;
         text-align: center;
@@ -45,6 +47,15 @@ export const Board = styled.section`
         height: calc(100vh - 380px);
         overflow: scroll;
     }
+
+    @media all and (max-width: 500px){
+        position: fixed;
+        top: ${props => props.toggled ? '0' : '100vh'};
+        background: white;
+        z-index: 1;
+        width: 100%;
+        height: 100vh;
+    }
 `;
 
 export const Card = styled.div`
@@ -72,6 +83,18 @@ export const Card = styled.div`
         .content-container{
             margin-left: 10px;
         }
+    }
+`;
+
+export const ToggleButton = styled(Paper)`
+    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+
+    @media all and (min-width: 500px){
+        display: none;
     }
 `;
 

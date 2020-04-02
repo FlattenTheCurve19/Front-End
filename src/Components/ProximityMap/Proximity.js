@@ -234,6 +234,11 @@ const InputWrapper = styled.div`
   position: absolute;
   top: 74px;
   left: 410px;
+
+  @media all and (max-width: 500px){
+    top: 0;
+    left: 0;
+  }
 `;
 
 const MyLocationWrapper = styled.div`
@@ -246,6 +251,8 @@ const MyLocationWrapper = styled.div`
   button {
     padding: 7px;
   }
+
+  
 `;
 
 export default geolocated({
