@@ -126,9 +126,9 @@ const NavigationBar = props => {
                 <NavLink className={classes.links} to="/login">
                   Login
                 </NavLink>
-                <NavLink className={classes.links} to="/register">
+                {/*   <NavLink className={classes.links} to="/register">
                   Register
-                </NavLink>
+                </NavLink>  this one is uneeded because we have a CTA button/menu button for it*/}
               </div>
             ) : (
               <NavLink className={classes.links} to="/dashboard">
