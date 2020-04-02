@@ -46,9 +46,10 @@ export default () => {
 
   return (
     <Board>
-      <h1>Reach out to your community</h1>
-      {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
-      <h2>Chat Near You</h2>
+      <div className="mobile-container">
+        <h1>Reach out to your community</h1>
+        <h2>Chat Near You</h2>
+      </div>
       {isFetching && (
         <div className="spinner">
           <CircularProgress color="inherit" />
