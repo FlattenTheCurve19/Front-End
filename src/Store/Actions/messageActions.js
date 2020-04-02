@@ -10,6 +10,7 @@ export const FETCHING_MESSAGES_ERROR = "FETCHING_MESSAGES_ERROR";
 export const FETCHING_USER_COORDS = "FETCHING_USER_COORDS";
 export const FETCHING_USER_BOUNDS = "FETCHING_USER_BOUNDS";
 export const FETCH_CENTER = "FETCH_CENTER";
+export const FETCH_ZOOM = "FETCH_ZOOM";
 
 const geofirestore = new GeoFirestore(fireDB);
 const geocollection = geofirestore.collection('post');
@@ -69,3 +70,10 @@ export const fetchCenter = center => {
     payload: center
   };
 };
+
+export const fetchZoom = zoom => {
+  return {
+    type: FETCH_ZOOM,
+    payload: zoom
+  }
+}

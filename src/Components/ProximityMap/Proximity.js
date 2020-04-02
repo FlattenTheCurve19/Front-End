@@ -7,30 +7,39 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCoords,
   fetchBounds,
-  fetchCenter
+  fetchCenter,
+  fetchZoom
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
-
   const coords = useSelector(state => state.messageBoard.userInfo);
-  const msgs = useSelector(state => state.messageBoard.messages)
+  const msgs = useSelector(state => state.messageBoard.messages);
   const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(props.coords);
-    props.coords &&
-      props.coords.latitude &&
-      dispatch(fetchCoords(props.coords));
+    if(props.coords && props.coords.latitude && props.coords.longitude){
+      dispatch(fetchCoords(props.coords))
+      console.log('current center', coords.center);
+      console.log('DISPATCHING', props.coords);
+      setTimeout(() => {
+        dispatch(
+          fetchCenter({
+            lat: props.coords.latitude,
+            lng: props.coords.longitude
+          })
+        );
+        dispatch(fetchZoom(11));
+      }, 1000)
+    }
+      
   }, [props.coords, dispatch]);
 
   const Marker = props => (
-    <div
-      lat={props.lat}
-      lng={props.lng}
-    >
+    <div lat={props.lat} lng={props.lng}>
       <LocationOnIcon />
     </div>
-  )
+  );
 
   return (
     <div style={{ height: "100%", width: "100%", margin: "auto" }}>
@@ -45,22 +54,26 @@ const Proximity = props => {
           lng: coords && coords.center.lng
         }}
         defaultZoom={5}
+        zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
-          if(center.lng > 180){
-            dispatch(fetchCenter({
-              lat: center.lat,
-              lng: 180
-            }))
-          } else if(center.lng < -180){
-            dispatch(fetchCenter({
-              lat: center.lat,
-              lng: -180
-            }))
-          } else{
+          if (center.lng > 180) {
+            dispatch(
+              fetchCenter({
+                lat: center.lat,
+                lng: 180
+              })
+            );
+          } else if (center.lng < -180) {
+            dispatch(
+              fetchCenter({
+                lat: center.lat,
+                lng: -180
+              })
+            );
+          } else {
             dispatch(fetchCenter(center));
           }
           dispatch(fetchBounds(bounds));
-          
         }}
         yesIWantToUseGoogleMapApiInternals
       >
