@@ -145,9 +145,6 @@ const NavigationBar = props => {
               <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
                 Home
               </NavLink>
-              <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
-                Log Out
-              </NavLink>
               </div>         
             )}
           </div>
