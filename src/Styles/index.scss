@@ -207,6 +207,12 @@ $content-font: "Montserrat", sans-serif;
   border-bottom: 2px solid $secondary-color;
 }
 
+.MuiButton-root {
+  &:focus {
+    background-color: none;
+  }
+}
+
 .MuiMenu-list {
   background: rgb(129, 129, 129);
   color: white;
