@@ -13,7 +13,7 @@ import { Form } from './styles';
 import TextField from '@material-ui/core/TextField';
 
 export default ({ forceRender }) => {
-    const { handleSubmit, errors, control, register } = useForm({ message: '' });
+    const { handleSubmit, errors, control } = useForm({ message: '' });
     const [ user, setUser ] = useState(null);
     const history = useHistory();
     const { userInfo } = useSelector(state => state.messageBoard);
@@ -75,7 +75,6 @@ export default ({ forceRender }) => {
                         minLength: 3,
                         maxLength: 50
                     }}
-                    register={register}
                     control={control}
                 />
                 <div className='btn-container'>
