@@ -11,6 +11,7 @@ import Registration from "./Components/Users/Registration";
 import Login from "./Components/Users/Login";
 import MessageBoard from "./Components/MessageBoard";
 import TwitterFeed from "./Components/TwitterFeed/TwitterFeed";
+import About from "./Components/About/About";
 
 // Page Imports
 import Home from "./Pages/Home";
@@ -42,6 +43,9 @@ function App() {
         <NaviBar user={user} />
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="about">
+          <About />
         </Route>
         <Route path="/login">
           <Login />
