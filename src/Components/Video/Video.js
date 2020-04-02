@@ -16,7 +16,7 @@ const Video = props => {
       </video>
       <div className="videoTitle">
         <h1>Do your Part, Help Flatten The Curve</h1>
-        <button type="submit" onClick="window.location='https://flatten-the-curve-ldz4lft4s.now.sh/register> JOIN NOW</button>
+        <button type="submit" onClick="window.open='https://flatten-the-curve-ldz4lft4s.now.sh/register'"> JOIN NOW </button>
       </div>
     </div>
   );
