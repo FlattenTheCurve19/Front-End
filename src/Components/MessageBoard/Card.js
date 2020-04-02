@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Do a fetch to db to grab user avatar
-export default ({ message, forceRender }) => {
+export default ({ message, forceRender, setToggled }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [user, setUser] = useState(null);
@@ -51,6 +51,7 @@ export default ({ message, forceRender }) => {
   }, []);
 
   const gotToMessage = () => {
+      setToggled(false);
     const center = {
       lat: message.geoLock.latitude,
       lng: message.geoLock.longitude

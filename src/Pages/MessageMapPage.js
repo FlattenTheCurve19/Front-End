@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 // Component Imports
@@ -8,14 +8,18 @@ import Proximity from "../Components/ProximityMap/Proximity";
 const Page = styled.section`
   height: calc(100vh - 64px);
   display: flex;
-import MessageBoard from '../Components/MessageBoard';
-import MessageMap from '../Components/ProximityMap/Proximity';
-import theme from '../Styles/theme';
+  overflow: hidden;
+
+  @media all and (max-width: 500px) {
+    flex-direction: column-reverse;
+  }
+
+  
 `;
 
 export default () => {
   return (
-    <Page>
+    <Page >
       <MessageBoard />
       <Proximity />
     </Page>

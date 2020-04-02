@@ -6,10 +6,12 @@ import * as firebase from "firebase";
 // Component Imports
 import Card from "./Card";
 import AddMessage from "./AddMessage";
-import { Board } from "./styles";
+import { Board, ToggleButton } from "./styles";
 
 // Material UI Imports
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Menu } from '@material-ui/icons';
+import { Typography } from "@material-ui/core";
 
 export default () => {
   const { messages, isFetching, error, userInfo } = useSelector(
@@ -18,6 +20,7 @@ export default () => {
   const [sortedMessages, setSortedMessages] = useState([]);
   const dispatch = useDispatch();
   const [update, setUpdate] = useState(true);
+  const [toggled, setToggled] = useState(false);
 
   useEffect(() => {
     const geoPoint = new firebase.firestore.GeoPoint(
@@ -45,11 +48,14 @@ export default () => {
   };
 
   return (
-    <Board>
-      <div className="mobile-container">
-        <h1>Reach out to your community</h1>
-        <h2>Chat Near You</h2>
-      </div>
+      <>
+      <ToggleButton onClick={() => setToggled(!toggled)}>
+          <Menu /><Typography variant="button">{toggled ? 'Show Map' : 'Show Messages'}</Typography>
+      </ToggleButton>
+    <Board toggled={toggled}>
+      <h1>Reach out to your community</h1>
+      {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
+      <h2>Chat Near You</h2>
       {isFetching && (
         <div className="spinner">
           <CircularProgress color="inherit" />
@@ -61,6 +67,7 @@ export default () => {
             {sortedMessages.map(message => {
               return (
                 <Card
+                    setToggled={setToggled}
                   message={message}
                   key={message.postId}
                   forceRender={forceRender}
@@ -75,5 +82,6 @@ export default () => {
         <p className="error">There was an error fetching the data: {error}</p>
       )}
     </Board>
+    </>
   );
 };

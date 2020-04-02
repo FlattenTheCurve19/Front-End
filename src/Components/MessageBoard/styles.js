@@ -1,27 +1,27 @@
 // Styled components for message board component and children
 import styled from 'styled-components';
+import {Paper} from '@material-ui/core';
 import theme from '../../Styles/theme';
 
-export const Board = styled.section`
+export const Board = styled(Paper)`
     position: relative;
     padding-top: 30px;
     width: 400px;
     min-width: 400px;
     max-width: 600px;
-    .mobile-container{
-        h1{
-            margin-bottom: 30px;
-            text-align: center;
-            font-family: ${theme.font};
-            font-size: 20px;
-        }
-        h2{
-            font-family: ${theme.font};
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    transition: .5s top;
+    h1{
+        margin-bottom: 30px;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-size: 20px;
+    }
+    h2{
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
     }
     h4{
         font-family: ${theme.font};
@@ -48,13 +48,14 @@ export const Board = styled.section`
         height: calc(100vh - 380px);
         overflow: scroll;
     }
-    ${theme.breakpoints.tablet}{
-        max-width: none;
-        min-width: none;
+
+    @media all and (max-width: 500px){
+        position: fixed;
+        top: ${props => props.toggled ? '43px' : '100vh'};
+        background: white;
+        z-index: 2;
         width: 100%;
-        height: 300px;
-        display: flex;
-        flex-direction: column;
+        height: 100vh;
     }
 `;
 
@@ -87,6 +88,22 @@ export const Card = styled.div`
         }
     }
     
+`;
+
+export const ToggleButton = styled(Paper)`
+    display: flex;
+    z-index: 3;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 2px 0;
+    justify-content: center;
+    align-items: center;
+
+    @media all and (min-width: 500px){
+        display: none;
+    }
 `;
 
 export const Form = styled.div`
