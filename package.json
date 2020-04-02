@@ -1,5 +1,5 @@
 {
-  "name": "movie-index",
+  "name": "flatten-the-curve",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
     "geofirestore": "^3.4.1",
     "geolib": "^3.2.1",
     "google-map-react": "^1.1.7",
+    "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
@@ -24,6 +25,7 @@
     "react-geolocated": "^3.0.1",
     "react-google-maps": "^9.4.5",
     "react-hook-form": "^5.2.0",
+    "react-materialize": "^3.8.0",
     "react-player": "^1.15.3",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
