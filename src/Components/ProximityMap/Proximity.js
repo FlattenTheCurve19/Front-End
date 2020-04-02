@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
+import { GeoFirestore } from "geofirestore";
+import MapMarker from "./MapMarker";
+import { fireDB } from "../../_utils/firebase";
 import {
   Paper,
   InputBase,
@@ -15,7 +18,6 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 import styled from "styled-components";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCoords,
@@ -25,16 +27,17 @@ import {
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
+  const geofirestore = new GeoFirestore(fireDB);
+  const geoCollection = geofirestore.collection("post");
+
   const coords = useSelector(state => state.messageBoard.userInfo);
   const msgs = useSelector(state => state.messageBoard.messages);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
-    if(props.coords && props.coords.latitude && props.coords.longitude){
-      dispatch(fetchCoords(props.coords))
+    if (props.coords && props.coords.latitude && props.coords.longitude) {
+      dispatch(fetchCoords(props.coords));
       setTimeout(() => {
         dispatch(
           fetchCenter({
@@ -51,12 +54,6 @@ const Proximity = props => {
     if (search) {
     }
   }, [search]);
-
-  const Marker = props => (
-    <div lat={props.lat} lng={props.lng}>
-      <LocationOnIcon />
-    </div>
-  );
 
   const searchHandler = e => {
     setSearch(e);
@@ -137,19 +134,39 @@ const Proximity = props => {
           dispatch(fetchBounds(bounds));
         }}
         yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => {
+          new maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.7,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.3,
+            map,
+            center: {
+              lat: coords.latitude,
+              lng: coords.longitude
+            },
+            radius: 1000
+          });
+        }}
+        options={{ draggableCursor: "default" }}
       >
         {msgs.length &&
           msgs.map(elem => {
             return (
-              <Marker
-                key={elem.postId}
+              <MapMarker
+                className="location-icon"
                 lat={elem.geoLock.latitude}
                 lng={elem.geoLock.longitude}
+                msg={elem.postField}
+                avatarUrl={elem.avatar}
+                firstNameInit={elem.displayName && elem.displayName.charAt(0)}
+                time={elem.timeOfPost.seconds}
               />
             );
           })}
       </GoogleMapReact>
-      <InputWrapper>
+      <SearchBarWrapper>
         <Paper component="form" onSubmit={handleSubmit}>
           <PlacesAutocomplete
             value={search}
@@ -163,7 +180,7 @@ const Proximity = props => {
               loading
             }) => (
               <div>
-                <InputBase
+                <InputWrapper
                   {...getInputProps({
                     placeholder: "Search Places ...",
                     className: "location-search-input"
@@ -201,7 +218,7 @@ const Proximity = props => {
             )}
           </PlacesAutocomplete>
         </Paper>
-      </InputWrapper>
+      </SearchBarWrapper>
       <MyLocationWrapper>
         <Paper>
           <IconButton onClick={goToMyLocation}>
@@ -213,10 +230,21 @@ const Proximity = props => {
   );
 };
 
-const InputWrapper = styled.div`
+const SearchBarWrapper = styled.div`
   position: absolute;
   top: 74px;
   left: 410px;
+
+  @media all and (max-width: 500px){
+    top: 64px;
+    left: 10px;
+    z-index: 1;
+    width: calc(100% - 71px);
+  }
+`;
+
+const InputWrapper = styled(InputBase)`
+  width: calc(100% - 48px);
 `;
 
 const MyLocationWrapper = styled.div`
@@ -229,6 +257,8 @@ const MyLocationWrapper = styled.div`
   button {
     padding: 7px;
   }
+
+  
 `;
 
 export default geolocated({
