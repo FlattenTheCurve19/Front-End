@@ -1,9 +1,9 @@
-import firebase from 'firebase'
-import { fireDB } from './firebase'
-import 'firebase/firestore'
-import { GeoFirestore } from 'geofirestore';
+import firebase from "firebase";
+import { fireDB } from "./firebase";
+import "firebase/firestore";
+import { GeoFirestore } from "geofirestore";
 const geofirestore = new GeoFirestore(fireDB);
-const geocollection = geofirestore.collection('post');
+const geocollection = geofirestore.collection("post");
 
 const post = {
   displayName: "",
@@ -17,7 +17,14 @@ const post = {
   avatar: ""
 };
 
-export const createPost = (user, uuid='1354', postfield, long, lat, avatar) => {
+export const createPost = (
+  user,
+  uuid = "1354",
+  postfield,
+  long,
+  lat,
+  avatar
+) => {
   // fireDB
   //   .collection("post")
   //   .doc()
@@ -42,10 +49,12 @@ export const createPost = (user, uuid='1354', postfield, long, lat, avatar) => {
     },
     coordinates: new firebase.firestore.GeoPoint(lat, long),
     avatar: avatar
-  })
+  });
 };
 
-
-export const deletePost = (postID) => {
-  fireDB.collection('post').doc(`${postID}`).delete()
-}
+export const deletePost = postID => {
+  fireDB
+    .collection("post")
+    .doc(`${postID}`)
+    .delete();
+};

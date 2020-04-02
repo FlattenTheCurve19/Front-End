@@ -73,8 +73,8 @@ export const messageBoard = (state = initalState, { type, payload }) => {
     case FETCH_ZOOM:
       return {
         ...state,
-        userInfo: { ...state.userInfo, zoom: payload}
-      }
+        userInfo: { ...state.userInfo, zoom: payload }
+      };
     default:
       return state;
   }
