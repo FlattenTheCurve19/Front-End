@@ -231,6 +231,9 @@ $content-font: "Montserrat", sans-serif;
 .MuiFilledInput-underline:after {
   border-bottom: 2px solid $secondary-color;
 }
+label + .MuiInput-formControl {
+  margin-top: 5px;
+}
 .MuiFormLabel-root.Mui-focused {
   color: $secondary-color;
 }
