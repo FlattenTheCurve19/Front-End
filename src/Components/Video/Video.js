@@ -5,8 +5,6 @@ import "../../Styles/index.scss";
 const Video = props => {
   const history = useHistory();
 
-  const history = useHistory();
-
   return (
     <div className="video-background" id="wrapper">
       <video loop autoPlay muted="muted">
