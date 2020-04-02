@@ -33,11 +33,8 @@ const Proximity = props => {
   useEffect(() => {}, []);
 
   useEffect(() => {
-    console.log(props.coords);
-    if (props.coords && props.coords.latitude && props.coords.longitude) {
-      dispatch(fetchCoords(props.coords));
-      console.log("current center", coords.center);
-      console.log("DISPATCHING", props.coords);
+    if(props.coords && props.coords.latitude && props.coords.longitude){
+      dispatch(fetchCoords(props.coords))
       setTimeout(() => {
         dispatch(
           fetchCenter({

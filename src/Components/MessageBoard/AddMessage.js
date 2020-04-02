@@ -13,7 +13,7 @@ import { Form } from './styles';
 import TextField from '@material-ui/core/TextField';
 
 export default ({ forceRender }) => {
-    const { handleSubmit, errors, control, register } = useForm({ message: '' });
+    const { handleSubmit, errors, control } = useForm({ message: '' });
     const [ user, setUser ] = useState(null);
     const history = useHistory();
     const { userInfo } = useSelector(state => state.messageBoard);
@@ -28,7 +28,8 @@ export default ({ forceRender }) => {
         });
     }, [])
 
-    const submitForm = (data) => {
+    const submitForm = (data, e) => {
+        e.target.reset();
         // Also check to see if a location has been added
         // const lat = userInfo.latitude;
         // const long = userInfo.longitude;
@@ -72,9 +73,8 @@ export default ({ forceRender }) => {
                     rules={{
                         required: true,
                         minLength: 3,
-                        maxLength: 100
+                        maxLength: 50
                     }}
-                    register={register}
                     control={control}
                 />
                 <div className='btn-container'>

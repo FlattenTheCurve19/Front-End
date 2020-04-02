@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 export const Board = styled.section`
+    position: relative;
     padding-top: 30px;
     width: 400px;
     min-width: 400px;
@@ -28,6 +29,10 @@ export const Board = styled.section`
         font-family: 'Raleway', sans-serif;
     }
     .spinner{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
         display: flex;
         justify-content: center;
@@ -37,7 +42,7 @@ export const Board = styled.section`
         text-align: center;
     }
     .card-container{
-        height: calc(100vh - 312px);
+        height: calc(100vh - 380px);
         overflow: scroll;
     }
 `;
@@ -45,20 +50,28 @@ export const Board = styled.section`
 export const Card = styled.div`
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100px;
-    width: 90%;
-    margin: 20px auto;
+    margin: 20px 0;
+    margin-left: 20px;
+    margin-right: 10px;
     cursor: pointer;
     &:hover{
-        transform: scale(1.05);
+        transform: scale(1.01);
     }
-    img{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
-    .content-container{
-        margin-left: 10px;
+    .container{
+        display: flex;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+        img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .content-container{
+            margin-left: 10px;
+        }
     }
 `;
 
@@ -69,7 +82,7 @@ export const Form = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0 20px;
-    margin-top: 20px;
+    margin-top: 70px;
     height: 76px; 
     form{
         width: 100%;
