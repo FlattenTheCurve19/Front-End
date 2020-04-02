@@ -17,6 +17,7 @@ export const NewPaper = styled.div`
     font-size: 1.2rem;
     text-align: center;
     border-radius: 10px;
+    z-index: 1;
   }
 `;
 
