@@ -85,7 +85,7 @@ export default ({ message, forceRender, setToggled }) => {
           </Avatar>
         )}
         <div className="content-container">
-          <h4>{message.displayName}</h4>
+          {message.displayName ? (<h4>{message.displayName}</h4>) : <h4>Anonymous</h4>}
           <p>{message.postField}</p>
         </div>
       </div>

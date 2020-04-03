@@ -61,6 +61,9 @@ export default () => {
           <CircularProgress color="inherit" />
         </div>
       )}
+      {sortedMessages.length < 1 && (
+        <p className='null-message'>There are no messages in this area</p>
+      )}
       {sortedMessages.length > 0 && (
         <>
           <div className="card-container">
