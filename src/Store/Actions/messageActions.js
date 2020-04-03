@@ -11,6 +11,7 @@ export const FETCHING_USER_COORDS = "FETCHING_USER_COORDS";
 export const FETCHING_USER_BOUNDS = "FETCHING_USER_BOUNDS";
 export const FETCH_CENTER = "FETCH_CENTER";
 export const FETCH_ZOOM = "FETCH_ZOOM";
+export const FETCH_MSG_ID = "FETCH_MSG_ID";
 
 const geofirestore = new GeoFirestore(fireDB);
 const geocollection = geofirestore.collection("post");
@@ -49,19 +50,15 @@ export const messageGetter = (geoPoint, userInfo) => dispatch => {
 ///need another get request for the id aviator
 export const messageSetter = object => {
   //action creator so a auth user can post a message
-  if (
-    createPost(
-      object.displayName,
-      object.UUID,
-      object.postField,
-      object.geoLock.longitude,
-      object.geoLock.latitude,
-      object.avatar
-    )
-  ) {
-    messageGetter();
-  } else {
-    console.log("error");
+  createPost(
+    object.displayName,
+    object.UUID,
+    object.postField,
+    object.geoLock.longitude,
+    object.geoLock.latitude,
+    object.avatar
+  );
+  {
   }
 };
 export const fetchCoords = coords => {
@@ -89,5 +86,12 @@ export const fetchZoom = zoom => {
   return {
     type: FETCH_ZOOM,
     payload: zoom
+  };
+};
+
+export const setMsgId = id => {
+  return {
+    type: FETCH_MSG_ID,
+    payload: id
   };
 };

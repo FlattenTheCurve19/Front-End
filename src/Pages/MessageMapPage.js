@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // Component Imports
@@ -31,7 +31,7 @@ import theme from '../Styles/theme';
 
 export default () => {
   return (
-    <Page >
+    <Page>
       <MessageBoard />
       <Proximity />
     </Page>

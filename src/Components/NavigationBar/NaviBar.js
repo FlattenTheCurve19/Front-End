@@ -150,9 +150,11 @@ const NavigationBar = props => {
               <div className="profile-sec">
                 <p>
                   {props.user.user.displayName
-                    .split(" ")
-                    .splice(0, 1)
-                    .join()}
+                    ? props.user.user.displayName
+                        .split(" ")
+                        .splice(0, 1)
+                        .join()
+                    : null}
                 </p>
                 <img
                   className="google-pic"

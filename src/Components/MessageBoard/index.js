@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { messageGetter } from "../../Store/Actions/messageActions";
+import { messageGetter, setMsgId } from "../../Store/Actions/messageActions";
 import * as firebase from "firebase";
 
 // Component Imports
@@ -14,7 +14,7 @@ import { Menu } from "@material-ui/icons";
 import { Typography } from "@material-ui/core";
 
 export default () => {
-  const { messages, isFetching, error, userInfo } = useSelector(
+  const { messages, isFetching, error, userInfo, setMsgs } = useSelector(
     state => state.messageBoard
   );
   const [sortedMessages, setSortedMessages] = useState([]);
@@ -48,18 +48,13 @@ export default () => {
   };
 
   return (
-<<<<<<< HEAD
     <>
-=======
-      <>
->>>>>>> 9487742cc70926cbf817a756bc9af9c5fa520437
       <ToggleButton onClick={() => setToggled(!toggled)}>
         <Menu />
         <Typography variant="button">
           {toggled ? "Show Map" : "Show Messages"}
         </Typography>
       </ToggleButton>
-<<<<<<< HEAD
       <Board toggled={toggled}>
         <h1>Reach out to your community</h1>
         {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
@@ -67,30 +62,6 @@ export default () => {
         {isFetching && (
           <div className="spinner">
             <CircularProgress color="inherit" />
-=======
-    <Board toggled={toggled}>
-      <h1>Reach out to your community</h1>
-      {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
-      <h2>Chat Near You</h2>
-      {isFetching && (
-        <div className="spinner">
-          <CircularProgress color="inherit" />
-        </div>
-      )}
-      {sortedMessages.length > 0 && (
-        <>
-          <div className="card-container">
-            {sortedMessages.map(message => {
-              return (
-                <Card
-                    setToggled={setToggled}
-                  message={message}
-                  key={message.postId}
-                  forceRender={forceRender}
-                />
-              );
-            })}
->>>>>>> 9487742cc70926cbf817a756bc9af9c5fa520437
           </div>
         )}
         {sortedMessages.length > 0 && (

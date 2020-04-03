@@ -510,9 +510,6 @@ textarea.materialize-textarea {
     }
   }
 }
-<<<<<<< HEAD
-//message map icon styling
-=======
 //landing page map section//
 .chart-title {
   padding: 0 1rem;
@@ -529,7 +526,6 @@ textarea.materialize-textarea {
     }
   }
 }
->>>>>>> 9487742cc70926cbf817a756bc9af9c5fa520437
 .location-icon {
   font-size: 2.5rem;
   color: red;
@@ -596,4 +592,24 @@ textarea.materialize-textarea {
 // message-board styles
 .card-container {
   height: calc(100vh - 312px);
+}
+.new_paper {
+  @media screen and (max-width: $mediumTablet) {
+    font-size: 1.8rem;
+    width: auto;
+    border: 1px solid purple;
+  }
+  @media screen and (max-width: $bigPhone) {
+    position: absolute;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    font-size: 1.4rem;
+    border: 1px solid lime;
+  }
+  @media screen and (max-width: $iphoneX) {
+    font-size: 1.2rem;
+    width: auto;
+    border: 1px solid orange;
+  }
 }

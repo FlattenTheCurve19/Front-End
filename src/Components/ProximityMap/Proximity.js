@@ -32,6 +32,7 @@ const Proximity = props => {
 
   const coords = useSelector(state => state.messageBoard.userInfo);
   const msgs = useSelector(state => state.messageBoard.messages);
+  const selectedMsg = useSelector(state => state.messageBoard.setMsgs);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -159,6 +160,21 @@ const Proximity = props => {
       >
         {msgs.length &&
           msgs.map(elem => {
+            return (
+              <MapMarker
+                key={Math.floor(Math.random() * 1000000)}
+                className="location-icon"
+                lat={elem.geoLock.latitude}
+                lng={elem.geoLock.longitude}
+                msg={elem.postField}
+                avatarUrl={elem.avatar}
+                firstNameInit={elem.displayName && elem.displayName.charAt(0)}
+                time={elem.timeOfPost.seconds}
+              />
+            );
+          })}
+        {selectedMsg.length > 0 &&
+          selectedMsg.map(elem => {
             return (
               <MapMarker
                 key={Math.floor(Math.random() * 1000000)}

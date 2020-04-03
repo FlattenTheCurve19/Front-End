@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "./styles";
 import { useDispatch } from "react-redux";
-import { fetchCenter } from "../../Store/Actions/messageActions";
+import { fetchCenter, setMsgId } from "../../Store/Actions/messageActions";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { deletePost } from "../../_utils/firedbHelper";
@@ -51,12 +51,13 @@ export default ({ message, forceRender, setToggled }) => {
   }, []);
 
   const gotToMessage = () => {
-      setToggled(false);
+    setToggled(false);
     const center = {
       lat: message.geoLock.latitude,
       lng: message.geoLock.longitude
     };
     dispatch(fetchCenter(center));
+    dispatch(setMsgId(message.postId));
   };
 
   const handleClick = event => {

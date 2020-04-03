@@ -5,7 +5,8 @@ import {
   FETCHING_USER_COORDS,
   FETCHING_USER_BOUNDS,
   FETCH_CENTER,
-  FETCH_ZOOM
+  FETCH_ZOOM,
+  FETCH_MSG_ID
 } from "../Actions/messageActions";
 
 const initalState = {
@@ -26,7 +27,8 @@ const initalState = {
       lat: 39.164144105,
       lng: -98.876935313
     }
-  }
+  },
+  setMsgs: []
 };
 
 export const messageBoard = (state = initalState, { type, payload }) => {
@@ -74,6 +76,11 @@ export const messageBoard = (state = initalState, { type, payload }) => {
       return {
         ...state,
         userInfo: { ...state.userInfo, zoom: payload }
+      };
+    case FETCH_MSG_ID:
+      return {
+        ...state,
+        setMsgs: state.messages.filter(elem => elem.postId === payload)
       };
     default:
       return state;
