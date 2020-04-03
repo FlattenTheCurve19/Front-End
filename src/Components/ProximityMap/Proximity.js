@@ -21,7 +21,8 @@ import {
   fetchCoords,
   fetchBounds,
   fetchCenter,
-  fetchZoom
+  fetchZoom,
+  setMsgId
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
