@@ -13,6 +13,7 @@ import Menu from "@material-ui/core/Menu";
 import { useHistory } from "react-router-dom";
 import { ReactComponent as Logo } from "../../images/finallogo.svg";
 import fire from "../../_utils/firebase";
+import Avatar from "@material-ui/core/Avatar";
 
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   links: {
     textDecoration: "none",
     width: "",
-    margin: "0 0.7rem"
+    margin: "0 0.5rem"
   },
   medTitle: {
     marginLeft: 10,
@@ -60,7 +61,6 @@ const NavigationBar = props => {
   useEffect(() => {
     props.user && props.user.user !== null && setUserIsLogged(true);
   }, [props.user]);
-  console.log(userIsLogged);
 
   return (
     <div className={classes.root}>
@@ -102,21 +102,14 @@ const NavigationBar = props => {
                 Log Out
               </MenuItem>
             )}
-            <MenuItem 
+
+            <MenuItem
               onClick={() => {
-                handleClose(); 
-                history.push("/about");
-              }}
-              >
-                About Us
-            </MenuItem>
-            <MenuItem 
-              onClick={() => {
-                handleClose(); 
+                handleClose();
                 history.push("message-map-page");
               }}
-              >
-                Chat Near You
+            >
+              Chat Near You
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -124,13 +117,22 @@ const NavigationBar = props => {
                 history.push("twitter-feed");
               }}
             >
-                Live Tweets
+              Live Tweets
             </MenuItem>
-
-
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                history.push("/about");
+              }}
+            >
+              About Us
+            </MenuItem>
           </Menu>
           <div className="logo-div">
-            <Logo height={28} />
+            <NavLink className={classes.links} to="/">
+              <Logo height={28} />
+            </NavLink>
+
             <NavLink className={classes.links} to="/">
               <Typography>Flatten The Curve</Typography>
             </NavLink>
@@ -142,12 +144,26 @@ const NavigationBar = props => {
                   Login
                 </NavLink>
               </div>
+            ) : props.user.user ? (
+              <div className="profile-sec">
+                <p>
+                  {props.user.user.displayName
+                    ? props.user.user.displayName
+                        .split(" ")
+                        .splice(0, 1)
+                        .join()
+                    : null}
+                </p>
+                <img
+                  className="google-pic"
+                  src={props.user.user.photoURL}
+                  alt="dashboard link"
+                />
+              </div>
             ) : (
-              <div>
-                <NavLink style={{marginLeft: "0"}} className={classes.links} to="/">
-                   Home
-                </NavLink>
-              </div>         
+              <NavLink className={classes.links} to="/dashboard">
+                <Avatar />
+              </NavLink>
             )}
           </div>
         </Toolbar>

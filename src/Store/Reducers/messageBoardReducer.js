@@ -4,7 +4,9 @@ import {
   FETCHING_MESSAGES_ERROR,
   FETCHING_USER_COORDS,
   FETCHING_USER_BOUNDS,
-  FETCH_CENTER
+  FETCH_CENTER,
+  FETCH_ZOOM,
+  FETCH_MSG_ID
 } from "../Actions/messageActions";
 
 const initalState = {
@@ -14,6 +16,7 @@ const initalState = {
   userInfo: {
     latitude: 39.164144105,
     longitude: -98.876935313,
+    zoom: 3,
     bounds: {
       nw: {
         lat: 39.164144105,
@@ -24,7 +27,8 @@ const initalState = {
       lat: 39.164144105,
       lng: -98.876935313
     }
-  }
+  },
+  toggleMsgId: null
 };
 
 export const messageBoard = (state = initalState, { type, payload }) => {
@@ -67,6 +71,16 @@ export const messageBoard = (state = initalState, { type, payload }) => {
       return {
         ...state,
         userInfo: { ...state.userInfo, center: payload }
+      };
+    case FETCH_ZOOM:
+      return {
+        ...state,
+        userInfo: { ...state.userInfo, zoom: payload }
+      };
+    case FETCH_MSG_ID:
+      return {
+        ...state,
+        setMsgs: payload
       };
     default:
       return state;

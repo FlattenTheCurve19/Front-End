@@ -6,7 +6,8 @@ const csv = require("csv/lib/sync");
 
 export const setInitialData = () => dispatch => {
   const currentDate = moment().format("MM-DD-YYYY")
-  getCovidCSV(currentDate);
+  const yesterdayDate = moment(currentDate, 'MM-DD-YYYY').subtract(1, "days").format("MM-DD-YYYY");
+  getCovidCSV(yesterdayDate);
   function getCovidCSV(date){
     axios
       .get(
@@ -24,7 +25,7 @@ export const setInitialData = () => dispatch => {
             obj = {
               ...obj,
               [item.Province_State]: {
-                fips: item.FIPS.substring(0, 2),
+                fips: !obj[item.Province_State] ? item.FIPS.substring(0, 2) : obj[item.Province_State].fips,
                 confirmed:
                   obj[item.Province_State] && obj[item.Province_State].confirmed
                     ? obj[item.Province_State].confirmed +
@@ -51,7 +52,7 @@ export const setInitialData = () => dispatch => {
         console.error(err.message);
         let daysFromNow = Number(moment().format('DD')) - Number(moment(date).format('DD'));
         if(daysFromNow < 10){
-          getCovidCSV(moment(date).subtract(1, "days").format("MM-DD-YYYY"));
+          getCovidCSV(moment(date, 'MM-DD-YYYY').subtract(1, "days").format("MM-DD-YYYY"));
         }
       });
   };

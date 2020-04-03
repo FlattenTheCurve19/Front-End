@@ -1,20 +1,33 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 // Component Imports
-import MessageBoard from '../Components/MessageBoard';
-import MessageMap from '../Components/ProximityMap/Proximity';
+import MessageBoard from "../Components/MessageBoard";
+import Proximity from "../Components/ProximityMap/Proximity";
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+// We listen to the resize event
+window.addEventListener("resize", () => {
+  // We execute the same script as before
+});
 
 const Page = styled.section`
-    height: calc(100vh - 64px);
-    display: flex;
+  height: calc(100vh - 43px);
+  display: flex;
+  overflow: hidden;
+
+  @media all and (max-width: 500px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 `;
 
 export default () => {
-    return(
-        <Page>
-            <MessageBoard/>
-            <MessageMap/>
-        </Page>
-    );
-}
+  return (
+    <Page>
+      <MessageBoard />
+      <Proximity />
+    </Page>
+  );
+};

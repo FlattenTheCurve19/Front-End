@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 // Add the Firebase services that you want to use
-import { fireDB } from "./_utils/firebase";
 import "firebase/firestore";
-import axios from "axios";
 import { createPost, deletePost } from "./_utils/firedbHelper";
 
 const TestFeed = () => {
