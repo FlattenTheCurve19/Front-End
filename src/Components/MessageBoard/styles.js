@@ -47,6 +47,13 @@ export const Board = styled(Paper)`
     .card-container{
         height: calc(100vh - 380px);
         overflow: scroll;
+        ::-webkit-scrollbar-track {
+            background: white;
+            border: none;
+        }
+    }
+    .null-message{
+        text-align: center;
     }
 
     @media all and (max-width: 500px){
