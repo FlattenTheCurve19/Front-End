@@ -107,12 +107,8 @@ const Proximity = props => {
           lat: coords && coords.center.lat,
           lng: coords && coords.center.lng
         }}
-<<<<<<< HEAD
         defaultZoom={5}
         onClick={() => dispatch(setMsgId())}
-=======
-        defaultZoom={3}
->>>>>>> master
         zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchZoom(zoom));
@@ -200,11 +196,7 @@ const Proximity = props => {
             onChange={searchHandler}
             onSelect={handleSelect}
           >
-            {({
-              getInputProps,
-              suggestions,
-              getSuggestionItemProps,
-            }) => (
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
               <div>
                 <InputWrapper
                   {...getInputProps({
@@ -257,7 +249,7 @@ const Proximity = props => {
 };
 
 const StyledMap = styled.div`
-  height:100%;
+  height: 100%;
   width: 100%;
   margin: auto;
 `;

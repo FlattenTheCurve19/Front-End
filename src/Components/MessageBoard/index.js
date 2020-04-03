@@ -83,22 +83,6 @@ export default () => {
             </div>
           </>
         )}
-        {sortedMessages.length > 0 && (
-          <>
-            <div className="card-container">
-              {sortedMessages.map(message => {
-                return (
-                  <Card
-                    setToggled={setToggled}
-                    message={message}
-                    key={message.postId}
-                    forceRender={forceRender}
-                  />
-                );
-              })}
-            </div>
-          </>
-        )}
         <AddMessage forceRender={forceRender} />
         {error && (
           <p className="error">There was an error fetching the data: {error}</p>
