@@ -5,7 +5,7 @@ import theme from '../../Styles/theme';
 
 export const Board = styled(Paper)`
     position: relative;
-    padding-top: 30px;
+    padding: 30px 20px 0 20px;
     width: 400px;
     min-width: 400px;
     max-width: 600px;
@@ -45,13 +45,19 @@ export const Board = styled(Paper)`
         text-align: center;
     }
     .card-container{
-        height: calc(100vh - 380px);
         overflow: scroll;
+        ::-webkit-scrollbar-track {
+            background: white;
+            border: none;
+        }
+    }
+    .null-message{
+        text-align: center;
     }
 
     @media all and (max-width: 500px){
         position: fixed;
-        top: ${props => props.toggled ? '43px' : '100vh'};
+        top: ${props => props.toggled };
         background: white;
         z-index: 2;
         width: 100%;
@@ -97,12 +103,23 @@ export const ToggleButton = styled(Paper)`
     bottom: 0;
     width: 100%;
     text-align: center;
-    padding: 2px 0;
+    padding: 10px 0;
     justify-content: center;
     align-items: center;
+    width: 200px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: .5s bottom;
+
 
     @media all and (min-width: 500px){
         display: none;
+    }
+
+    span {
+        @media all and (max-width: 500px){
+            margin-left: 5px;
+        }
     }
 `;
 
@@ -113,7 +130,7 @@ export const Form = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0 20px;
-    margin-top: 70px;
+    margin-top: 10px;
     height: 76px; 
     form{
         width: 100%;

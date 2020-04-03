@@ -6,7 +6,7 @@ const csv = require("csv/lib/sync");
 
 export const setInitialData = () => dispatch => {
   const currentDate = moment().format("MM-DD-YYYY")
-  const yesterdayDate = moment(currentDate).subtract(1, "days").format("MM-DD-YYYY");
+  const yesterdayDate = moment(currentDate, 'MM-DD-YYYY').subtract(1, "days").format("MM-DD-YYYY");
   getCovidCSV(yesterdayDate);
   function getCovidCSV(date){
     axios
@@ -43,7 +43,6 @@ export const setInitialData = () => dispatch => {
               }
             };
           });
-          console.log(obj);
         dispatch({
           type: SET_INITIAL_DATA,
           payload: obj
@@ -53,7 +52,7 @@ export const setInitialData = () => dispatch => {
         console.error(err.message);
         let daysFromNow = Number(moment().format('DD')) - Number(moment(date).format('DD'));
         if(daysFromNow < 10){
-          getCovidCSV(moment(date).subtract(1, "days").format("MM-DD-YYYY"));
+          getCovidCSV(moment(date, 'MM-DD-YYYY').subtract(1, "days").format("MM-DD-YYYY"));
         }
       });
   };

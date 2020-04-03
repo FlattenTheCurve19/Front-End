@@ -61,8 +61,6 @@ const NavigationBar = props => {
   useEffect(() => {
     props.user && props.user.user !== null && setUserIsLogged(true);
   }, [props.user]);
-  console.log(userIsLogged);
-  console.log(props.user);
 
   return (
     <div className={classes.root}>
@@ -149,12 +147,19 @@ const NavigationBar = props => {
             ) : props.user.user ? (
               <div className="profile-sec">
                 <p>
+<<<<<<< HEAD
                   {props.user.user.displayName
                     ? props.user.user.displayName
                         .split(" ")
                         .splice(0, 1)
                         .join()
                     : null}
+=======
+                  {props.user.user.displayName ? props.user.user.displayName
+                    .split(" ")
+                    .splice(0, 1)
+                    .join() : null}
+>>>>>>> master
                 </p>
                 <img
                   className="google-pic"

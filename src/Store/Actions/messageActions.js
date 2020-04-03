@@ -50,6 +50,7 @@ export const messageGetter = (geoPoint, userInfo) => dispatch => {
 ///need another get request for the id aviator
 export const messageSetter = object => {
   //action creator so a auth user can post a message
+<<<<<<< HEAD
   createPost(
     object.displayName,
     object.UUID,
@@ -60,6 +61,16 @@ export const messageSetter = object => {
   );
   {
   }
+=======
+    createPost(
+      object.displayName,
+      object.UUID,
+      object.postField,
+      object.geoLock.longitude,
+      object.geoLock.latitude,
+      object.avatar
+    )
+>>>>>>> master
 };
 export const fetchCoords = coords => {
   return {
