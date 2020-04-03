@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 
 // Component Imports
@@ -13,8 +13,6 @@ const Page = styled.section`
   @media all and (max-width: 500px) {
     flex-direction: column-reverse;
   }
-
-  
 `;
 
 export default () => {

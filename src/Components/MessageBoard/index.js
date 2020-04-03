@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { messageGetter } from "../../Store/Actions/messageActions";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 
 // Component Imports
 import Card from "./Card";
@@ -52,7 +52,7 @@ export default () => {
       <ToggleButton onClick={() => setToggled(!toggled)}>
           <Menu /><Typography variant="button">{toggled ? 'Show Map' : 'Show Messages'}</Typography>
       </ToggleButton>
-    <Board toggled={toggled}>
+    <Board toggled={toggled ? '43px' : '100vh'}>
       <h1>Reach out to your community</h1>
       {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
       <h2>Chat Near You</h2>

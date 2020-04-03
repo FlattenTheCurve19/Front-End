@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import { geolocated } from "react-geolocated";
-import { GeoFirestore } from "geofirestore";
 import MapMarker from "./MapMarker";
-import { fireDB } from "../../_utils/firebase";
 import {
   Paper,
   InputBase,
@@ -27,14 +25,10 @@ import {
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
-  const geofirestore = new GeoFirestore(fireDB);
-  const geoCollection = geofirestore.collection("post");
-
   const coords = useSelector(state => state.messageBoard.userInfo);
   const msgs = useSelector(state => state.messageBoard.messages);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const [rZoom, setRZoom] = useState();
 
   useEffect(() => {
     if (props.coords && props.coords.latitude && props.coords.longitude) {
@@ -105,14 +99,14 @@ const Proximity = props => {
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
         defaultCenter={{
-          lat: coords && coords.latitude,
-          lng: coords && coords.longitude
+          lat: 36.9645056048637,
+          lng: -99.68471236809506
         }}
         center={{
           lat: coords && coords.center.lat,
           lng: coords && coords.center.lng
         }}
-        defaultZoom={5}
+        defaultZoom={3}
         zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchZoom(zoom));
@@ -185,7 +179,6 @@ const Proximity = props => {
               getInputProps,
               suggestions,
               getSuggestionItemProps,
-              loading
             }) => (
               <div>
                 <InputWrapper

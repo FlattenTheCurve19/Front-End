@@ -51,7 +51,7 @@ export const Board = styled(Paper)`
 
     @media all and (max-width: 500px){
         position: fixed;
-        top: ${props => props.toggled ? '43px' : '100vh'};
+        top: ${props => props.toggled };
         background: white;
         z-index: 2;
         width: 100%;
