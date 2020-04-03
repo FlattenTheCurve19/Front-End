@@ -107,12 +107,7 @@ const Proximity = props => {
           lat: coords && coords.center.lat,
           lng: coords && coords.center.lng
         }}
-<<<<<<< HEAD
-        defaultZoom={5}
-        onClick={() => dispatch(setMsgId())}
-=======
         defaultZoom={3}
->>>>>>> master
         zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchZoom(zoom));

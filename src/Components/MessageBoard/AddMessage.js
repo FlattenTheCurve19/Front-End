@@ -35,15 +35,10 @@ export default ({ forceRender }) => {
     });
   }, []);
 
-<<<<<<< HEAD
-  const submitForm = (data, e) => {
-    reset({ message: "" });
-=======
   const submitForm = data => {
     reset({
       message: ""
     });
->>>>>>> master
     // Also check to see if a location has been added
     // const lat = userInfo.latitude;
     // const long = userInfo.longitude;
@@ -79,23 +74,6 @@ export default ({ forceRender }) => {
         <p>Message cannot exceed 100 characters</p>
       )}
       <form onSubmit={handleSubmit(submitForm)}>
-<<<<<<< HEAD
-        <Controller
-          id="standard-basic"
-          label="Need help or want to offer help?"
-          as={<TextField />}
-          name="message"
-          rules={{
-            required: true,
-            minLength: 3,
-            maxLength: 50
-          }}
-          control={control}
-        />
-        <div className="btn-container">
-          <button type="submit">Add Message</button>
-        </div>
-=======
         <FormControl>
           <InputLabel htmlFor="message">Message</InputLabel>
           <div style={{ display: "flex", flexWrap: "nowrap" }}>
@@ -119,7 +97,6 @@ export default ({ forceRender }) => {
             </IconButton>
           </div>
         </FormControl>
->>>>>>> master
       </form>
     </Form>
   );
