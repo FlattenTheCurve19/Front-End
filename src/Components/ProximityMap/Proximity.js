@@ -23,7 +23,8 @@ import {
   fetchCoords,
   fetchBounds,
   fetchCenter,
-  fetchZoom
+  fetchZoom,
+  setMsgId
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
@@ -32,7 +33,6 @@ const Proximity = props => {
 
   const coords = useSelector(state => state.messageBoard.userInfo);
   const msgs = useSelector(state => state.messageBoard.messages);
-  const selectedMsg = useSelector(state => state.messageBoard.setMsgs);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -113,6 +113,7 @@ const Proximity = props => {
           lng: coords && coords.center.lng
         }}
         defaultZoom={5}
+        onClick={() => dispatch(setMsgId())}
         zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchZoom(zoom));
@@ -139,13 +140,31 @@ const Proximity = props => {
         onGoogleApiLoaded={({ map, maps }) => {
           new maps.Marker({
             icon: {
-              strokeColor: "#FF0000",
+              strokeColor: "#FFFFFF",
               strokeOpacity: 0.7,
               strokeWeight: 2,
-              fillColor: "#FF0000",
-              fillOpacity: 0.3,
+              fillColor: "#4285F4",
+              fillOpacity: 1,
               path: maps.SymbolPath.CIRCLE,
-              scale: 40,
+              scale: 8,
+              anchor: new maps.Point(0, 0)
+            },
+            map,
+            position: {
+              lat: coords.latitude,
+              lng: coords.longitude
+            },
+            zIndex: -1
+          });
+          new maps.Marker({
+            icon: {
+              strokeColor: "transparent",
+              strokeOpacity: 0.7,
+              strokeWeight: 0,
+              fillColor: "#4285F4",
+              fillOpacity: 0.2,
+              path: maps.SymbolPath.CIRCLE,
+              scale: 20,
               anchor: new maps.Point(0, 0)
             },
             map,
@@ -170,21 +189,7 @@ const Proximity = props => {
                 avatarUrl={elem.avatar}
                 firstNameInit={elem.displayName && elem.displayName.charAt(0)}
                 time={elem.timeOfPost.seconds}
-              />
-            );
-          })}
-        {selectedMsg.length > 0 &&
-          selectedMsg.map(elem => {
-            return (
-              <MapMarker
-                key={Math.floor(Math.random() * 1000000)}
-                className="location-icon"
-                lat={elem.geoLock.latitude}
-                lng={elem.geoLock.longitude}
-                msg={elem.postField}
-                avatarUrl={elem.avatar}
-                firstNameInit={elem.displayName && elem.displayName.charAt(0)}
-                time={elem.timeOfPost.seconds}
+                id={elem.postId}
               />
             );
           })}

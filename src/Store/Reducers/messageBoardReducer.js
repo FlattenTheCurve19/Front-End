@@ -28,7 +28,7 @@ const initalState = {
       lng: -98.876935313
     }
   },
-  setMsgs: []
+  toggleMsgId: null
 };
 
 export const messageBoard = (state = initalState, { type, payload }) => {
@@ -80,7 +80,7 @@ export const messageBoard = (state = initalState, { type, payload }) => {
     case FETCH_MSG_ID:
       return {
         ...state,
-        setMsgs: state.messages.filter(elem => elem.postId === payload)
+        setMsgs: payload
       };
     default:
       return state;
