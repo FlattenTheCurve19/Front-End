@@ -49,7 +49,6 @@ export const messageGetter = (geoPoint, userInfo) => dispatch => {
 ///need another get request for the id aviator
 export const messageSetter = object => {
   //action creator so a auth user can post a message
-  if (
     createPost(
       object.displayName,
       object.UUID,
@@ -58,11 +57,6 @@ export const messageSetter = object => {
       object.geoLock.latitude,
       object.avatar
     )
-  ) {
-    messageGetter();
-  } else {
-    console.log("error");
-  }
 };
 export const fetchCoords = coords => {
   return {

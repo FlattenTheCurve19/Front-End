@@ -15,7 +15,7 @@ const initalState = {
   userInfo: {
     latitude: 39.164144105,
     longitude: -98.876935313,
-    zoom: 5,
+    zoom: 3,
     bounds: {
       nw: {
         lat: 39.164144105,

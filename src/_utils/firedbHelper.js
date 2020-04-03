@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { fireDB } from "./firebase";
 import "firebase/firestore";
 import { GeoFirestore } from "geofirestore";
@@ -25,19 +25,6 @@ export const createPost = (
   lat,
   avatar
 ) => {
-  // fireDB
-  //   .collection("post")
-  //   .doc()
-  //   .set({
-  //     ...post,
-  //     displayName: user,
-  //     userUUID: uuid,
-  //     postField: postfield,
-  //     geoLock: new firebase.firestore.GeoPoint(lat, long)
-  //   })
-  //   .then(() => {
-  //     console.log("Document successfully written!");
-  //   })
   geocollection.add({
     ...post,
     displayName: user,
@@ -49,7 +36,8 @@ export const createPost = (
     },
     coordinates: new firebase.firestore.GeoPoint(lat, long),
     avatar: avatar
-  });
+  })
+  .catch(err => console.error('Error', err.message));
 };
 
 export const deletePost = postID => {
