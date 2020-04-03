@@ -5,7 +5,7 @@ import theme from '../../Styles/theme';
 
 export const Board = styled(Paper)`
     position: relative;
-    padding-top: 30px;
+    padding: 30px 20px 0 20px;
     width: 400px;
     min-width: 400px;
     max-width: 600px;
