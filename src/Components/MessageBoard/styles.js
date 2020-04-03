@@ -115,6 +115,12 @@ export const ToggleButton = styled(Paper)`
     @media all and (min-width: 500px){
         display: none;
     }
+
+    span {
+        @media all and (max-width: 500px){
+            margin-left: 5px;
+        }
+    }
 `;
 
 export const Form = styled.div`
