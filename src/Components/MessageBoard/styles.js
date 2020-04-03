@@ -104,9 +104,13 @@ export const ToggleButton = styled(Paper)`
     bottom: 0;
     width: 100%;
     text-align: center;
-    padding: 2px 0;
+    padding: 10px 0;
     justify-content: center;
     align-items: center;
+    width: 200px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
 
     @media all and (min-width: 500px){
         display: none;
