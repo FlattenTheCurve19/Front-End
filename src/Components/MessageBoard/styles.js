@@ -45,7 +45,6 @@ export const Board = styled(Paper)`
         text-align: center;
     }
     .card-container{
-        height: calc(100vh - 380px);
         overflow: scroll;
         ::-webkit-scrollbar-track {
             background: white;
@@ -110,6 +109,7 @@ export const ToggleButton = styled(Paper)`
     width: 200px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    transition: .5s bottom;
 
 
     @media all and (min-width: 500px){
@@ -130,7 +130,7 @@ export const Form = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0 20px;
-    margin-top: 70px;
+    margin-top: 10px;
     height: 76px; 
     form{
         width: 100%;

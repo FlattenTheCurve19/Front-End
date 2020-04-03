@@ -10,7 +10,14 @@ import { useSelector } from "react-redux";
 import { Form } from "./styles";
 
 // Material UI Imports
-import TextField from "@material-ui/core/TextField";
+import {
+  FormControl,
+  Input,
+  InputLabel,
+  IconButton,
+  InputAdornment
+} from "@material-ui/core";
+import { Send } from "@material-ui/icons";
 
 export default ({ forceRender }) => {
   const { handleSubmit, errors, control, reset } = useForm({ message: "" });
@@ -28,9 +35,9 @@ export default ({ forceRender }) => {
     });
   }, []);
 
-  const submitForm = (data) => {
+  const submitForm = data => {
     reset({
-      message: ''
+      message: ""
     });
     // Also check to see if a location has been added
     // const lat = userInfo.latitude;
@@ -66,24 +73,30 @@ export default ({ forceRender }) => {
       {errors.message && errors.message.type === "maxLength" && (
         <p>Message cannot exceed 100 characters</p>
       )}
-      <form
-        onSubmit={handleSubmit(submitForm)}
-      >
-        <Controller
-          id="standard-basic"
-          label="Need help or want to offer help?"
-          as={<TextField />}
-          name="message"
-          rules={{
-            required: true,
-            minLength: 3,
-            maxLength: 50
-          }}
-          control={control}
-        />
-        <div className="btn-container">
-          <button type="submit">Add Message</button>
-        </div>
+      <form onSubmit={handleSubmit(submitForm)}>
+        <FormControl>
+          <InputLabel htmlFor="message">Message</InputLabel>
+          <div style={{ display: "flex", flexWrap: "nowrap" }}>
+            <Controller
+              style={{ width: "100%" }}
+              id="message"
+              as={<Input />}
+              name="message"
+              rules={{
+                required: true,
+                minLength: 3,
+                maxLength: 50
+              }}
+              control={control}
+            />
+            <IconButton
+              aria-label="toggle password visibility"
+              type="submit"
+            >
+              <Send />
+            </IconButton>
+          </div>
+        </FormControl>
       </form>
     </Form>
   );

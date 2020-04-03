@@ -95,7 +95,7 @@ const Proximity = props => {
   };
 
   return (
-    <div style={{ height: "100%", width: "100%", margin: "auto" }}>
+    <StyledMap>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
         defaultCenter={{
@@ -227,9 +227,15 @@ const Proximity = props => {
           </IconButton>
         </Paper>
       </MyLocationWrapper>
-    </div>
+    </StyledMap>
   );
 };
+
+const StyledMap = styled.div`
+  height:100%;
+  width: 100%;
+  margin: auto;
+`;
 
 const SearchBarWrapper = styled.div`
   position: absolute;

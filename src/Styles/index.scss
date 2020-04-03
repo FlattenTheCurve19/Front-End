@@ -103,6 +103,16 @@ section {
 }
 body {
   line-height: 1;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
 }
 ol,
 ul {
@@ -590,5 +600,5 @@ textarea.materialize-textarea {
 }
 // message-board styles
 .card-container {
-  height: calc(100vh - 312px);
+  max-height: calc(100vh - 350px);
 }
