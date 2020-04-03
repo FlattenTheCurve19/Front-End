@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar } from "@material-ui/core";
 import styled from "styled-components";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
@@ -31,7 +31,6 @@ const MapMarker = props => {
   const timeToDate = time => {
     return new Date(time * 1000).toString();
   };
-  const [click, setClick] = useState(false);
 
   return (
     <>

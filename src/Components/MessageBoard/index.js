@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { messageGetter, setMsgId } from "../../Store/Actions/messageActions";
-import * as firebase from "firebase";
+import { messageGetter } from "../../Store/Actions/messageActions";
+import * as firebase from "firebase/app";
 
 // Component Imports
 import Card from "./Card";
@@ -14,7 +14,7 @@ import { Menu } from "@material-ui/icons";
 import { Typography } from "@material-ui/core";
 
 export default () => {
-  const { messages, isFetching, error, userInfo, setMsgs } = useSelector(
+  const { messages, isFetching, error, userInfo } = useSelector(
     state => state.messageBoard
   );
   const [sortedMessages, setSortedMessages] = useState([]);
