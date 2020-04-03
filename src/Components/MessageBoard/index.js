@@ -10,7 +10,7 @@ import { Board, ToggleButton } from "./styles";
 
 // Material UI Imports
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Menu } from '@material-ui/icons';
+import { Menu } from "@material-ui/icons";
 import { Typography } from "@material-ui/core";
 
 export default () => {
@@ -48,43 +48,46 @@ export default () => {
   };
 
   return (
-      <>
+    <>
       <ToggleButton onClick={() => setToggled(!toggled)}>
-          <Menu /><Typography variant="button">{toggled ? 'Show Map' : 'Show Messages'}</Typography>
+        <Menu />
+        <Typography variant="button">
+          {toggled ? "Show Map" : "Show Messages"}
+        </Typography>
       </ToggleButton>
-    <Board toggled={toggled ? '43px' : '100vh'}>
-      <h1>Reach out to your community</h1>
-      {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
-      <h2>Chat Near You</h2>
-      {isFetching && (
-        <div className="spinner">
-          <CircularProgress color="inherit" />
-        </div>
-      )}
-      {sortedMessages.length < 1 && (
-        <p className='null-message'>There are no messages in this area</p>
-      )}
-      {sortedMessages.length > 0 && (
-        <>
-          <div className="card-container">
-            {sortedMessages.map(message => {
-              return (
-                <Card
-                    setToggled={setToggled}
-                  message={message}
-                  key={message.postId}
-                  forceRender={forceRender}
-                />
-              );
-            })}
+      <Board toggled={toggled ? "43px" : "100vh"}>
+        <h1>Reach out to your community</h1>
+        {/* <p>Whether you are in need of assitance, or can offer a helping hand</p> */}
+        <h2>Chat Near You</h2>
+        {isFetching && (
+          <div className="spinner">
+            <CircularProgress color="inherit" />
           </div>
-        </>
-      )}
-      <AddMessage forceRender={forceRender} />
-      {error && (
-        <p className="error">There was an error fetching the data: {error}</p>
-      )}
-    </Board>
+        )}
+        {sortedMessages.length < 1 && (
+          <p className="null-message">There are no messages in this area</p>
+        )}
+        {sortedMessages.length > 0 && (
+          <>
+            <div className="card-container">
+              {sortedMessages.map(message => {
+                return (
+                  <Card
+                    setToggled={setToggled}
+                    message={message}
+                    key={message.postId}
+                    forceRender={forceRender}
+                  />
+                );
+              })}
+            </div>
+          </>
+        )}
+        <AddMessage forceRender={forceRender} />
+        {error && (
+          <p className="error">There was an error fetching the data: {error}</p>
+        )}
+      </Board>
     </>
   );
 };

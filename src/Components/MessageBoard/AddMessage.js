@@ -15,7 +15,6 @@ import {
   Input,
   InputLabel,
   IconButton,
-  InputAdornment
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
@@ -89,10 +88,7 @@ export default ({ forceRender }) => {
               }}
               control={control}
             />
-            <IconButton
-              aria-label="toggle password visibility"
-              type="submit"
-            >
+            <IconButton aria-label="toggle password visibility" type="submit">
               <Send />
             </IconButton>
           </div>

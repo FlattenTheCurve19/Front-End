@@ -21,7 +21,8 @@ import {
   fetchCoords,
   fetchBounds,
   fetchCenter,
-  fetchZoom
+  fetchZoom,
+  setMsgId
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
@@ -106,7 +107,8 @@ const Proximity = props => {
           lat: coords && coords.center.lat,
           lng: coords && coords.center.lng
         }}
-        defaultZoom={3}
+        defaultZoom={5}
+        onClick={() => dispatch(setMsgId())}
         zoom={coords && coords.zoom}
         onChange={({ center, zoom, bounds, marginBounds }) => {
           dispatch(fetchZoom(zoom));
@@ -133,13 +135,31 @@ const Proximity = props => {
         onGoogleApiLoaded={({ map, maps }) => {
           new maps.Marker({
             icon: {
-              strokeColor: "#FF0000",
+              strokeColor: "#FFFFFF",
               strokeOpacity: 0.7,
               strokeWeight: 2,
-              fillColor: "#FF0000",
-              fillOpacity: 0.3,
+              fillColor: "#4285F4",
+              fillOpacity: 1,
               path: maps.SymbolPath.CIRCLE,
-              scale: 40,
+              scale: 8,
+              anchor: new maps.Point(0, 0)
+            },
+            map,
+            position: {
+              lat: coords.latitude,
+              lng: coords.longitude
+            },
+            zIndex: -1
+          });
+          new maps.Marker({
+            icon: {
+              strokeColor: "transparent",
+              strokeOpacity: 0.7,
+              strokeWeight: 0,
+              fillColor: "#4285F4",
+              fillOpacity: 0.2,
+              path: maps.SymbolPath.CIRCLE,
+              scale: 20,
               anchor: new maps.Point(0, 0)
             },
             map,
@@ -150,7 +170,7 @@ const Proximity = props => {
             zIndex: -1
           });
         }}
-        options={{ draggableCursor: "default", zIndex: 0 }}
+        options={{ draggableCursor: "default" }}
       >
         {msgs.length &&
           msgs.map(elem => {
@@ -164,6 +184,7 @@ const Proximity = props => {
                 avatarUrl={elem.avatar}
                 firstNameInit={elem.displayName && elem.displayName.charAt(0)}
                 time={elem.timeOfPost.seconds}
+                id={elem.postId}
               />
             );
           })}
@@ -175,11 +196,7 @@ const Proximity = props => {
             onChange={searchHandler}
             onSelect={handleSelect}
           >
-            {({
-              getInputProps,
-              suggestions,
-              getSuggestionItemProps,
-            }) => (
+            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
               <div>
                 <InputWrapper
                   {...getInputProps({
@@ -220,19 +237,19 @@ const Proximity = props => {
           </PlacesAutocomplete>
         </Paper>
       </SearchBarWrapper>
-      <MyLocationWrapper>
+      {props.isGeolocationEnabled && <MyLocationWrapper>
         <Paper>
           <IconButton onClick={goToMyLocation}>
             <MyLocation />
           </IconButton>
         </Paper>
-      </MyLocationWrapper>
+      </MyLocationWrapper>}
     </StyledMap>
   );
 };
 
 const StyledMap = styled.div`
-  height:100%;
+  height: 100%;
   width: 100%;
   margin: auto;
 `;
@@ -242,7 +259,7 @@ const SearchBarWrapper = styled.div`
   top: 74px;
   left: 410px;
 
-  @media all and (max-width: 500px){
+  @media all and (max-width: 500px) {
     top: 64px;
     left: 10px;
     z-index: 1;
@@ -264,8 +281,6 @@ const MyLocationWrapper = styled.div`
   button {
     padding: 7px;
   }
-
-  
 `;
 
 export default geolocated({

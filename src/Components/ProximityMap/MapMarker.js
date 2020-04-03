@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Avatar } from "@material-ui/core";
 import styled from "styled-components";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import { setMsgId } from "../../Store/Actions/messageActions";
+import { useSelector, useDispatch } from "react-redux";
 
 export const NewPaper = styled.div`
    {
@@ -17,60 +19,67 @@ export const NewPaper = styled.div`
     font-size: 1.2rem;
     text-align: center;
     border-radius: 10px;
+    position: fixed;
+    z-index: 1000000000;
   }
 `;
 
 const MapMarker = props => {
+  const selectedMsg = useSelector(state => state.messageBoard.setMsgs);
+  const dispatch = useDispatch();
+
   const timeToDate = time => {
     return new Date(time * 1000).toString();
   };
-  const [click, setClick] = useState(false);
 
   return (
     <>
       <LocationOnIcon
         className="location-icon"
-        onClick={() => setClick(!click)}
-        onMouseLeave={() => click && setClick(!click)}
+        onClick={() => dispatch(setMsgId(props.id))}
+        onMouseLeave={() => dispatch(setMsgId())}
         id={Math.floor(Math.random() * 100000)}
         lat={props.lat}
         lng={props.lng}
       />
-      {click && (
-        <NewPaper>
-          <div
-            style={{
-              width: "80%",
-              margin: "auto",
-              padding: "2% 0",
-              borderBottom: "1px solid black",
-              display: "flex",
-              justifyContent: "space-between"
-            }}
-          >
+      {selectedMsg === props.id && (
+        <div className="new_paper">
+          <NewPaper>
             <div
               style={{
-                fontSize: "1rem",
-                color: "black",
+                width: "80%",
+                margin: "auto",
+                padding: "2% 0",
+                borderBottom: "1px solid black",
                 display: "flex",
-                alignItems: "center"
+                justifyContent: "space-between",
+                zIndex: "100000"
               }}
             >
-              <p>
-                {timeToDate(props.time)
-                  .split(" ")
-                  .slice(0, 3)
-                  .join(" ")}
-              </p>
+              <div
+                style={{
+                  fontSize: "1rem",
+                  color: "black",
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
+                <p>
+                  {timeToDate(props.time)
+                    .split(" ")
+                    .slice(0, 3)
+                    .join(" ")}
+                </p>
+              </div>
+              <div className="map-avatar">
+                <Avatar variant="circle" src={props.avatarUrl}>
+                  {props.firstNameInit}
+                </Avatar>
+              </div>
             </div>
-            <div className="map-avatar">
-              <Avatar variant="circle" src={props.avatarUrl}>
-                {props.firstNameInit}
-              </Avatar>
-            </div>
-          </div>
-          <div className="map-text"> {'"' + props.msg + '"'}</div>
-        </NewPaper>
+            <div className="map-text"> {'"' + props.msg + '"'}</div>
+          </NewPaper>
+        </div>
       )}
     </>
   );

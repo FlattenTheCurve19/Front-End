@@ -5,10 +5,10 @@ import styled from "styled-components";
 import MessageBoard from "../Components/MessageBoard";
 import Proximity from "../Components/ProximityMap/Proximity";
 let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`)
+document.documentElement.style.setProperty("--vh", `${vh}px`);
 
 // We listen to the resize event
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   // We execute the same script as before
 });
 
@@ -25,7 +25,7 @@ const Page = styled.section`
 
 export default () => {
   return (
-    <Page >
+    <Page>
       <MessageBoard />
       <Proximity />
     </Page>
