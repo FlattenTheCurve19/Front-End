@@ -49,7 +49,8 @@ export const createPost = (
     },
     coordinates: new firebase.firestore.GeoPoint(lat, long),
     avatar: avatar
-  });
+  })
+  .catch(err => console.error('Error', err.message));
 };
 
 export const deletePost = postID => {

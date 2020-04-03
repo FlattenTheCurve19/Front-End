@@ -13,7 +13,7 @@ import { Form } from "./styles";
 import TextField from "@material-ui/core/TextField";
 
 export default ({ forceRender }) => {
-  const { handleSubmit, errors, control } = useForm({ message: "" });
+  const { handleSubmit, errors, control, reset } = useForm({ message: "" });
   const [user, setUser] = useState(null);
   const history = useHistory();
   const { userInfo } = useSelector(state => state.messageBoard);
@@ -28,8 +28,10 @@ export default ({ forceRender }) => {
     });
   }, []);
 
-  const submitForm = (data, e) => {
-    e.target.reset();
+  const submitForm = (data) => {
+    reset({
+      message: ''
+    });
     // Also check to see if a location has been added
     // const lat = userInfo.latitude;
     // const long = userInfo.longitude;
@@ -65,9 +67,7 @@ export default ({ forceRender }) => {
         <p>Message cannot exceed 100 characters</p>
       )}
       <form
-        onSubmit={() => {
-          handleSubmit(submitForm);
-        }}
+        onSubmit={handleSubmit(submitForm)}
       >
         <Controller
           id="standard-basic"
