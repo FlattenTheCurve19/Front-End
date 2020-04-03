@@ -15,7 +15,6 @@ import {
   Input,
   InputLabel,
   IconButton,
-  InputAdornment
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
