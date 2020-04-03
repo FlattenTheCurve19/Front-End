@@ -21,8 +21,7 @@ import {
   fetchCoords,
   fetchBounds,
   fetchCenter,
-  fetchZoom,
-  setMsgId
+  fetchZoom
 } from "../../Store/Actions/messageActions";
 
 const Proximity = props => {
@@ -237,13 +236,13 @@ const Proximity = props => {
           </PlacesAutocomplete>
         </Paper>
       </SearchBarWrapper>
-      <MyLocationWrapper>
+      {props.isGeolocationEnabled && <MyLocationWrapper>
         <Paper>
           <IconButton onClick={goToMyLocation}>
             <MyLocation />
           </IconButton>
         </Paper>
-      </MyLocationWrapper>
+      </MyLocationWrapper>}
     </StyledMap>
   );
 };
