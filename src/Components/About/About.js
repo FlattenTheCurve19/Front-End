@@ -20,215 +20,255 @@ const useStyles = makeStyles({
 export default function MediaCard() {
   const classes = useStyles();
   return (
-      <div className="aboutContainer">
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="src/images/aja.png"
-          title="aja"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Aja Blanco
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Front End Developer
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          View Portfolio
-        </Button>
-      </CardActions>
-    </Card>
+<div className="aboutContainer" style={{display: "flex", flexWrap:"wrap", justifyContent: "space-between", margin: "2%"}}>
+    
+    <div className="firstThree" style={{display:"flex", justifyContent:"space-around", width:"100%"}}>
 
-    <Card className={classes.root}>
+        <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia
+            <CardMedia
             className={classes.media}
-            image="src/images/anthony.png"
-            title="anthony"
-          />
-          <CardContent>
+            image="https://i.ibb.co/bNGHS3B/Screen-Shot-2020-04-03-at-4-10-14-PM.png"
+            title="aja"
+            />
+            <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Anthony Kawa
+                Aja
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+                Blanco
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Front End Developer
+                Front End Developer
             </Typography>
-          </CardContent>
+            </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+            <Button size="large" color="primary">
             View Portfolio
-          </Button>
+            </Button>
         </CardActions>
-      </Card>
+        </Card>
 
-    <Card className={classes.root}>
+        <Card className={classes.root}>
+            <CardActionArea>
+            <CardMedia
+                className={classes.media}
+                image="https://i.ibb.co/Lg9GTkT/Screen-Shot-2020-04-03-at-4-08-42-PM.png"
+                title="anthony"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                Anthony
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                Kawa
+                 </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                Front End Developer
+                </Typography>
+            </CardContent>
+            </CardActionArea>
+            <CardActions>
+            <Button size="large" color="primary">
+                View Portfolio
+            </Button>
+            </CardActions>
+        </Card>
+
+        <Card className={classes.root}>
     <CardActionArea>
     <CardMedia
         className={classes.media}
-        image="src/images/chris.png"
+        image="https://i.ibb.co/87j9C3V/Screen-Shot-2020-04-03-at-4-08-48-PM.png"
         title="chris"
     />
     <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-        Christopher Giroux
+        Christopher
         </Typography>
+        <Typography gutterBottom variant="h5" component="h2">
+                Giroux
+            </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
         Front End Developer
         </Typography>
     </CardContent>
     </CardActionArea>
     <CardActions>
-    <Button size="small" color="primary">
+    <Button size="large" color="primary">
         View Portfolio
     </Button>
     </CardActions>
     </Card>
 
-<Card className={classes.root}>
-<CardActionArea>
-  <CardMedia
-    className={classes.media}
-    image="src/images/dustin.png"
-    title="dustin"
-  />
-  <CardContent>
-    <Typography gutterBottom variant="h5" component="h2">
-      Dustin Meyers
-    </Typography>
-    <Typography variant="body2" color="textSecondary" component="p">
-      Project Lead
-    </Typography>
-  </CardContent>
-</CardActionArea>
-<CardActions>
-  <Button size="small" color="primary">
-    View Portfolio
-  </Button>
-</CardActions>
-</Card>
+    </div>
 
-<Card className={classes.root}>
-<CardActionArea>
-  <CardMedia
-    className={classes.media}
-    image="src/images/dylan.png"
-    title="dylan"
-  />
-  <CardContent>
-    <Typography gutterBottom variant="h5" component="h2">
-      Dylan Collins
-    </Typography>
-    <Typography variant="body2" color="textSecondary" component="p">
-      Front End Developer
-    </Typography>
-  </CardContent>
-</CardActionArea>
-<CardActions>
-  <Button size="small" color="primary">
-    View Portfolio
-  </Button>
-</CardActions>
-</Card>
+    <div className="secondThree" style={{display:"flex", justifyContent:"space-around", width:"100%"}}>
 
+        <Card className={classes.root}>
+        <CardActionArea>
+        <CardMedia
+            className={classes.media}
+            image="https://i.ibb.co/ftN52rV/Screen-Shot-2020-04-03-at-4-09-12-PM.png"
+            title="dustin"
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Dustin
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+                Meyers
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+            Project Lead
+            </Typography>
+        </CardContent>
+        </CardActionArea>
+        <CardActions>
+        <Button size="large" color="primary">
+            View Portfolio
+        </Button>
+        </CardActions>
+        </Card>
 
-<Card className={classes.root}>
-<CardActionArea>
-  <CardMedia
-    className={classes.media}
-    image="src/images/josiah.png"
-    title="josiah"
-  />
-  <CardContent>
-    <Typography gutterBottom variant="h5" component="h2">
-      Josiah Roa
-    </Typography>
-    <Typography variant="body2" color="textSecondary" component="p">
-      Front End Developer
-    </Typography>
-  </CardContent>
-</CardActionArea>
-<CardActions>
-  <Button size="small" color="primary">
-    View Portfolio
-  </Button>
-</CardActions>
-</Card>
+        <Card className={classes.root}>
+        <CardActionArea>
+        <CardMedia
+            className={classes.media}
+            image="https://i.ibb.co/D9kKx23/Screen-Shot-2020-04-03-at-4-09-18-PM.png"
+            title="dylan"
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Dylan 
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+                Collins
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+            Front End Developer
+            </Typography>
+        </CardContent>
+        </CardActionArea>
+        <CardActions>
+        <Button size="large" color="primary">
+            View Portfolio
+        </Button>
+        </CardActions>
+        </Card>
 
 
-<Card className={classes.root}>
+        <Card className={classes.root}>
+        <CardActionArea>
+        <CardMedia
+            className={classes.media}
+            image="https://i.ibb.co/56FwcGs/Screen-Shot-2020-04-03-at-4-08-54-PM.png"
+            title="josiah"
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Josiah
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+                Roa
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+            Front End Developer
+            </Typography>
+        </CardContent>
+        </CardActionArea>
+        <CardActions>
+        <Button size="large" color="primary">
+            View Portfolio
+        </Button>
+        </CardActions>
+        </Card>
+
+    </div>
+
+    <div className="thirdThree" style={{display:"flex", justifyContent:"space-around", width:"100%"}}>    
+
+        <Card className={classes.root}>
+        <CardActionArea>
+        <CardMedia
+            className={classes.media}
+            image="https://i.ibb.co/x1CXDz8/Screen-Shot-2020-04-03-at-4-09-00-PM.png"
+            title="rudy"
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Rudy
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+                Goldhaber
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+            Front End Developer
+            </Typography>
+        </CardContent>
+        </CardActionArea>
+        <CardActions>
+        <Button size="large" color="primary">
+            View Portfolio
+        </Button>
+        </CardActions>
+        </Card>
+            
+        <Card className={classes.root}>
+        <CardActionArea>
+        <CardMedia
+            className={classes.media}
+            image="https://i.ibb.co/wRJBNcx/Screen-Shot-2020-04-03-at-4-09-05-PM.png"
+            title="shun"
+        />
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Shun
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+               Chiang
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+            Front End Developer
+            </Typography>
+        </CardContent>
+        </CardActionArea>
+        <CardActions>
+        <Button size="large" color="primary">
+            View Portfolio
+        </Button>
+        </CardActions>
+        </Card>
+            
+        <Card className={classes.root}>
 <CardActionArea>
   <CardMedia
     className={classes.media}
-    image="src/images/rudy.png"
-    title="rudy"
-  />
-  <CardContent>
-    <Typography gutterBottom variant="h5" component="h2">
-      Rudy Goldhaber
-    </Typography>
-    <Typography variant="body2" color="textSecondary" component="p">
-      Front End Developer
-    </Typography>
-  </CardContent>
-</CardActionArea>
-<CardActions>
-  <Button size="small" color="primary">
-    View Portfolio
-  </Button>
-</CardActions>
-</Card>
-    
-<Card className={classes.root}>
-<CardActionArea>
-  <CardMedia
-    className={classes.media}
-    image="src/images/shun.png"
-    title="shun"
-  />
-  <CardContent>
-    <Typography gutterBottom variant="h5" component="h2">
-      Shun Chiang
-    </Typography>
-    <Typography variant="body2" color="textSecondary" component="p">
-      Front End Developer
-    </Typography>
-  </CardContent>
-</CardActionArea>
-<CardActions>
-  <Button size="small" color="primary">
-    View Portfolio
-  </Button>
-</CardActions>
-</Card>
-    
-    <Card className={classes.root}>
-<CardActionArea>
-  <CardMedia
-    className={classes.media}
-    image="src/images/suffyan.png"
+    image="https://i.ibb.co/dWQpC8P/Screen-Shot-2020-04-03-at-4-09-25-PM.png"
     title="suffyan"
   />
   <CardContent>
     <Typography gutterBottom variant="h5" component="h2">
-      Suffyan Tariq
+      Suffyan
     </Typography>
+    <Typography gutterBottom variant="h5" component="h2">
+                Tariq
+            </Typography>
     <Typography variant="body2" color="textSecondary" component="p">
       Front End Developer
     </Typography>
   </CardContent>
 </CardActionArea>
 <CardActions>
-  <Button size="small" color="primary">
+  <Button size="large" color="primary">
     View Portfolio
   </Button>
 </CardActions>
 </Card>
+    </div>
+
 </div>
-  );
+
+  );    
 }
