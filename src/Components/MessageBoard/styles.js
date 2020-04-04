@@ -10,6 +10,7 @@ export const Board = styled(Paper)`
     min-width: 400px;
     max-width: 600px;
     transition: .5s top;
+    z-index: 100;
     h1{
         margin-bottom: 30px;
         text-align: center;

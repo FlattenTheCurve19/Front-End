@@ -328,7 +328,7 @@ const MyLocationWrapper = styled.div`
   bottom: 90px;
   width: 38px;
   height: 38px;
-  z-index: 100;
+  z-index: 1;
 
   button {
     padding: 7px;
