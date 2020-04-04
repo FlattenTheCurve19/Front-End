@@ -7,12 +7,16 @@
       href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
       rel="stylesheet"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"
       rel="stylesheet"
     />
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNGcTEWBAE3kyDFxXAtw4J0vdeLuicLNk&libraries=places"></script>
-
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNGcTEWBAE3kyDFxXAtw4J0vdeLuicLNk&libraries=places"
+    ></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
@@ -35,7 +39,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Flatten The Curve</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -50,5 +54,10 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+      window.addEventListener("load", AOS.refresh);
+    </script>
   </body>
 </html>
