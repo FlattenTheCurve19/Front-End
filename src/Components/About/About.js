@@ -30,7 +30,7 @@ export default function MediaCard() {
 
     </div>
     
-    <div className="firstFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
+    <div className="firstFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%", marginBottom: "2%"}}>
 
         <Card className={classes.root}>
         <CardActionArea>
