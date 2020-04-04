@@ -12,6 +12,7 @@ import Login from "./Components/Users/Login";
 import MessageBoard from "./Components/MessageBoard";
 import TwitterFeed from "./Components/TwitterFeed/TwitterFeed";
 import About from "./Components/About/About";
+import AddMessageForm from './Pages/AddMessageForm';
 
 // Page Imports
 import Home from "./Pages/Home";
@@ -65,6 +66,9 @@ function App() {
         </Route>
         <Route path="/twitter-feed">
           <TwitterFeed />
+        </Route>
+        <Route path="/add-message-form">
+          <AddMessageForm />
         </Route>
       </div>
     </StylesProvider>
