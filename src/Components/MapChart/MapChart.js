@@ -292,11 +292,10 @@ const USMapChart = styled.div`
 `;
 
 const ChartButton = styled(Button)`
-  border: 1px solid #5fd4d8;
   border-radius: 3px;
-  background: transparent;
+  background: #ff567f;
   padding: 4px 10px;
-  color: #5fd4d8;
+  color: white;
   font-size: 10px;
 `;
 
