@@ -112,7 +112,6 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: scroll;
 }
 ol,
 ul {
@@ -328,6 +327,7 @@ textarea.materialize-textarea {
   text-align: center;
   display: flex;
   justify-content: center;
+  background-color: black;
   background-image: url("https://images.unsplash.com/photo-1533777419517-3e4017e2e15a?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -349,6 +349,12 @@ textarea.materialize-textarea {
     padding: 1rem 2rem 2rem 2rem;
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
       0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    @media screen and (max-width: $tablet) {
+      width: 60%;
+    }
+    @media screen and (max-width: $bigPhone) {
+      width: 80%;
+    }
   }
 }
 .login-form {
@@ -373,6 +379,12 @@ textarea.materialize-textarea {
     padding: 2rem;
     /* box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
       0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12) */
+    @media screen and (max-width: $tablet) {
+      width: 60%;
+    }
+    @media screen and (max-width: $bigPhone) {
+      width: 80%;
+    }
   }
 }
 .reg-btn {
@@ -392,6 +404,9 @@ textarea.materialize-textarea {
   p {
     padding-bottom: 0.1rem;
     color: #236b6b;
+    @media screen and (max-width: $phone) {
+      font-size: 0.8rem;
+    }
     &:hover {
       color: $primary-color;
       cursor: pointer;
@@ -472,6 +487,9 @@ textarea.materialize-textarea {
     right: 17.6%;
     top: 21.73%;
     bottom: 22.5%; */
+    &:hover {
+      background-color: #ff91ac;
+    }
   }
 }
 
@@ -500,31 +518,14 @@ textarea.materialize-textarea {
   .vid-info .acronym {
     display: none;
   }
-  .googleLogin {
-    display: flex;
-    font-family: $content-font;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    img {
-      margin-right: 0.5rem;
-      width: 5%;
-    }
-    p {
-      padding-bottom: 0.1rem;
-      color: #236b6b;
-      &:hover {
-        color: $primary-color;
-        cursor: pointer;
-      }
-    }
-  }
 }
 //landing page map section//
 .chart-title {
   padding: 0 1rem;
+  margin: 2rem 0;
   .MuiTypography-h3 {
     font-size: 2.5rem;
+    font-weight: 600;
     @media screen and (max-width: $mediumTablet) {
       font-size: 1.8rem;
     }
@@ -547,6 +548,65 @@ textarea.materialize-textarea {
   &:hover {
     color: $primary-color;
     cursor: pointer;
+  }
+}
+
+//landing page feature section//
+.home-content {
+  margin-top: 10vh;
+  .chat-feature {
+    display: flex;
+    justify-content: space-evenly;
+
+    @media screen and (max-width: $mediumTablet) {
+      flex-direction: column-reverse;
+      margin-bottom: 5vh;
+    }
+
+    img {
+      width: 400px;
+      @media screen and (max-width: $mediumTablet) {
+        width: 50%;
+      }
+    }
+    .chat-text {
+      @media screen and (max-width: $mediumTablet) {
+        position: absolute;
+        right: 20px;
+        bottom: 8px;
+      }
+
+      .reach-out {
+        padding-top: 5vh;
+      }
+      h3 {
+        font-family: $titles-font;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        padding-top: 15vh;
+        @media screen and (max-width: $mediumTablet) {
+          font-size: 1.2rem;
+        }
+        @media screen and (max-width: 450px) {
+          font-size: 1rem;
+          padding-top: 5vh;
+        }
+      }
+      width: 50%;
+      padding-left: 2rem;
+      font-family: $content-font;
+      p {
+        line-height: 1.5rem;
+        @media screen and (max-width: $mediumTablet) {
+          font-size: 0.8rem;
+        }
+        @media screen and (max-width: 450px) {
+          font-size: 0.7rem;
+          line-height: 1rem;
+        }
+      }
+    }
   }
 }
 

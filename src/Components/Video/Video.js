@@ -12,7 +12,7 @@ const Video = props => {
       </video>
       <div className="videoTitle">
         <h1>Do your Part, Help Flatten The Curve</h1>
-        <button onClick={() => history.push('/register')}> JOIN NOW </button>
+        <button onClick={() => history.push("/register")}> Join Now </button>
       </div>
     </div>
   );
