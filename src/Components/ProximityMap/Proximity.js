@@ -209,8 +209,10 @@ const Proximity = props => {
                   msg={elem.postField}
                   avatarUrl={elem.avatar}
                   firstNameInit={elem.displayName && elem.displayName.charAt(0)}
+                  displayName={elem.displayName}
                   time={elem.timeOfPost.seconds}
                   id={elem.postId}
+                  image={elem.image}
                 />
               );
             })}

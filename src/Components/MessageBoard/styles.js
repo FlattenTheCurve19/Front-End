@@ -1,6 +1,6 @@
 // Styled components for message board component and children
 import styled from 'styled-components';
-import {Paper} from '@material-ui/core';
+import {Paper, TextField} from '@material-ui/core';
 import theme from '../../Styles/theme';
 
 export const Board = styled(Paper)`
@@ -161,4 +161,15 @@ export const Form = styled.div`
 
     }
     
+`;
+
+export const AddMessageInput = styled(TextField)`
+    .MuiInputBase-formControl {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+        input {
+            border-right: none;
+        }
+    }
 `;

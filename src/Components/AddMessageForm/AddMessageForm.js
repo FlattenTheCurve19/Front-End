@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useForm, F } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import * as firebase from "firebase/app";
 import { createPost } from "../../_utils/firedbHelper";
 
 export default () => {
   const [file, setFile] = useState();
-  const { register, handleSubmit, setValue, getValues } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: "",
       message: "",
@@ -48,7 +48,7 @@ export default () => {
         <input type="file" id="image" name="image" onChange={handleChange} />
         <input type="submit" />
       </form>
-      {file ? <img src={file} /> : null}
+      {file ? <img alt="uploaded" src={file} /> : null}
     </>
   );
 };

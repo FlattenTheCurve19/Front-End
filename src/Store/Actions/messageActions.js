@@ -56,7 +56,8 @@ export const messageSetter = object => {
     object.postField,
     object.geoLock.longitude,
     object.geoLock.latitude,
-    object.avatar
+    object.avatar,
+    object.image
   );
 };
 export const fetchCoords = coords => {

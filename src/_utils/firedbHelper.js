@@ -37,7 +37,7 @@ export const createPost = (
     },
     coordinates: new firebase.firestore.GeoPoint(lat, long),
     avatar: avatar,
-    img: img
+    image: img
   })
   .then(res => {
     console.log("Success");
