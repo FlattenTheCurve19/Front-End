@@ -20,7 +20,15 @@ const useStyles = makeStyles({
 export default function MediaCard() {
   const classes = useStyles();
   return (
+
+      
 <div className="aboutContainer" style={{display: "flex", flexWrap:"wrap", justifyContent: "space-between", margin: "2%"}}>
+    <div style={{width: "100%", display: "flex", justifyContent:"center", marginBottom: "2%"}}>
+    <h1 style={{textAlign:"center", fontSize:"2.5rem"}}>
+        Meet the Team
+    </h1>
+
+    </div>
     
     <div className="firstFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
 
@@ -281,7 +289,7 @@ export default function MediaCard() {
                 Khawaja
             </Typography>
     <Typography variant="body2" color="textSecondary" component="p">
-      Front End Developer
+      UX/UI Designer
     </Typography>
   </CardContent>
 </CardActionArea>
