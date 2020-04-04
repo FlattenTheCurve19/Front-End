@@ -27,9 +27,14 @@ import {
 
 const Proximity = props => {
   const coords = useSelector(state => state.messageBoard.userInfo);
+  const selectedMsg = useSelector(state => state.messageBoard.toggleMsgId)
   const msgs = useSelector(state => state.messageBoard.messages);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+
+  },[selectedMsg])
 
   useEffect(() => {
     if (props.coords && props.coords.latitude && props.coords.longitude) {
@@ -116,10 +121,22 @@ const Proximity = props => {
             lat: coords && coords.center.lat,
             lng: coords && coords.center.lng
           }}
-          options={createMapOptions}
+          overlayViewDivStyle={{
+            pointerEvent: 'all',
+            zIndex: 1001
+          }}
+         options={createMapOptions}
           defaultZoom={5}
-          onClick={() => dispatch(setMsgId())}
           zoom={coords && coords.zoom}
+          onChildClick={e => {
+            const clickedMessage = msgs.find(msg => msg.postId === e);
+            dispatch(fetchCenter({
+              lat: clickedMessage.geoLock.latitude,
+              lng: clickedMessage.geoLock.longitude
+            }))
+            dispatch(setMsgId(e))
+          }}
+          onClick={() => dispatch(setMsgId())}
           onChange={({ center, zoom, bounds, marginBounds }) => {
             dispatch(fetchZoom(zoom));
             if (center.lng > 180) {
@@ -169,7 +186,7 @@ const Proximity = props => {
                 fillColor: "#4285F4",
                 fillOpacity: 0.2,
                 path: maps.SymbolPath.CIRCLE,
-                scale: 20,
+                scale: 14,
                 anchor: new maps.Point(0, 0)
               },
               map,
@@ -185,7 +202,7 @@ const Proximity = props => {
             msgs.map(elem => {
               return (
                 <MapMarker
-                  key={Math.floor(Math.random() * 1000000)}
+                  key={elem.postId}
                   className="location-icon"
                   lat={elem.geoLock.latitude}
                   lng={elem.geoLock.longitude}

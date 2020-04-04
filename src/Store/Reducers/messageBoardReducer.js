@@ -80,7 +80,7 @@ export const messageBoard = (state = initalState, { type, payload }) => {
     case FETCH_MSG_ID:
       return {
         ...state,
-        setMsgs: payload
+        toggleMsgId: payload
       };
     default:
       return state;

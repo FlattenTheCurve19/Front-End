@@ -1,31 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar } from "@material-ui/core";
 import styled from "styled-components";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { setMsgId } from "../../Store/Actions/messageActions";
 import { useSelector, useDispatch } from "react-redux";
+import { Paper, IconButton} from '@material-ui/core';
+import { Close } from '@material-ui/icons';
 
-export const NewPaper = styled.div`
+const NewPaper = styled(Paper)`
    {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     height: auto;
-    box-shadow: 5px 5px 5px 5px grey;
     width: 300px;
-    background-color: white;
-    color: red;
+    position: absolute;
+    left: -150px;
+    top: 10px;
     font-size: 1.2rem;
     text-align: center;
-    border-radius: 10px;
-    position: fixed;
-    z-index: 1000000000;
+    z-index: 1000;
   }
 `;
 
+const CloseButton = styled(IconButton)`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1000;
+`;
+
+const Triangle = styled.div`
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  background: white;
+  position: absolute;
+  right: 140px;
+  top: -10px;
+`;
+
+
+
 const MapMarker = props => {
-  const selectedMsg = useSelector(state => state.messageBoard.setMsgs);
+  const selectedMsg = useSelector(state => state.messageBoard.toggleMsgId);
   const dispatch = useDispatch();
 
   const timeToDate = time => {
@@ -34,17 +53,13 @@ const MapMarker = props => {
 
   return (
     <>
-      <LocationOnIcon
-        className="location-icon"
-        onClick={() => dispatch(setMsgId(props.id))}
-        onMouseLeave={() => dispatch(setMsgId())}
-        id={Math.floor(Math.random() * 100000)}
+      <LocationOnIcon 
+      className="location-icon"
         lat={props.lat}
-        lng={props.lng}
-      />
+        lng={props.lng} />
       {selectedMsg === props.id && (
-        <div className="new_paper">
           <NewPaper>
+            <Triangle />
             <div
               style={{
                 width: "80%",
@@ -78,10 +93,12 @@ const MapMarker = props => {
               </div>
             </div>
             <div className="map-text"> {'"' + props.msg + '"'}</div>
+            <CloseButton onClick={() => dispatch(setMsgId())}>
+              <Close />
+            </CloseButton>
           </NewPaper>
-        </div>
       )}
-    </>
+      </>
   );
 };
 

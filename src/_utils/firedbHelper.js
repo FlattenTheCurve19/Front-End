@@ -23,7 +23,8 @@ export const createPost = (
   postfield,
   long,
   lat,
-  avatar
+  avatar,
+  img
 ) => {
   geocollection.add({
     ...post,
@@ -35,7 +36,11 @@ export const createPost = (
       longitude: long
     },
     coordinates: new firebase.firestore.GeoPoint(lat, long),
-    avatar: avatar
+    avatar: avatar,
+    img: img
+  })
+  .then(res => {
+    console.log("Success");
   })
   .catch(err => console.error('Error', err.message));
 };

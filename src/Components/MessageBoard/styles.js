@@ -110,6 +110,7 @@ export const ToggleButton = styled(Paper)`
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     transition: .5s bottom;
+    cursor: pointer;
 
 
     @media all and (min-width: 500px){

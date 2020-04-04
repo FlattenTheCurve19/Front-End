@@ -538,7 +538,7 @@ textarea.materialize-textarea {
   }
 }
 .location-icon {
-  height: 30px;
+  cursor: pointer;
   width: 30px;
   position: relative;
   bottom: 30px;
@@ -547,7 +547,6 @@ textarea.materialize-textarea {
   z-index: -1;
   &:hover {
     color: $primary-color;
-    cursor: pointer;
   }
 }
 
