@@ -22,7 +22,7 @@ export default function MediaCard() {
   return (
 <div className="aboutContainer" style={{display: "flex", flexWrap:"wrap", justifyContent: "space-between", margin: "2%"}}>
     
-    <div className="firstThree" style={{display:"flex", justifyContent:"space-around", width:"100%"}}>
+    <div className="firstThree" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
 
         <Card className={classes.root}>
         <CardActionArea>
@@ -104,7 +104,7 @@ export default function MediaCard() {
 
     </div>
 
-    <div className="secondThree" style={{display:"flex", justifyContent:"space-around", width:"100%"}}>
+    <div className="secondThree" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
 
         <Card className={classes.root}>
         <CardActionArea>
@@ -187,7 +187,7 @@ export default function MediaCard() {
 
     </div>
 
-    <div className="thirdThree" style={{display:"flex", justifyContent:"space-around", width:"100%"}}>    
+    <div className="thirdThree" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>    
 
         <Card className={classes.root}>
         <CardActionArea>
