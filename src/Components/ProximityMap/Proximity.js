@@ -10,7 +10,7 @@ import {
   ListItem,
   ListItemText
 } from "@material-ui/core";
-import { Search, MyLocation } from "@material-ui/icons";
+import { Search, MyLocation, Add, Remove } from "@material-ui/icons";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -43,13 +43,10 @@ const Proximity = props => {
         );
         dispatch(fetchZoom(11));
       }, 1000);
+    } else {
+      dispatch(fetchZoom(3));
     }
   }, [props.coords, dispatch]);
-
-  useEffect(() => {
-    if (search) {
-    }
-  }, [search]);
 
   const searchHandler = e => {
     setSearch(e);
@@ -95,156 +92,191 @@ const Proximity = props => {
     dispatch(fetchZoom(12));
   };
 
+  function createMapOptions(maps) {
+    console.log(maps);
+    return {
+      zoomControl: false,
+      mapTypeControl: false,
+      draggableCursor: "default",
+      fullscreenControl: false,
+      minZoom: 3,
+      maxZoom: 17
+    };
+  }
+
   return (
-    <StyledMap>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
-        defaultCenter={{
-          lat: 36.9645056048637,
-          lng: -99.68471236809506
-        }}
-        center={{
-          lat: coords && coords.center.lat,
-          lng: coords && coords.center.lng
-        }}
-        defaultZoom={5}
-        onClick={() => dispatch(setMsgId())}
-        zoom={coords && coords.zoom}
-        onChange={({ center, zoom, bounds, marginBounds }) => {
-          dispatch(fetchZoom(zoom));
-          if (center.lng > 180) {
-            dispatch(
-              fetchCenter({
-                lat: center.lat,
-                lng: 180
-              })
-            );
-          } else if (center.lng < -180) {
-            dispatch(
-              fetchCenter({
-                lat: center.lat,
-                lng: -180
-              })
-            );
-          } else {
-            dispatch(fetchCenter(center));
-          }
-          dispatch(fetchBounds(bounds));
-        }}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => {
-          new maps.Marker({
-            icon: {
-              strokeColor: "#FFFFFF",
-              strokeOpacity: 0.7,
-              strokeWeight: 2,
-              fillColor: "#4285F4",
-              fillOpacity: 1,
-              path: maps.SymbolPath.CIRCLE,
-              scale: 8,
-              anchor: new maps.Point(0, 0)
-            },
-            map,
-            position: {
-              lat: coords.latitude,
-              lng: coords.longitude
-            },
-            zIndex: -1
-          });
-          new maps.Marker({
-            icon: {
-              strokeColor: "transparent",
-              strokeOpacity: 0.7,
-              strokeWeight: 0,
-              fillColor: "#4285F4",
-              fillOpacity: 0.2,
-              path: maps.SymbolPath.CIRCLE,
-              scale: 20,
-              anchor: new maps.Point(0, 0)
-            },
-            map,
-            position: {
-              lat: coords.latitude,
-              lng: coords.longitude
-            },
-            zIndex: -1
-          });
-        }}
-        options={{ draggableCursor: "default" }}
-      >
-        {msgs.length &&
-          msgs.map(elem => {
-            return (
-              <MapMarker
-                key={Math.floor(Math.random() * 1000000)}
-                className="location-icon"
-                lat={elem.geoLock.latitude}
-                lng={elem.geoLock.longitude}
-                msg={elem.postField}
-                avatarUrl={elem.avatar}
-                firstNameInit={elem.displayName && elem.displayName.charAt(0)}
-                time={elem.timeOfPost.seconds}
-                id={elem.postId}
-              />
-            );
-          })}
-      </GoogleMapReact>
-      <SearchBarWrapper>
-        <Paper component="form" onSubmit={handleSubmit}>
-          <PlacesAutocomplete
-            value={search}
-            onChange={searchHandler}
-            onSelect={handleSelect}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps }) => (
-              <div>
-                <InputWrapper
-                  {...getInputProps({
-                    placeholder: "Search Places ...",
-                    className: "location-search-input"
-                  })}
+    <>
+      <StyledMap>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "AIzaSyAe3rBv5NMNdFBGgkeFYUvgquo2qqjMgnc" }}
+          defaultCenter={{
+            lat: 36.9645056048637,
+            lng: -99.68471236809506
+          }}
+          center={{
+            lat: coords && coords.center.lat,
+            lng: coords && coords.center.lng
+          }}
+          options={createMapOptions}
+          defaultZoom={5}
+          onClick={() => dispatch(setMsgId())}
+          zoom={coords && coords.zoom}
+          onChange={({ center, zoom, bounds, marginBounds }) => {
+            dispatch(fetchZoom(zoom));
+            if (center.lng > 180) {
+              dispatch(
+                fetchCenter({
+                  lat: center.lat,
+                  lng: 180
+                })
+              );
+            } else if (center.lng < -180) {
+              dispatch(
+                fetchCenter({
+                  lat: center.lat,
+                  lng: -180
+                })
+              );
+            } else {
+              dispatch(fetchCenter(center));
+            }
+            dispatch(fetchBounds(bounds));
+          }}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => {
+            new maps.Marker({
+              icon: {
+                strokeColor: "#FFFFFF",
+                strokeOpacity: 0.7,
+                strokeWeight: 2,
+                fillColor: "#4285F4",
+                fillOpacity: 1,
+                path: maps.SymbolPath.CIRCLE,
+                scale: 8,
+                anchor: new maps.Point(0, 0)
+              },
+              map,
+              position: {
+                lat: coords.latitude,
+                lng: coords.longitude
+              },
+              zIndex: -1
+            });
+            new maps.Marker({
+              icon: {
+                strokeColor: "transparent",
+                strokeOpacity: 0.7,
+                strokeWeight: 0,
+                fillColor: "#4285F4",
+                fillOpacity: 0.2,
+                path: maps.SymbolPath.CIRCLE,
+                scale: 20,
+                anchor: new maps.Point(0, 0)
+              },
+              map,
+              position: {
+                lat: coords.latitude,
+                lng: coords.longitude
+              },
+              zIndex: -1
+            });
+          }}
+        >
+          {msgs.length &&
+            msgs.map(elem => {
+              return (
+                <MapMarker
+                  key={Math.floor(Math.random() * 1000000)}
+                  className="location-icon"
+                  lat={elem.geoLock.latitude}
+                  lng={elem.geoLock.longitude}
+                  msg={elem.postField}
+                  avatarUrl={elem.avatar}
+                  firstNameInit={elem.displayName && elem.displayName.charAt(0)}
+                  time={elem.timeOfPost.seconds}
+                  id={elem.postId}
                 />
-                <IconButton type="submit" aria-label="search">
-                  <Search />
-                </IconButton>
-                <div className="autocomplete-dropdown-container">
-                  {suggestions.length > 0 && (
-                    <List>
-                      {suggestions.map(suggestion => {
-                        const className = suggestion.active
-                          ? "suggestion-item--active"
-                          : "suggestion-item";
-                        // inline style for demonstration purpose
-                        const style = suggestion.active
-                          ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                          : { backgroundColor: "#ffffff", cursor: "pointer" };
-                        return (
-                          <ListItem
-                            {...getSuggestionItemProps(suggestion, {
-                              className,
-                              style
-                            })}
-                          >
-                            <ListItemText primary={suggestion.description} />
-                          </ListItem>
-                        );
-                      })}
-                    </List>
-                  )}
+              );
+            })}
+        </GoogleMapReact>
+        <SearchBarWrapper>
+          <Paper component="form" onSubmit={handleSubmit}>
+            <PlacesAutocomplete
+              value={search}
+              onChange={searchHandler}
+              onSelect={handleSelect}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps }) => (
+                <div>
+                  <InputWrapper
+                    {...getInputProps({
+                      placeholder: "Search Places ...",
+                      className: "location-search-input"
+                    })}
+                  />
+                  <IconButton type="submit" aria-label="search">
+                    <Search />
+                  </IconButton>
+                  <div className="autocomplete-dropdown-container">
+                    {suggestions.length > 0 && (
+                      <List>
+                        {suggestions.map(suggestion => {
+                          const className = suggestion.active
+                            ? "suggestion-item--active"
+                            : "suggestion-item";
+                          // inline style for demonstration purpose
+                          const style = suggestion.active
+                            ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                            : { backgroundColor: "#ffffff", cursor: "pointer" };
+                          return (
+                            <ListItem
+                              {...getSuggestionItemProps(suggestion, {
+                                className,
+                                style
+                              })}
+                            >
+                              <ListItemText primary={suggestion.description} />
+                            </ListItem>
+                          );
+                        })}
+                      </List>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
-        </Paper>
-      </SearchBarWrapper>
-      {props.isGeolocationEnabled && <MyLocationWrapper>
-        <Paper>
-          <IconButton onClick={goToMyLocation}>
-            <MyLocation />
-          </IconButton>
-        </Paper>
-      </MyLocationWrapper>}
-    </StyledMap>
+              )}
+            </PlacesAutocomplete>
+          </Paper>
+        </SearchBarWrapper>
+
+        <MyLocationWrapper>
+          {props.isGeolocationEnabled && (
+            <Paper style={{ marginBottom: "6px" }}>
+              <IconButton onClick={goToMyLocation}>
+                <MyLocation />
+              </IconButton>
+            </Paper>
+          )}
+          <Paper style={{ borderRadius: "4px 4px 0 0" }}>
+            <IconButton onClick={() => {
+                if(coords.zoom < 17){
+                  dispatch(fetchZoom(coords.zoom + 1))
+                }
+              }}>
+              <Add />
+            </IconButton>
+          </Paper>
+          <Paper style={{ borderRadius: "0 0 4px 4px " }}>
+            <IconButton onClick={() => {
+                if(coords.zoom > 3){
+                  dispatch(fetchZoom(coords.zoom - 1))
+                }
+              }}>
+              <Remove />
+            </IconButton>
+          </Paper>
+        </MyLocationWrapper>
+      </StyledMap>
+    </>
   );
 };
 
@@ -261,9 +293,10 @@ const SearchBarWrapper = styled.div`
 
   @media all and (max-width: 500px) {
     top: 64px;
-    left: 10px;
+    left: 0;
+    margin: 0 10px;
     z-index: 1;
-    width: calc(100% - 71px);
+    width: calc(100vw - 20px);
   }
 `;
 
@@ -273,10 +306,11 @@ const InputWrapper = styled(InputBase)`
 
 const MyLocationWrapper = styled.div`
   position: fixed;
-  right: 11px;
-  bottom: 121px;
+  right: 15px;
+  bottom: 90px;
   width: 38px;
   height: 38px;
+  z-index: 100;
 
   button {
     padding: 7px;

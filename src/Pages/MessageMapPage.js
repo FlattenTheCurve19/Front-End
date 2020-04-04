@@ -13,7 +13,7 @@ window.addEventListener("resize", () => {
 });
 
 const Page = styled.section`
-  height: calc(100vh - 43px);
+  height: calc(100vh - 56px);
   display: flex;
   overflow: hidden;
 
