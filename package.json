@@ -69,6 +69,7 @@
     ]
   },
   "devDependencies": {
+    "ember-cli-materialize": "^0.22.0",
     "redux-devtools": "^3.5.0"
   }
 }
