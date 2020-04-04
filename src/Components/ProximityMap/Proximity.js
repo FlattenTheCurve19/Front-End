@@ -93,7 +93,6 @@ const Proximity = props => {
   };
 
   function createMapOptions(maps) {
-    console.log(maps);
     return {
       zoomControl: false,
       mapTypeControl: false,
