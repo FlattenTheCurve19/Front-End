@@ -685,3 +685,48 @@ textarea.materialize-textarea {
     border: 1px solid orange;
   }
 }
+
+.firstFive {
+  // @media screen and (max-width: $mediumTablet) {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
+  @media screen and (max-width: $bigPhone) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: $iphoneX) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.secondFive {
+  // @media screen and (max-width: $mediumTablet) {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
+  @media screen and (max-width: $bigPhone) {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  @media screen and (max-width: $iphoneX) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.MuiButtonBase-root.MuiCardActionArea-root img {
+  @media screen and (max-width: $iphoneX) {
+    height: 400px;
+  }
+}
+
+.MuiCardContent-root {
+  height: 150px;
+}

@@ -34,7 +34,7 @@ export default function MediaCard() {
 
     </div>
     
-    <div className="firstFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%", marginBottom: "2%"}}>
+    <div className="firstFive" style={{display:"flex", justifyContent:"space-evenly", flexWrap: "wrap", width:"100%", marginBottom: "2%"}}>
 
         <Card className={classes.root}>
         <CardActionArea>
@@ -175,7 +175,7 @@ export default function MediaCard() {
         
     </div>
 
-    <div className="secondFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>    
+    <div className="secondFive" style={{display:"flex", justifyContent:"space-evenly", flexWrap: "wrap", width:"100%"}}>    
         <Card className={classes.root}>
         <CardActionArea>
         <CardMedia
