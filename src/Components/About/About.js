@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -19,8 +20,11 @@ const useStyles = makeStyles({
 
 export default function MediaCard() {
   const classes = useStyles();
+
+
   return (
 
+    
       
 <div className="aboutContainer" style={{display: "flex", flexWrap:"wrap", justifyContent: "space-between", margin: "2%"}}>
     <div style={{width: "100%", display: "flex", justifyContent:"center", marginBottom: "2%"}}>
@@ -55,7 +59,7 @@ export default function MediaCard() {
             </CardContent>
         </CardActionArea>
         <CardActions>
-            <Button size="large" color="primary">
+            <Button size="large" color="primary" onClick={() => window.open('https://ajablanco.me')}>
             View Portfolio
             </Button>
         </CardActions>
