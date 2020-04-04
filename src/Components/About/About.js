@@ -22,7 +22,7 @@ export default function MediaCard() {
   return (
 <div className="aboutContainer" style={{display: "flex", flexWrap:"wrap", justifyContent: "space-between", margin: "2%"}}>
     
-    <div className="firstThree" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
+    <div className="firstFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
 
         <Card className={classes.root}>
         <CardActionArea>
@@ -102,9 +102,7 @@ export default function MediaCard() {
     </CardActions>
     </Card>
 
-    </div>
 
-    <div className="secondThree" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>
 
         <Card className={classes.root}>
         <CardActionArea>
@@ -159,6 +157,10 @@ export default function MediaCard() {
         </Card>
 
 
+        
+    </div>
+
+    <div className="secondFive" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>    
         <Card className={classes.root}>
         <CardActionArea>
         <CardMedia
@@ -184,10 +186,6 @@ export default function MediaCard() {
         </Button>
         </CardActions>
         </Card>
-
-    </div>
-
-    <div className="thirdThree" style={{display:"flex", justifyContent:"space-evenly", width:"100%"}}>    
 
         <Card className={classes.root}>
         <CardActionArea>
@@ -266,7 +264,35 @@ export default function MediaCard() {
   </Button>
 </CardActions>
 </Card>
+    
+        <Card className={classes.root}>
+   
+<CardActionArea>
+  <CardMedia
+    className={classes.media}
+    image="https://i.ibb.co/gVMsY7F/Screen-Shot-2020-04-03-at-5-07-03-PM.png"
+    title="zahid"
+  />
+  <CardContent>
+    <Typography gutterBottom variant="h5" component="h2">
+      Zahid
+    </Typography>
+    <Typography gutterBottom variant="h5" component="h2">
+                Khawaja
+            </Typography>
+    <Typography variant="body2" color="textSecondary" component="p">
+      Front End Developer
+    </Typography>
+  </CardContent>
+</CardActionArea>
+<CardActions>
+  <Button size="large" color="primary">
+    View Portfolio
+  </Button>
+</CardActions>
+</Card>
     </div>
+
 
 </div>
 
