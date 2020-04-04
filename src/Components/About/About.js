@@ -49,6 +49,9 @@ export default function MediaCard() {
             <Typography variant="body2" color="textSecondary" component="p">
                 Front End Developer
             </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+           UX/UI Designer
+            </Typography>
             </CardContent>
         </CardActionArea>
         <CardActions>
@@ -236,7 +239,10 @@ export default function MediaCard() {
                Chiang
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-            Front End Developer
+            Front End Developer 
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+           UX/UI Designer
             </Typography>
         </CardContent>
         </CardActionArea>
@@ -262,7 +268,7 @@ export default function MediaCard() {
                 Tariq
             </Typography>
     <Typography variant="body2" color="textSecondary" component="p">
-      Front End Developer
+    UX/UI Designer
     </Typography>
   </CardContent>
 </CardActionArea>
@@ -289,7 +295,7 @@ export default function MediaCard() {
                 Khawaja
             </Typography>
     <Typography variant="body2" color="textSecondary" component="p">
-      UX/UI Designer
+      Front End Developer
     </Typography>
   </CardContent>
 </CardActionArea>
