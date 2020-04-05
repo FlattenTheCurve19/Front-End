@@ -88,13 +88,40 @@ export default ({ forceRender }) => {
   const handleFileChange = e => {
     console.log(e);
     e.persist();
+    const fileName = e.target.files[0].name;
     if (e.target.files[0].type.includes("image")) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-      reader.onload = res => {
-        console.log(res);
-        setImageUrl(res.target.result);
+      reader.onload = event => {
+        console.log(event);
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const width = 600;
+          const scaleFactor = width / img.width;
+          const elem = document.createElement("canvas");
+          elem.width = width;
+          elem.height = scaleFactor * img.height;
+          const ctx = elem.getContext('2d')
+          ctx.drawImage(img, 0, 0, width, img.height * scaleFactor);
+          ctx.canvas.toBlob(blob => {
+            const file = new File([blob], fileName, {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            });
+
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+              console.log(e.target.result);
+              setImageUrl(e.target.result);
+            }
+            
+          }, 'image/jpeg', 1);
+        };
+
+        
       };
+      reader.onerror = error => console.error(error);
     } else {
       console.error("Error", "Not supported image format");
     }
